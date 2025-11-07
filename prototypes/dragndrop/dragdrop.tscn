@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://cxf562cdioon7"]
+
+[ext_resource type="Script" uid="uid://co7ypo1lweek4" path="res://prototypes/dragndrop/dragdrop.gd" id="1_6mw8x"]
+[ext_resource type="PackedScene" uid="uid://bjgy4iu7s2m8e" path="res://prototypes/dragndrop/item.tscn" id="2_6mw8x"]
+
+[sub_resource type="Gradient" id="Gradient_vt6ba"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4wye5"]
+gradient = SubResource("Gradient_vt6ba")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vtql6"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d58d0"]
+size = Vector2(200, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7s3n"]
+
+[node name="Dragdrop" type="Node2D" node_paths=PackedStringArray("spawn_point", "game_timer", "conveyor_belt")]
+script = ExtResource("1_6mw8x")
+spawn_point = NodePath("spawn_point")
+item = ExtResource("2_6mw8x")
+game_timer = NodePath("Timer")
+spawn_interval_ms = 10000
+conveyor_belt = NodePath("bottom/belt")
+
+[node name="bottom" type="Sprite2D" parent="."]
+position = Vector2(830.00006, 667)
+scale = Vector2(20, 20)
+texture = SubResource("GradientTexture1D_4wye5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bottom"]
+physics_material_override = SubResource("PhysicsMaterial_vtql6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom/StaticBody2D"]
+shape = SubResource("RectangleShape2D_d58d0")
+
+[node name="belt" type="Area2D" parent="bottom"]
+position = Vector2(12.050003, 3.300003)
+scale = Vector2(49.999996, 0.49999997)
+gravity_space_override = 1
+gravity_point_center = Vector2(-1, 0)
+gravity_direction = Vector2(-1, 0)
+gravity = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom/belt"]
+shape = SubResource("RectangleShape2D_c7s3n")
+
+[node name="left" type="Sprite2D" parent="."]
+position = Vector2(-7.999939, 561.0001)
+rotation = 1.5707964
+scale = Vector2(20, 20)
+texture = SubResource("GradientTexture1D_4wye5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="left"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left/StaticBody2D"]
+shape = SubResource("RectangleShape2D_d58d0")
+
+[node name="spawn_point" type="Node2D" parent="."]
+position = Vector2(1938, 540)
+
+[node name="item" parent="spawn_point" instance=ExtResource("2_6mw8x")]
+position = Vector2(-155, -13)
+
+[node name="gravity" type="Area2D" parent="."]
+position = Vector2(954, 660)
+scale = Vector2(1000, 1000)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gravity"]
+shape = SubResource("RectangleShape2D_c7s3n")
+
+[node name="Timer" type="Timer" parent="."]

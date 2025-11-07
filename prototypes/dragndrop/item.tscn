@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjgy4iu7s2m8e"]
+
+[ext_resource type="Script" uid="uid://8eanvf6dd0qo" path="res://prototypes/dragndrop/item.gd" id="1_iquv4"]
+[ext_resource type="Texture2D" uid="uid://5xyyq7cemcik" path="res://icon.svg" id="2_7gch7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6mw8x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ouhum"]
+size = Vector2(128, 128)
+
+[node name="item" type="RigidBody2D"]
+input_pickable = true
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_6mw8x")
+script = ExtResource("1_iquv4")
+
+[node name="collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ouhum")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_7gch7")
