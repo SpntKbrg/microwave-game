@@ -5,7 +5,7 @@ extends Node2D
 @export var item: PackedScene
 
 
-@export var microwaves: Array[Node2D]
+@export var microwaves: Array[Area2D]
 var microwave_timers: Array[float]
 var microwave_is_running: Array[bool]
 @onready var microwave_count = len(microwaves)

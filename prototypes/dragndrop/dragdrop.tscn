@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxf562cdioon7"]
+[gd_scene load_steps=9 format=3 uid="uid://cxf562cdioon7"]
 
 [ext_resource type="Script" uid="uid://co7ypo1lweek4" path="res://prototypes/dragndrop/dragdrop.gd" id="1_6mw8x"]
 [ext_resource type="PackedScene" uid="uid://bjgy4iu7s2m8e" path="res://prototypes/dragndrop/item.tscn" id="2_6mw8x"]
+[ext_resource type="PackedScene" uid="uid://qow5pagpcejq" path="res://prototypes/dragndrop/microwave.tscn" id="3_e3eg2"]
 
 [sub_resource type="Gradient" id="Gradient_vt6ba"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -17,26 +18,29 @@ size = Vector2(200, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7s3n"]
 
-[node name="Dragdrop" type="Node2D" node_paths=PackedStringArray("spawn_point", "game_timer", "conveyor_belt")]
+[node name="Dragdrop" type="Node2D" node_paths=PackedStringArray("spawn_point", "microwaves", "game_timer", "conveyor_belt")]
 script = ExtResource("1_6mw8x")
 spawn_point = NodePath("spawn_point")
 item = ExtResource("2_6mw8x")
-game_timer = NodePath("Timer")
+microwaves = [NodePath("microwaves/microwave")]
+game_timer = NodePath("spawn_timer")
 spawn_interval_ms = 10000
-conveyor_belt = NodePath("bottom/belt")
+conveyor_belt = NodePath("walls/bottom/belt")
 
-[node name="bottom" type="Sprite2D" parent="."]
-position = Vector2(830.00006, 667)
+[node name="walls" type="Node2D" parent="."]
+
+[node name="bottom" type="Sprite2D" parent="walls"]
+position = Vector2(879, 719)
 scale = Vector2(20, 20)
 texture = SubResource("GradientTexture1D_4wye5")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="bottom"]
+[node name="StaticBody2D" type="StaticBody2D" parent="walls/bottom"]
 physics_material_override = SubResource("PhysicsMaterial_vtql6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/bottom/StaticBody2D"]
 shape = SubResource("RectangleShape2D_d58d0")
 
-[node name="belt" type="Area2D" parent="bottom"]
+[node name="belt" type="Area2D" parent="walls/bottom"]
 position = Vector2(12.050003, 3.300003)
 scale = Vector2(49.999996, 0.49999997)
 gravity_space_override = 1
@@ -44,25 +48,53 @@ gravity_point_center = Vector2(-1, 0)
 gravity_direction = Vector2(-1, 0)
 gravity = 100.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom/belt"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/bottom/belt"]
 shape = SubResource("RectangleShape2D_c7s3n")
 
-[node name="left" type="Sprite2D" parent="."]
+[node name="top" type="Sprite2D" parent="walls"]
+position = Vector2(1107, -31.999878)
+scale = Vector2(20, 20)
+texture = SubResource("GradientTexture1D_4wye5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="walls/top"]
+physics_material_override = SubResource("PhysicsMaterial_vtql6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/top/StaticBody2D"]
+shape = SubResource("RectangleShape2D_d58d0")
+
+[node name="left" type="Sprite2D" parent="walls"]
 position = Vector2(-7.999939, 561.0001)
 rotation = 1.5707964
 scale = Vector2(20, 20)
 texture = SubResource("GradientTexture1D_4wye5")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="left"]
+[node name="StaticBody2D" type="StaticBody2D" parent="walls/left"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="left/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/left/StaticBody2D"]
 shape = SubResource("RectangleShape2D_d58d0")
+
+[node name="right" type="Sprite2D" parent="walls"]
+position = Vector2(2824.9998, 546.00006)
+rotation = 1.5707964
+scale = Vector2(20, 20)
+texture = SubResource("GradientTexture1D_4wye5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="walls/right"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/right/StaticBody2D"]
+shape = SubResource("RectangleShape2D_d58d0")
+
+[node name="microwaves" type="Node2D" parent="."]
+
+[node name="microwave" parent="microwaves" instance=ExtResource("3_e3eg2")]
+position = Vector2(240, 91)
 
 [node name="spawn_point" type="Node2D" parent="."]
 position = Vector2(1938, 540)
 
 [node name="item" parent="spawn_point" instance=ExtResource("2_6mw8x")]
 position = Vector2(-155, -13)
+can_sleep = false
 
 [node name="gravity" type="Area2D" parent="."]
 position = Vector2(954, 660)
@@ -71,4 +103,4 @@ scale = Vector2(1000, 1000)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="gravity"]
 shape = SubResource("RectangleShape2D_c7s3n")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="spawn_timer" type="Timer" parent="."]
