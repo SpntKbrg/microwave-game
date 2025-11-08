@@ -3,7 +3,7 @@ extends Node2D
 
 @export var spawn_point: Node2D
 @export var item: PackedScene
-
+@export var microwave_ui: Control
 
 @export var microwaves: Array[Area2D]
 var microwave_timers: Array[float]
@@ -26,6 +26,10 @@ func _ready() -> void:
 	for i in range(0, microwave_count):
 		microwave_is_running.append(false)
 		microwave_timers.append(0)
+		microwaves[i].body_entered.connect(on_object_entered)
+		if microwaves[i].has_signal("do_show_microwave_ui"):
+			microwaves[i].do_show_microwave_ui.connect(on_show_microwave_ui)
+
 	game_timer.timeout.connect(on_spawn_object)
 	
 	game_timer.start(spawn_interval_ms / 1000.0)
@@ -47,3 +51,13 @@ func on_spawn_object() -> void:
 	spawn_point.add_child(temp)
 	added_items.append(temp)
 	game_timer.start(spawn_interval_ms / 1000.0)
+
+
+func on_object_entered(target: Node2D) -> void:
+	if target is RigidBody2D:
+		target.has_method("")
+	pass
+
+func on_show_microwave_ui(index: int) -> void:
+	microwave_ui.visible = true
+	pass

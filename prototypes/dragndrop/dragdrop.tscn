@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxf562cdioon7"]
+[gd_scene load_steps=10 format=3 uid="uid://cxf562cdioon7"]
 
 [ext_resource type="Script" uid="uid://co7ypo1lweek4" path="res://prototypes/dragndrop/dragdrop.gd" id="1_6mw8x"]
 [ext_resource type="PackedScene" uid="uid://bjgy4iu7s2m8e" path="res://prototypes/dragndrop/item.tscn" id="2_6mw8x"]
 [ext_resource type="PackedScene" uid="uid://qow5pagpcejq" path="res://prototypes/dragndrop/microwave.tscn" id="3_e3eg2"]
+[ext_resource type="PackedScene" uid="uid://r8cgacb47fau" path="res://prototypes/dragndrop/microwave_ui.tscn" id="4_3mr72"]
 
 [sub_resource type="Gradient" id="Gradient_vt6ba"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -18,10 +19,11 @@ size = Vector2(200, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7s3n"]
 
-[node name="Dragdrop" type="Node2D" node_paths=PackedStringArray("spawn_point", "microwaves", "game_timer", "conveyor_belt")]
+[node name="Dragdrop" type="Node2D" node_paths=PackedStringArray("spawn_point", "microwave_ui", "microwaves", "game_timer", "conveyor_belt")]
 script = ExtResource("1_6mw8x")
 spawn_point = NodePath("spawn_point")
 item = ExtResource("2_6mw8x")
+microwave_ui = NodePath("microwave_ui")
 microwaves = [NodePath("microwaves/microwave")]
 game_timer = NodePath("spawn_timer")
 spawn_interval_ms = 10000
@@ -87,7 +89,16 @@ shape = SubResource("RectangleShape2D_d58d0")
 [node name="microwaves" type="Node2D" parent="."]
 
 [node name="microwave" parent="microwaves" instance=ExtResource("3_e3eg2")]
-position = Vector2(240, 91)
+position = Vector2(165, 270)
+
+[node name="microwave2" parent="microwaves" instance=ExtResource("3_e3eg2")]
+position = Vector2(391, 270)
+
+[node name="microwave3" parent="microwaves" instance=ExtResource("3_e3eg2")]
+position = Vector2(616, 270)
+
+[node name="microwave4" parent="microwaves" instance=ExtResource("3_e3eg2")]
+position = Vector2(839, 270)
 
 [node name="spawn_point" type="Node2D" parent="."]
 position = Vector2(1938, 540)
@@ -104,3 +115,6 @@ scale = Vector2(1000, 1000)
 shape = SubResource("RectangleShape2D_c7s3n")
 
 [node name="spawn_timer" type="Timer" parent="."]
+
+[node name="microwave_ui" parent="." instance=ExtResource("4_3mr72")]
+visible = false

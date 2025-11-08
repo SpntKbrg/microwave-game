@@ -1,12 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://qow5pagpcejq"]
 
 [ext_resource type="Script" uid="uid://b4dla8megxajj" path="res://prototypes/dragndrop/microwave.gd" id="1_xa7jw"]
+[ext_resource type="Texture2D" uid="uid://c8qi8ru3pxqn3" path="res://prototypes/dragndrop/microwave.png" id="2_oj3ye"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xleek"]
-size = Vector2(300, 300)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xa7jw"]
-size = Vector2(300, 300)
+size = Vector2(205, 133)
 
 [node name="microwave" type="Area2D" node_paths=PackedStringArray("microwave_timer", "microwave_progress")]
 script = ExtResource("1_xa7jw")
@@ -14,12 +12,11 @@ microwave_timer = NodePath("microwave_timer")
 microwave_progress = NodePath("ui/progress")
 
 [node name="collider" type="CollisionShape2D" parent="."]
-position = Vector2(0, 150)
+position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_xleek")
 
 [node name="sprite" type="Sprite2D" parent="."]
-position = Vector2(0, 150)
-texture = SubResource("PlaceholderTexture2D_xa7jw")
+texture = ExtResource("2_oj3ye")
 
 [node name="ui" type="Control" parent="."]
 layout_mode = 3
@@ -29,9 +26,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = -60.0
+offset_top = -120.0
 offset_right = 20.0
-offset_bottom = -20.0
+offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 0
 
