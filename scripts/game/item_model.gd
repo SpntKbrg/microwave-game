@@ -6,8 +6,6 @@ class_name ItemModel;
 @export var timer: int;
 var sprite: Sprite2D;
 
-signal on_wave_completed();
-
 func _ready() -> void:
 	sprite = $Sprite;
 
@@ -16,13 +14,12 @@ func set_data(d: ItemData):
 	timer = d.heat_timer;
 	sprite.texture = d.raw_sprite;
 
-func tick(temperature: UtilType.WaveTemperature):
+func tick(method: MicrowaveMethod):
 	if data == null: return;
-	if data.temperature != temperature: return;
+	if data.temperature != method.temperature: return;
 	timer -= 1;
 	if (timer <= 0):
 		sprite.texture = data.cooked_sprite;
-		on_wave_completed.emit();
 
 func reset():
 	if data == null: return;
