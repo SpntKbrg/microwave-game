@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://daai2yr3w1kpk"]
 
-[ext_resource type="PackedScene" uid="uid://bmbl6n4gjcx7y" path="res://scenes/InspectModal/item_scene.tscn" id="1_imrat"]
-[ext_resource type="Script" uid="uid://e8cot2u6rdfw" path="res://scripts/InspectModal/inspect_modal.gd" id="1_rbwl8"]
+[ext_resource type="PackedScene" uid="uid://bmbl6n4gjcx7y" path="res://scenes/inspect_modal/item_scene.tscn" id="1_imrat"]
+[ext_resource type="Script" uid="uid://e8cot2u6rdfw" path="res://scripts/inspect_modal/inspect_modal.gd" id="1_rbwl8"]
 [ext_resource type="Script" uid="uid://umoaoeftjfhj" path="res://scripts/inputs/raw_input.gd" id="3_1fac2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84xar"]
 bg_color = Color(0, 0, 0, 0.5568628)
 
-[node name="InspectModal" type="Control" node_paths=PackedStringArray("__item_scene", "__rotation_input")]
+[node name="InspectModal" type="Control" node_paths=PackedStringArray("__item_scene", "__rotation_input", "__rotation_slider", "__angle_slider")]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 15
@@ -18,6 +18,8 @@ grow_vertical = 2
 script = ExtResource("1_rbwl8")
 __item_scene = NodePath("ModalMargin/ModalBg/SubViewportContainer/SubViewport/ItemScene")
 __rotation_input = NodePath("StickInput")
+__rotation_slider = NodePath("ModalMargin/ModalBg/UIOverlay/RotateSlider")
+__angle_slider = NodePath("ModalMargin/ModalBg/UIOverlay/AngleSlider")
 
 [node name="ModalMargin" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -43,7 +45,7 @@ mouse_target = true
 [node name="SubViewport" type="SubViewport" parent="ModalMargin/ModalBg/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(1232, 672)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="ItemScene" parent="ModalMargin/ModalBg/SubViewportContainer/SubViewport" instance=ExtResource("1_imrat")]
@@ -62,6 +64,37 @@ offset_left = -64.0
 offset_bottom = 64.0
 grow_horizontal = 0
 text = "X"
+
+[node name="RotateSlider" type="HSlider" parent="ModalMargin/ModalBg/UIOverlay"]
+custom_minimum_size = Vector2(480, 16)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -48.0
+offset_right = 240.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+min_value = -180.0
+max_value = 180.0
+
+[node name="AngleSlider" type="VSlider" parent="ModalMargin/ModalBg/UIOverlay"]
+custom_minimum_size = Vector2(16, 480)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = -240.0
+offset_right = 64.0
+offset_bottom = 240.0
+grow_vertical = 2
+min_value = -180.0
+max_value = 180.0
 
 [node name="StickInput" type="Node" parent="."]
 script = ExtResource("3_1fac2")
