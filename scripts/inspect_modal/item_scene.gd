@@ -20,9 +20,9 @@ func _process(delta: float) -> void:
 func _physics_process(_delta: float) -> void:
 	if not is_label_placed:
 		var sticker_placement := get_item_surface_point()
-		print(sticker_placement)
 		sticker.position = sticker_placement[0] - (sticker_placement[1] * 0.001)
 		sticker.look_at(sticker_placement[0] + sticker_placement[1])
+		sticker.rotation_degrees.z = randf_range(-180, 180)
 		is_label_placed = true
 
 func __do_rotate_obj(delta: float) -> void:
@@ -60,14 +60,12 @@ func set_sticker_text(text: String) -> void:
 # call in physics_process only
 func get_item_surface_point() -> Array[Vector3]:
 	var sphere_point := RandUtil.rand_point_on_sphere(10)
-	print({"sphere_point": sphere_point})
 	var ray_param := PhysicsRayQueryParameters3D.create(sphere_point, Vector3.ZERO)
 	ray_param.collide_with_bodies = true
 	var space_state := get_world_3d().direct_space_state
 	var result := space_state.intersect_ray(ray_param)
 	var item_pos := Vector3.ZERO
 	var item_normal := Vector3.UP
-	print(result)
 	if result:
 		item_pos = result.get("position")
 		item_normal = -result.get("normal")
