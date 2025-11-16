@@ -11,11 +11,12 @@ viewport_path = NodePath("ItemHolder/Sticker/SubViewport")
 ambient_light_source = 3
 ambient_light_color = Color(0.646029, 0.646029, 0.646029, 1)
 
-[node name="ItemScene" type="Node3D" node_paths=PackedStringArray("item_holder", "item_rot_target", "sticker")]
+[node name="ItemScene" type="Node3D" node_paths=PackedStringArray("item_holder", "item_rot_target", "sticker", "sticker_texture")]
 script = ExtResource("1_cd844")
 item_holder = NodePath("ItemHolder")
 item_rot_target = NodePath("ItemRotTarget")
 sticker = NodePath("ItemHolder/Sticker")
+sticker_texture = NodePath("ItemHolder/Sticker/SubViewport/Sticker")
 
 [node name="ItemRotTarget" type="Node3D" parent="."]
 
@@ -28,9 +29,12 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 cast_shadow = 0
 pixel_size = 0.002
 shaded = true
+alpha_cut = 1
 texture = SubResource("ViewportTexture_qvher")
 
 [node name="SubViewport" type="SubViewport" parent="ItemHolder/Sticker"]
+transparent_bg = true
+gui_disable_input = true
 size = Vector2i(128, 128)
 
 [node name="Sticker" parent="ItemHolder/Sticker/SubViewport" instance=ExtResource("3_d8oyn")]

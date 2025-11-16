@@ -60,7 +60,11 @@ func set_sticker_text(text: String) -> void:
 # call in physics_process only
 func get_item_surface_point() -> Array[Vector3]:
 	var sphere_point := RandUtil.rand_point_on_sphere(10)
-	var ray_param := PhysicsRayQueryParameters3D.create(sphere_point, Vector3.ZERO)
+	var inside_point := RandUtil.rand_point_in_circle(1)
+	var ray_param := PhysicsRayQueryParameters3D.create(
+		sphere_point,
+		Vector3(inside_point.x, inside_point.y, 0)
+	)
 	ray_param.collide_with_bodies = true
 	var space_state := get_world_3d().direct_space_state
 	var result := space_state.intersect_ray(ray_param)
