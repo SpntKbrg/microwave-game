@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmbl6n4gjcx7y"]
+
+[ext_resource type="PackedScene" uid="uid://c458k7tpvnhpa" path="res://assets/models/frozen-food.gltf" id="1_2205y"]
+[ext_resource type="Script" uid="uid://fe6g68x5fo0n" path="res://scripts/InspectModal/item_scene.gd" id="1_cd844"]
+
+[sub_resource type="Environment" id="Environment_2205y"]
+ambient_light_source = 3
+ambient_light_color = Color(0.646029, 0.646029, 0.646029, 1)
+
+[node name="ItemScene" type="Node3D" node_paths=PackedStringArray("item_holder", "item_rot_target")]
+script = ExtResource("1_cd844")
+item_holder = NodePath("ItemHolder")
+item_rot_target = NodePath("ItemRotTarget")
+
+[node name="ItemRotTarget" type="Node3D" parent="."]
+
+[node name="ItemHolder" type="Node3D" parent="."]
+
+[node name="ItemModel" parent="ItemHolder" instance=ExtResource("1_2205y")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9135454, 0.40673664, 0, -0.40673664, 0.9135454, 0, 1, 1.25)
+environment = SubResource("Environment_2205y")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 1.25, 2)
+light_energy = 0.5

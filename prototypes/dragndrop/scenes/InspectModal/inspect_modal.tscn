@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://daai2yr3w1kpk"]
+
+[ext_resource type="PackedScene" uid="uid://bmbl6n4gjcx7y" path="res://prototypes/dragndrop/scenes/InspectModal/item_scene.tscn" id="1_imrat"]
+[ext_resource type="Script" uid="uid://e8cot2u6rdfw" path="res://scripts/InspectModal/inspect_modal.gd" id="1_rbwl8"]
+[ext_resource type="Script" uid="uid://umoaoeftjfhj" path="res://scripts/inputs/raw_input.gd" id="3_1fac2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84xar"]
+bg_color = Color(0, 0, 0, 0.5568628)
+
+[node name="InspectModal" type="Control" node_paths=PackedStringArray("__item_scene", "__rotation_input")]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rbwl8")
+__item_scene = NodePath("ModalMargin/ModalBg/SubViewportContainer/SubViewport/ItemScene")
+__rotation_input = NodePath("StickInput")
+
+[node name="ModalMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ModalBg" type="PanelContainer" parent="ModalMargin"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_84xar")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="ModalMargin/ModalBg"]
+layout_mode = 2
+stretch = true
+mouse_target = true
+
+[node name="SubViewport" type="SubViewport" parent="ModalMargin/ModalBg/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1232, 672)
+render_target_update_mode = 4
+
+[node name="ItemScene" parent="ModalMargin/ModalBg/SubViewportContainer/SubViewport" instance=ExtResource("1_imrat")]
+rotation_const = 16.0
+rotate_speed = 0.5
+
+[node name="UIOverlay" type="Control" parent="ModalMargin/ModalBg"]
+layout_mode = 2
+
+[node name="Close" type="Button" parent="ModalMargin/ModalBg/UIOverlay"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+text = "X"
+
+[node name="StickInput" type="Node" parent="."]
+script = ExtResource("3_1fac2")
+input_up = "rs_up"
+input_down = "rs_down"
+input_left = "rs_left"
+input_right = "rs_right"

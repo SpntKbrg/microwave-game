@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwse28aopda4v"]
+
+[ext_resource type="Script" uid="uid://nlc1e3gliah4" path="res://scripts/mockup/test_item_model.gd" id="1_u3qob"]
+[ext_resource type="PackedScene" uid="uid://dywm3b6r0bvrk" path="res://prototypes/dragndrop/scenes/item_model.tscn" id="2_rco8y"]
+
+[node name="TestItemModel" type="Node2D"]
+script = ExtResource("1_u3qob")
+
+[node name="ItemModel" parent="." instance=ExtResource("2_rco8y")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 513.5
+offset_top = 650.0
+offset_right = 766.5
+offset_bottom = 700.0
+theme_override_constants/separation = 100
+
+[node name="Tick" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Tick"
+
+[node name="Reset" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Reset"
