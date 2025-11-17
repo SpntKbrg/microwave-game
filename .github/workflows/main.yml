@@ -44,4 +44,5 @@ jobs:
         run: |
           for filename in $(find . -name *.gd); do
             echo $filename
+            godot --headless --check-only --script "$filename" || true
           done
