@@ -20,8 +20,10 @@ func tick(method: MicrowaveMethod):
 	timer -= 1;
 	if (timer <= 0):
 		sprite.texture = data.cooked_sprite;
+		# TODO use model instead
 
 func reset():
 	if data == null: return;
 	timer = data.heat_timer;
 	sprite.texture = data.raw_sprite;
+	# TODO use model instead

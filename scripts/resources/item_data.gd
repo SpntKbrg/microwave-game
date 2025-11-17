@@ -7,3 +7,6 @@ class_name ItemData
 @export var temperature: UtilType.WaveTemperature;
 @export var raw_sprite: Texture2D;
 @export var cooked_sprite: Texture2D;
+
+@export var raw_model: PackedScene
+# @export var cooked_model: PackedScene
