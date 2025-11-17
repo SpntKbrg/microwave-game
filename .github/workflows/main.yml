@@ -43,6 +43,7 @@ jobs:
       - name: 🦺 Checking scripts
         run: |
           failed=0
+          godot --headless --quit ./project.godot || failed=1
           for filename in $(find . -name *.gd); do
             echo $filename
             godot --headless --check-only --script "$filename" || failed=1
