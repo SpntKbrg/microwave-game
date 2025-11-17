@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b47m3qdh0xkux"]
-
-[ext_resource type="PackedScene" uid="uid://daai2yr3w1kpk" path="res://prototypes/dragndrop/scenes/InspectModal/inspect_modal.tscn" id="1_w5aja"]
-
-[node name="game_scene" type="Node2D"]
-
-[node name="InspectModal" parent="." instance=ExtResource("1_w5aja")]
-offset_right = 300.0
-offset_bottom = 300.0
