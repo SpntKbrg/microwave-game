@@ -10,5 +10,5 @@ func _ready() -> void:
 	var screen_size = get_viewport().size
 	item.position = Vector2(screen_size.x / 2, screen_size.y / 2);
 	item.on_wave_completed.connect(func (): print("wave completed"));
-	tick_button.pressed.connect(func (): item.tick(UtilType.WaveTemperature.HIGH));
+	# tick_button.pressed.connect(func (): item.tick(UtilType.WaveTemperature.HIGH)); # FIXME
 	reset_button.pressed.connect(func (): item.reset());

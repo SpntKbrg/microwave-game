@@ -1,5 +1,5 @@
 name: 🚥 Status Checks
-on: push
+on: [push, pull_request]
 
 jobs:
   tests:
@@ -45,7 +45,9 @@ jobs:
           failed=0
           godot --headless --quit ./project.godot || failed=1
           for filename in $(find . -name *.gd); do
+            echo "----------------------------------------------"
             echo $filename
             godot --headless --check-only --script "$filename" || failed=1
+            echo "----------------------------------------------"
           done
           exit $failed
