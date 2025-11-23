@@ -1,3 +1,5 @@
+class_name CustomerSystem
+
 extends Node
 
 @export_group("Customer Queue")
@@ -28,13 +30,13 @@ func generate_new_customer() -> void:
 	customer_list.append(randi())
 	time_until_next_customer = get_new_time_until_next_customer()
 	
-	print("Add a new customer")
+	print("Adding a new customer")
 	print("Current customers: ", customer_list)
-	print("New waiting time until the next customer", time_until_next_customer)
+	print("New waiting time until the next customer: ", time_until_next_customer)
 
 func get_new_time_until_next_customer() -> float:
 	var index = clampi(customer_list.size(), 0, time_until_next_customer_lists.size() - 1)
-	var time_modifier = randf() * (100 + time_variance) / 100
+	var time_modifier = (100 + randf() * time_variance) / 100
 	
 	return time_until_next_customer_lists[index] * time_modifier
 	
@@ -47,4 +49,10 @@ func remove_customer(index: int) -> void:
 	
 	customer_list.remove_at(index)
 	
+	if time_until_next_customer <= 0:
+		time_until_next_customer = get_new_time_until_next_customer()
+		print("New waiting time until the next customer: ", time_until_next_customer)
+	
 	print("Remaining customers: ", customer_list)
+	
+	
