@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d3vsbjdcoodxd"]
 
-[ext_resource type="Script" uid="uid://bqjs54381b2jj" path="res://scripts/game/customer_system.gd" id="1_44klf"]
-[ext_resource type="Script" uid="uid://b42wut5vwc6lm" path="res://scripts/customer_factory.gd" id="2_500fp"]
+[ext_resource type="Script" uid="uid://bqjs54381b2jj" path="res://scripts/game/customer/customer_system.gd" id="1_44klf"]
+[ext_resource type="Script" uid="uid://b42wut5vwc6lm" path="res://scripts/game/customer/customer_factory.gd" id="2_500fp"]
 
 [node name="CustomerSystem" type="Node" node_paths=PackedStringArray("customer_factory")]
 script = ExtResource("1_44klf")
