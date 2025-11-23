@@ -3,6 +3,7 @@ class_name BasicMicrowave extends IMicrowave
 var item: ItemModel
 
 func _ready() -> void:
+	super._ready()
 	setup()
 
 func setup()->void:
