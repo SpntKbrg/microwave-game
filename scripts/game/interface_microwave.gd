@@ -1,5 +1,4 @@
-@abstract 
-class_name IMicrowave extends RigidBody2D
+@abstract class_name IMicrowave extends RigidBody2D
 
 @export var microwave_ui: IMicrowaveUI
 
