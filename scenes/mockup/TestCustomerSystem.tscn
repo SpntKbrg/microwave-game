@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://nuwykngueb05"]
+
+[ext_resource type="Script" uid="uid://dhju0te123ido" path="res://scenes/mockup/test_customer_system.gd" id="1_b61rj"]
+[ext_resource type="PackedScene" uid="uid://d3vsbjdcoodxd" path="res://scenes/customer_system.tscn" id="2_nmv8c"]
+
+[node name="TestCustomerSystem" type="Node" node_paths=PackedStringArray("customer_system")]
+script = ExtResource("1_b61rj")
+customer_system = NodePath("CustomerSystem")
+
+[node name="CustomerSystem" parent="." instance=ExtResource("2_nmv8c")]
