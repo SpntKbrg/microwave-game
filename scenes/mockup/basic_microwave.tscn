@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://o780nuiqh10i"]
+
+[ext_resource type="PackedScene" uid="uid://1fkkghi6lstr" path="res://scenes/mockup/basic_microwave_ui.tscn" id="1_g401g"]
+[ext_resource type="Script" uid="uid://ddspmm4b076hb" path="res://scripts/game/basic_microwave.gd" id="1_h0ku5"]
+[ext_resource type="Texture2D" uid="uid://c8qi8ru3pxqn3" path="res://prototypes/dragndrop/microwave.png" id="2_h0ku5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wd06u"]
+size = Vector2(205, 133)
+
+[node name="BasicMicrowave" type="Area2D" node_paths=PackedStringArray("microwave_ui")]
+script = ExtResource("1_h0ku5")
+microwave_ui = NodePath("microwave_ui")
+
+[node name="collider" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_wd06u")
+
+[node name="microwave_ui" parent="." instance=ExtResource("1_g401g")]
+offset_left = -145.0
+offset_top = -369.0
+offset_right = 1135.0
+offset_bottom = 351.0
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_h0ku5")
+
+[node name="ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -120.0
+offset_right = 20.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="progress" type="ProgressBar" parent="ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="microwave_timer" type="Timer" parent="."]

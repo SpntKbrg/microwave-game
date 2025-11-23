@@ -1,9 +1,105 @@
-[gd_scene load_steps=2 format=3 uid="uid://b47m3qdh0xkux"]
+[gd_scene load_steps=11 format=3 uid="uid://b47m3qdh0xkux"]
 
 [ext_resource type="PackedScene" uid="uid://daai2yr3w1kpk" path="res://scenes/inspect_modal/inspect_modal.tscn" id="1_w5aja"]
+[ext_resource type="Script" uid="uid://b70emyq2qqvnd" path="res://scripts/game/game_manager.gd" id="2_onqr8"]
+[ext_resource type="Script" uid="uid://cuhlrwjla6kf" path="res://scripts/resources/microwave_spec.gd" id="3_ycayy"]
+[ext_resource type="PackedScene" uid="uid://bjgy4iu7s2m8e" path="res://prototypes/dragndrop/item.tscn" id="4_bw6k5"]
+
+[sub_resource type="Resource" id="Resource_bw6k5"]
+script = ExtResource("3_ycayy")
+useTemperature = true
+metadata/_custom_type_script = "uid://cuhlrwjla6kf"
+
+[sub_resource type="Gradient" id="Gradient_vt6ba"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y3j0m"]
+gradient = SubResource("Gradient_vt6ba")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rurhu"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kk2rg"]
+size = Vector2(200, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5spy"]
 
 [node name="game_scene" type="Node2D"]
 
 [node name="InspectModal" parent="." instance=ExtResource("1_w5aja")]
 offset_right = 300.0
 offset_bottom = 300.0
+
+[node name="GameController" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 719.0
+offset_top = 72.0
+offset_right = 759.0
+offset_bottom = 112.0
+script = ExtResource("2_onqr8")
+microwave_set = Array[ExtResource("3_ycayy")]([SubResource("Resource_bw6k5")])
+
+[node name="walls" type="Node2D" parent="."]
+
+[node name="bottom" type="Sprite2D" parent="walls"]
+position = Vector2(879, 719)
+scale = Vector2(20, 20)
+texture = SubResource("GradientTexture1D_y3j0m")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="walls/bottom"]
+physics_material_override = SubResource("PhysicsMaterial_rurhu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/bottom/StaticBody2D"]
+shape = SubResource("RectangleShape2D_kk2rg")
+
+[node name="belt" type="Area2D" parent="walls/bottom"]
+position = Vector2(12.050003, 3.300003)
+scale = Vector2(49.999996, 0.49999997)
+gravity_space_override = 1
+gravity_point_center = Vector2(-1, 0)
+gravity_direction = Vector2(-1, 0)
+gravity = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/bottom/belt"]
+shape = SubResource("RectangleShape2D_b5spy")
+
+[node name="top" type="Sprite2D" parent="walls"]
+position = Vector2(1107, -31.999878)
+scale = Vector2(20, 20)
+texture = SubResource("GradientTexture1D_y3j0m")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="walls/top"]
+physics_material_override = SubResource("PhysicsMaterial_rurhu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/top/StaticBody2D"]
+shape = SubResource("RectangleShape2D_kk2rg")
+
+[node name="left" type="Sprite2D" parent="walls"]
+position = Vector2(-7.999939, 561.0001)
+rotation = 1.5707964
+scale = Vector2(20, 20)
+texture = SubResource("GradientTexture1D_y3j0m")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="walls/left"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/left/StaticBody2D"]
+shape = SubResource("RectangleShape2D_kk2rg")
+
+[node name="right" type="Sprite2D" parent="walls"]
+position = Vector2(2824.9998, 546.00006)
+rotation = 1.5707964
+scale = Vector2(20, 20)
+texture = SubResource("GradientTexture1D_y3j0m")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="walls/right"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/right/StaticBody2D"]
+shape = SubResource("RectangleShape2D_kk2rg")
+
+[node name="spawn_point" type="Node2D" parent="."]
+position = Vector2(1938, 540)
+
+[node name="item" parent="spawn_point" instance=ExtResource("4_bw6k5")]
+position = Vector2(-155, -13)
+can_sleep = false
