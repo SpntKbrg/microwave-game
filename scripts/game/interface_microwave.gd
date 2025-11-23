@@ -4,8 +4,7 @@
 
 func _ready() -> void:
 	body_entered.connect(on_body_entered)
-	if microwave_ui != null:
-		connect("on_commit_command", on_commit_command)
+	setup()
 
 func on_item_dropped(item: ItemModel) -> void:
 	_show_ui()

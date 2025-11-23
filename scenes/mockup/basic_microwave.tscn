@@ -49,3 +49,5 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="microwave_timer" type="Timer" parent="."]
+
+[connection signal="on_commit_command" from="microwave_ui" to="." method="on_commit_command"]
