@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b47m3qdh0xkux"]
 
-[ext_resource type="PackedScene" uid="uid://daai2yr3w1kpk" path="res://scenes/InspectModal/inspect_modal.tscn" id="1_w5aja"]
+[ext_resource type="PackedScene" uid="uid://daai2yr3w1kpk" path="res://scenes/inspect_modal/inspect_modal.tscn" id="1_w5aja"]
 
 [node name="game_scene" type="Node2D"]
 

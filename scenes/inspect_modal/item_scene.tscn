@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmbl6n4gjcx7y"]
+
+[ext_resource type="PackedScene" uid="uid://c458k7tpvnhpa" path="res://assets/models/frozen-food.gltf" id="1_2205y"]
+[ext_resource type="Script" uid="uid://fe6g68x5fo0n" path="res://scripts/inspect_modal/item_scene.gd" id="1_cd844"]
+[ext_resource type="PackedScene" uid="uid://c3aqmf6dgeygw" path="res://scenes/inspect_modal/sticker.tscn" id="3_d8oyn"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qvher"]
+viewport_path = NodePath("ItemHolder/Sticker/SubViewport")
+
+[sub_resource type="Environment" id="Environment_2205y"]
+ambient_light_source = 3
+ambient_light_color = Color(0.646029, 0.646029, 0.646029, 1)
+
+[node name="ItemScene" type="Node3D" node_paths=PackedStringArray("item_holder", "item_rot_target", "sticker")]
+script = ExtResource("1_cd844")
+item_holder = NodePath("ItemHolder")
+item_rot_target = NodePath("ItemRotTarget")
+sticker = NodePath("ItemHolder/Sticker")
+
+[node name="ItemRotTarget" type="Node3D" parent="."]
+
+[node name="ItemHolder" type="Node3D" parent="."]
+
+[node name="ItemModel" parent="ItemHolder" instance=ExtResource("1_2205y")]
+
+[node name="Sticker" type="Sprite3D" parent="ItemHolder"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -2)
+cast_shadow = 0
+pixel_size = 0.002
+shaded = true
+texture = SubResource("ViewportTexture_qvher")
+
+[node name="SubViewport" type="SubViewport" parent="ItemHolder/Sticker"]
+size = Vector2i(128, 128)
+
+[node name="Sticker" parent="ItemHolder/Sticker/SubViewport" instance=ExtResource("3_d8oyn")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9135454, 0.40673664, 0, -0.40673664, 0.9135454, 0, 1, 1.25)
+environment = SubResource("Environment_2205y")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 1.25, 2)
+light_energy = 0.5

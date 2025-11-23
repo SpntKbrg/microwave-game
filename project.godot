@@ -13,6 +13,7 @@ config_version=5
 config/name="Microwave Game"
 run/main_scene="uid://b47m3qdh0xkux"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [display]
