@@ -41,7 +41,8 @@ func _generate_new_customer() -> void:
 	
 	var new_customer = customer_factory.generate_customer()
 	customer_list.append(new_customer)
-	new_customer.customer_patient_time_out.connect(on_customer_patient_time_out)
+	new_customer.customer_patient_time_out_signal.connect(on_customer_patient_time_out)
+	new_customer.customer_complete_signal.connect(on_customer_complete)
 	time_until_next_customer = _get_new_time_until_next_customer()
 	
 	print("Adding a new customer")

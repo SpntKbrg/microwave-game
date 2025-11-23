@@ -1,6 +1,50 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvvkwslshbigy"]
+[gd_scene load_steps=3 format=3 uid="uid://dvvkwslshbigy"]
 
 [ext_resource type="Script" uid="uid://ddg7w1sr3jvmd" path="res://scripts/game/customer/customer.gd" id="1_ktfjk"]
+[ext_resource type="Script" uid="uid://b862y10ddkj6y" path="res://scripts/game/customer/customer_mock_view.gd" id="2_xss0h"]
 
 [node name="Customer" type="Node"]
 script = ExtResource("1_ktfjk")
+
+[node name="CustomerMockView" type="Control" parent="." node_paths=PackedStringArray("customer", "id_label", "remain_time_progress_bar", "item_count_label")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("2_xss0h")
+customer = NodePath("..")
+id_label = NodePath("IdText")
+remain_time_progress_bar = NodePath("ProgressBar")
+item_count_label = NodePath("ItemCountText")
+
+[node name="IdText" type="Label" parent="CustomerMockView"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 12.0
+offset_right = 57.0
+offset_bottom = 35.0
+text = "Test"
+
+[node name="ProgressBar" type="ProgressBar" parent="CustomerMockView"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 40.0
+offset_right = 138.0
+offset_bottom = 67.0
+max_value = 1.0
+
+[node name="ItemCountText" type="Label" parent="CustomerMockView"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 74.0
+offset_right = 59.0
+offset_bottom = 97.0
+text = "1"
+
+[node name="Button" type="Button" parent="CustomerMockView"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 104.0
+offset_right = 140.0
+offset_bottom = 133.0
+text = "Deliver Item"
+
+[connection signal="pressed" from="CustomerMockView/Button" to="." method="on_item_complete"]

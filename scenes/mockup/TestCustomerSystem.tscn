@@ -7,23 +7,4 @@
 script = ExtResource("1_b61rj")
 customer_system = NodePath("CustomerSystem")
 
-[node name="AddNewCustomerButton" type="Button" parent="."]
-offset_right = 333.0
-offset_bottom = 78.0
-text = "Add new customer"
-
 [node name="CustomerSystem" parent="." instance=ExtResource("2_nmv8c")]
-
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="RemoveCustomerButton" type="Button" parent="."]
-offset_left = 1.0
-offset_top = 95.0
-offset_right = 334.0
-offset_bottom = 174.0
-text = "Remove the first customer"
-
-[connection signal="pressed" from="AddNewCustomerButton" to="." method="_on_add_customer_button_pressed"]
-[connection signal="pressed" from="RemoveCustomerButton" to="." method="_on_remove_first_customer_button_pressed"]
