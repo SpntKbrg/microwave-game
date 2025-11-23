@@ -1,16 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3aqmf6dgeygw"]
+[gd_scene load_steps=5 format=3 uid="uid://c3aqmf6dgeygw"]
 
 [ext_resource type="Script" uid="uid://baq76nl3a54t0" path="res://scripts/inspect_modal/sticker.gd" id="1_bb5sh"]
+[ext_resource type="FontFile" uid="uid://rfkuv0qj3inv" path="res://assets/fonts/Space_Contract.ttf" id="2_3y8l3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qvher"]
 bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.7254359, 0.57254857, 7.70092e-07, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
 [sub_resource type="LabelSettings" id="LabelSettings_ftn2d"]
-font_size = 64
+font = ExtResource("2_3y8l3")
+font_size = 36
 font_color = Color(0, 0, 0, 1)
 outline_color = Color(0, 0, 0, 1)
 
