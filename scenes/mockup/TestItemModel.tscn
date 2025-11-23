@@ -26,10 +26,20 @@ offset_right = 766.5
 offset_bottom = 700.0
 theme_override_constants/separation = 100
 
-[node name="Tick" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
+[node name="low_tick" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "Tick"
+text = "Low"
+
+[node name="medium_tick" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Medium"
+
+[node name="high_tick" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "High"
 
 [node name="Reset" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
 layout_mode = 2

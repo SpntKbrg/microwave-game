@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("3_px1w3")
 heat_timer = 5
-temperature = 2
+temperature = 3
 raw_sprite = ExtResource("2_xtbc1")
 cooked_sprite = ExtResource("1_404lj")
 metadata/_custom_type_script = "uid://dx08f51xs1ebc"
