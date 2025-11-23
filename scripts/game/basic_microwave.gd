@@ -4,7 +4,6 @@ var item: ItemModel
 
 func _ready() -> void:
 	super._ready()
-	setup()
 
 func setup()->void:
 	print("basic microwave seting up..")
