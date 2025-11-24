@@ -1,9 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://dywm3b6r0bvrk"]
+[gd_scene load_steps=6 format=3 uid="uid://dywm3b6r0bvrk"]
 
 [ext_resource type="Script" uid="uid://bgdq6smp4fqob" path="res://scripts/game/item_model.gd" id="1_8wrcv"]
+[ext_resource type="PackedScene" uid="uid://brax0jiiy4qvi" path="res://scenes/item_model_3d.tscn" id="2_lhcuk"]
 
-[node name="ItemModel" type="Node2D"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lhcuk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cj2vo"]
+size = Vector2(128, 128)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lhcuk"]
+viewport_path = NodePath("SubViewport")
+
+[node name="ItemModel" type="RigidBody2D"]
+input_pickable = true
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_lhcuk")
+gravity_scale = 0.0
 script = ExtResource("1_8wrcv")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 9.5)
+shape = SubResource("RectangleShape2D_cj2vo")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(128, 128)
+
+[node name="ItemModel3d" parent="SubViewport" instance=ExtResource("2_lhcuk")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("ViewportTexture_lhcuk")
