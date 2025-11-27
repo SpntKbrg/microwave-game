@@ -1,19 +1,23 @@
-extends Node2D
+extends RigidBody2D
 
 class_name ItemModel;
 
-@export var data: ItemData;
 @export var progress: int;
-var sprite: Sprite2D;
+@onready var model_holder: ModelHolder = $"SubViewport/ItemModel3d";
+
+var data: ItemData;
+var instruction_time: int
+var is_picked: bool = false
+var target_position: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
-	sprite = $Sprite;
+	pass;
+	#sprite = $Sprite;
 
 func set_data(d: ItemData):
 	data = d;
 	progress = d.heat_timer * d.temperature;
-	print("item hp: ", progress)
-	sprite.texture = d.raw_sprite;
+	model_holder.set_model(d.raw_model);
 
 func tick(method: MicrowaveMethod):
 	if data == null: return;
@@ -22,11 +26,45 @@ func tick(method: MicrowaveMethod):
 		progress_elapse = method.temperature * method.duration;
 	progress -= progress_elapse;
 	if (progress <= 0):
-		sprite.texture = data.cooked_sprite;
-		# TODO use model instead
+		model_holder.set_model(data.cooked_model);
 
 func reset():
 	if data == null: return;
 	progress = data.heat_timer;
-	sprite.texture = data.raw_sprite;
-	# TODO use model instead
+
+func _input(event: InputEvent) -> void:
+	if not is_picked:
+		return
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT && not event.pressed:
+		is_picked = false
+	elif event is InputEventMouseMotion:
+		handle_on_drag(event)
+
+func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			print("item pick");
+			is_picked = event.pressed
+
+func handle_on_drag(event: InputEventMouseMotion) -> void:
+	if is_picked:
+		target_position = event.position
+
+func _physics_process(delta: float) -> void:
+	if is_picked:
+		gravity_scale = 0
+		linear_damp = 0.99
+		# constant_force = does not ping other object into orbit, hard to control
+		#constant_force = ((target_position - global_position) * 10000 * delta).limit_length(5000)
+		# linear_velocity = easy to control, but ping other object away
+		linear_velocity = ((target_position - global_position) * delta * 500).limit_length(5000)
+		# TODO move placeholder + collision check on release then move original?
+	elif target_position != Vector2.ZERO:
+		gravity_scale = 1
+		linear_damp = 0
+		linear_velocity = Vector2.ZERO
+		constant_force = Vector2.ZERO
+		target_position = Vector2.ZERO
+
+func is_picked_up() -> bool:
+	return is_picked

@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwse28aopda4v"]
+[gd_scene load_steps=4 format=3 uid="uid://bwse28aopda4v"]
 
 [ext_resource type="Script" uid="uid://nlc1e3gliah4" path="res://scripts/mockup/test_item_model.gd" id="1_u3qob"]
 [ext_resource type="PackedScene" uid="uid://dywm3b6r0bvrk" path="res://scenes/item_model.tscn" id="2_rco8y"]
+[ext_resource type="PackedScene" uid="uid://djkscwfg3u4pk" path="res://scenes/model_resource.tscn" id="2_sn2ul"]
 
 [node name="TestItemModel" type="Node2D"]
 script = ExtResource("1_u3qob")
+
+[node name="ModelResource" parent="." instance=ExtResource("2_sn2ul")]
 
 [node name="ItemModel" parent="." instance=ExtResource("2_rco8y")]
 
