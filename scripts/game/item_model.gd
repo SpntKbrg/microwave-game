@@ -3,7 +3,7 @@ extends RigidBody2D
 class_name ItemModel;
 
 @export var progress: int;
-@onready var model_holder: ModelHolder = $"SubViewport/ItemModel3d";
+@export var model_holder: ModelHolder;
 
 var data: ItemData;
 var instruction_time: int
