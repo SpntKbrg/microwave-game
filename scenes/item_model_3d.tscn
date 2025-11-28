@@ -2,13 +2,15 @@
 
 [ext_resource type="Script" uid="uid://15rw3qemoatt" path="res://scripts/game/item_model_holder.gd" id="1_d0bny"]
 
-[node name="ItemModel3d" type="Node3D"]
+[node name="ItemModel3d" type="Node3D" node_paths=PackedStringArray("holder_parent")]
 script = ExtResource("1_d0bny")
+holder_parent = NodePath("holder")
 
 [node name="holder" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.12960903, 0.99156517, 0, -0.99156517, 0.12960903, 0, 1.1646235, 0.16266048)
+transform = Transform3D(1, 0, 0, 0, 0.27112126, 0.9625452, 0, -0.9625452, 0.27112126, 0, 1.501755, 0.39841914)
+fov = 50.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 1.25, 2)

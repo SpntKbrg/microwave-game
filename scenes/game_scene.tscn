@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b47m3qdh0xkux"]
+[gd_scene load_steps=12 format=3 uid="uid://b47m3qdh0xkux"]
 
 [ext_resource type="PackedScene" uid="uid://daai2yr3w1kpk" path="res://scenes/inspect_modal/inspect_modal.tscn" id="1_w5aja"]
 [ext_resource type="Script" uid="uid://b70emyq2qqvnd" path="res://scripts/game/game_manager.gd" id="2_onqr8"]
 [ext_resource type="Script" uid="uid://cuhlrwjla6kf" path="res://scripts/resources/microwave_spec.gd" id="3_ycayy"]
-[ext_resource type="PackedScene" uid="uid://bjgy4iu7s2m8e" path="res://prototypes/dragndrop/item.tscn" id="4_bw6k5"]
+[ext_resource type="PackedScene" uid="uid://dywm3b6r0bvrk" path="res://scenes/item_model.tscn" id="4_rurhu"]
+[ext_resource type="PackedScene" uid="uid://djkscwfg3u4pk" path="res://scenes/model_resource.tscn" id="5_y3j0m"]
 
 [sub_resource type="Resource" id="Resource_bw6k5"]
 script = ExtResource("3_ycayy")
@@ -27,10 +28,11 @@ size = Vector2(200, 1)
 [node name="game_scene" type="Node2D"]
 
 [node name="InspectModal" parent="." instance=ExtResource("1_w5aja")]
+visible = false
 offset_right = 300.0
 offset_bottom = 300.0
 
-[node name="GameController" type="Control" parent="."]
+[node name="GameController" type="Control" parent="." node_paths=PackedStringArray("spawn_timer", "spawn_point", "model_resource")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 719.0
@@ -39,6 +41,11 @@ offset_right = 759.0
 offset_bottom = 112.0
 script = ExtResource("2_onqr8")
 microwave_set = Array[ExtResource("3_ycayy")]([SubResource("Resource_bw6k5")])
+spawn_timer = NodePath("../Timer")
+spawn_interval_ms = 5000
+spawn_point = NodePath("../spawn_point")
+model_resource = NodePath("../ModelResource")
+item_scene = ExtResource("4_rurhu")
 
 [node name="walls" type="Node2D" parent="."]
 
@@ -100,6 +107,6 @@ shape = SubResource("RectangleShape2D_kk2rg")
 [node name="spawn_point" type="Node2D" parent="."]
 position = Vector2(1938, 540)
 
-[node name="item" parent="spawn_point" instance=ExtResource("4_bw6k5")]
-position = Vector2(-155, -13)
-can_sleep = false
+[node name="Timer" type="Timer" parent="."]
+
+[node name="ModelResource" parent="." instance=ExtResource("5_y3j0m")]

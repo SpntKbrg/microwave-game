@@ -2,7 +2,7 @@ extends Node3D
 
 class_name ModelHolder
 
-@onready var holder_parent = $"holder";
+@export var holder_parent: Node;
 
 var current_model: Node;
 
