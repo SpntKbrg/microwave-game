@@ -9,13 +9,11 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var microwave_factory = MicrowaveFactory.new();
-	var offset = 0.0;
 	for microwave in microwave_set:
-		print("create microwave")
 		var mw = microwave_factory.create(microwave);
-		mw.position = Vector2(0.0 + offset,50.0)
-		add_child(mw)
-		offset += 50.0;
+		var game_scene = get_parent()
+		game_scene.add_child.call_deferred(mw)
+		mw.position = Vector2(200.0,200.0)
 	spawn_timer.timeout.connect(on_spawn_item)
 	spawn_timer.start(spawn_interval_ms / 1000.0)
 

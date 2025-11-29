@@ -4,11 +4,9 @@ var item: ItemModel
 
 func _ready() -> void:
 	super._ready()
-	setup()
 
 func setup()->void:
 	print("basic microwave seting up..")
-	microwave_ui.visible = false
 
 func on_item_drop_addition(_item: ItemModel) -> void:
 	item = _item

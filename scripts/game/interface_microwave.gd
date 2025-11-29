@@ -1,6 +1,7 @@
 @abstract class_name IMicrowave extends Area2D
 
-@export var microwave_ui: IMicrowaveUI
+var microwave_ui: IMicrowaveUI
+const basic_microwave_ui = preload("res://scenes/mockup/basic_microwave_ui.tscn")
 
 func _ready() -> void:
 	body_entered.connect(on_body_entered)
@@ -11,11 +12,12 @@ func on_item_dropped(item: ItemModel) -> void:
 	on_item_drop_addition(item)
 
 func _show_ui() -> void:
-	microwave_ui.visible = true
+	microwave_ui = basic_microwave_ui.instantiate()
+	get_parent().add_child.call_deferred(microwave_ui)
 
 func on_body_entered(target: Node) -> void:
 	print("something entering me..")
-	if target.is_class("ItemModel"):
+	if target is ItemModel:
 		on_item_dropped(target)
 
 @abstract
