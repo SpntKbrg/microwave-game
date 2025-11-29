@@ -1,3 +1,108 @@
-[gd_scene format=3 uid="uid://28r1rhmscnle"]
+[gd_scene load_steps=5 format=3 uid="uid://28r1rhmscnle"]
 
-[node name="RealGameScene" type="Node2D"]
+[ext_resource type="PackedScene" uid="uid://d0c2vao5peyme" path="res://scenes/microwave_sprite.tscn" id="1_1rwpq"]
+[ext_resource type="StyleBox" uid="uid://vivmq0totlqg" path="res://assets/ui/panel_box_style.tres" id="1_3mg5d"]
+[ext_resource type="Theme" uid="uid://cwt57yrv5fqbq" path="res://assets/ui/main_theme.tres" id="2_xxmul"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3mg5d"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="RealGameScene" type="Control"]
+texture_filter = 3
+custom_minimum_size = Vector2(192, 128)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="BG" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3mg5d")
+
+[node name="CustomerRow" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 42.0
+grow_horizontal = 2
+theme = ExtResource("2_xxmul")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CustomerRow"]
+layout_mode = 2
+
+[node name="CustomerButton" type="Button" parent="CustomerRow/HBoxContainer"]
+custom_minimum_size = Vector2(64, 24)
+layout_mode = 2
+theme = ExtResource("2_xxmul")
+
+[node name="MicrowaveRow" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 32.0
+offset_bottom = 72.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrowaveRow"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton" type="TextureButton" parent="MicrowaveRow/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="MicrowaveSprite" parent="MicrowaveRow/HBoxContainer/TextureButton" instance=ExtResource("1_1rwpq")]
+position = Vector2(16, 24)
+
+[node name="TextureButton2" type="TextureButton" parent="MicrowaveRow/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="MicrowaveSprite" parent="MicrowaveRow/HBoxContainer/TextureButton2" instance=ExtResource("1_1rwpq")]
+position = Vector2(16, 24)
+
+[node name="TextureButton3" type="TextureButton" parent="MicrowaveRow/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="MicrowaveSprite" parent="MicrowaveRow/HBoxContainer/TextureButton3" instance=ExtResource("1_1rwpq")]
+position = Vector2(16, 24)
+
+[node name="TextureButton4" type="TextureButton" parent="MicrowaveRow/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="MicrowaveSprite" parent="MicrowaveRow/HBoxContainer/TextureButton4" instance=ExtResource("1_1rwpq")]
+position = Vector2(16, 24)
+
+[node name="TextureButton5" type="TextureButton" parent="MicrowaveRow/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="MicrowaveSprite" parent="MicrowaveRow/HBoxContainer/TextureButton5" instance=ExtResource("1_1rwpq")]
+position = Vector2(16, 24)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -46.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("1_3mg5d")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="ItemButton" type="Button" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme = ExtResource("2_xxmul")
