@@ -12,8 +12,11 @@ func on_item_dropped(item: ItemModel) -> void:
 	on_item_drop_addition(item)
 
 func _show_ui() -> void:
-	microwave_ui = basic_microwave_ui.instantiate()
-	get_parent().add_child.call_deferred(microwave_ui)
+	if microwave_ui == null:
+		microwave_ui = basic_microwave_ui.instantiate()
+		get_parent().add_child.call_deferred(microwave_ui)
+	else:
+		microwave_ui.visible = true
 
 func on_body_entered(target: Node) -> void:
 	print("something entering me..")

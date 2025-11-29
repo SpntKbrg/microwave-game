@@ -2,20 +2,19 @@
 
 @export var start_button: Button
 
-@abstract func additional_setup() -> void
-
 var command: MicrowaveMethod
 var time: int
 
 signal on_commit_command(command: MicrowaveMethod, time: int)
 
-func setup() -> void:
-	start_button.pressed.connect(on_start_pressed.bind(command, time))
-	additional_setup()
+func _ready() -> void:
+	setup()
 
-func on_start_pressed(_command: MicrowaveMethod, _time: int) -> void:
+func on_start_pressed() -> void:
 	on_start_pressed_preprocess()
-	on_commit_command.emit(_command, _time)
+	on_commit_command.emit(command, time)
 	visible = false
 
 @abstract func on_start_pressed_preprocess() -> void
+
+@abstract func setup() -> void
