@@ -6,8 +6,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wd06u"]
 size = Vector2(205, 133)
 
-[node name="BasicMicrowave" type="Area2D"]
+[node name="BasicMicrowave" type="Area2D" node_paths=PackedStringArray("microwave_timer", "microwave_progress")]
 script = ExtResource("1_h0ku5")
+microwave_timer = NodePath("microwave_timer")
+microwave_progress = NodePath("ui/progress")
 
 [node name="collider" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0.5)
