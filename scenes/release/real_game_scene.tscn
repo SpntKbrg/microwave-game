@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://28r1rhmscnle"]
+[gd_scene load_steps=10 format=3 uid="uid://28r1rhmscnle"]
 
 [ext_resource type="PackedScene" uid="uid://d0c2vao5peyme" path="res://scenes/microwave_sprite.tscn" id="1_1rwpq"]
 [ext_resource type="StyleBox" uid="uid://vivmq0totlqg" path="res://assets/ui/panel_box_style.tres" id="1_3mg5d"]
+[ext_resource type="Texture2D" uid="uid://c0px4lyaux3d5" path="res://assets/sprites/release/icons/popsicle.png" id="2_bc7k7"]
 [ext_resource type="Theme" uid="uid://cwt57yrv5fqbq" path="res://assets/ui/main_theme.tres" id="2_xxmul"]
+[ext_resource type="Texture2D" uid="uid://dod13b7pm1udo" path="res://assets/sprites/release/icons/foodbox.png" id="5_e1xsh"]
+[ext_resource type="Texture2D" uid="uid://cbq7lnunfoaie" path="res://assets/sprites/release/icons/steak.png" id="6_e38y6"]
+[ext_resource type="Texture2D" uid="uid://crbyc55xh3m8" path="res://assets/sprites/release/icons/noodlecup.png" id="7_hshn4"]
+[ext_resource type="Texture2D" uid="uid://pi8xwiex7si8" path="res://assets/sprites/release/icons/mug.png" id="8_s1gd3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3mg5d"]
 bg_color = Color(0, 0, 0, 1)
@@ -35,9 +40,57 @@ theme = ExtResource("2_xxmul")
 layout_mode = 2
 
 [node name="CustomerButton" type="Button" parent="CustomerRow/HBoxContainer"]
-custom_minimum_size = Vector2(64, 24)
+custom_minimum_size = Vector2(80, 24)
 layout_mode = 2
 theme = ExtResource("2_xxmul")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CustomerRow/HBoxContainer/CustomerButton"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -18.0
+offset_right = -6.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 1
+
+[node name="TextureRect" type="TextureRect" parent="CustomerRow/HBoxContainer/CustomerButton/HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("2_bc7k7")
+
+[node name="TextureRect2" type="TextureRect" parent="CustomerRow/HBoxContainer/CustomerButton/HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("2_bc7k7")
+
+[node name="TextureRect3" type="TextureRect" parent="CustomerRow/HBoxContainer/CustomerButton/HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("2_bc7k7")
+
+[node name="TextureRect4" type="TextureRect" parent="CustomerRow/HBoxContainer/CustomerButton/HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("2_bc7k7")
+
+[node name="ProgressBar" type="ProgressBar" parent="CustomerRow/HBoxContainer/CustomerButton"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 9.0
+offset_top = 3.0
+offset_right = -8.0
+offset_bottom = 7.0
+grow_horizontal = 2
+theme = ExtResource("2_xxmul")
+value = 48.18
+show_percentage = false
 
 [node name="MicrowaveRow" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(0, 40)
@@ -94,7 +147,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -46.0
+offset_top = -44.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = ExtResource("1_3mg5d")
@@ -103,6 +156,31 @@ theme_override_styles/panel = ExtResource("1_3mg5d")
 layout_mode = 2
 
 [node name="ItemButton" type="Button" parent="PanelContainer/HBoxContainer"]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 theme = ExtResource("2_xxmul")
+icon = ExtResource("5_e1xsh")
+
+[node name="ItemButton2" type="Button" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme = ExtResource("2_xxmul")
+icon = ExtResource("6_e38y6")
+
+[node name="ItemButton3" type="Button" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme = ExtResource("2_xxmul")
+icon = ExtResource("7_hshn4")
+
+[node name="ItemButton4" type="Button" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme = ExtResource("2_xxmul")
+icon = ExtResource("8_s1gd3")
+
+[node name="ItemButton5" type="Button" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme = ExtResource("2_xxmul")
+icon = ExtResource("2_bc7k7")
