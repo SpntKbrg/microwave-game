@@ -1,0 +1,12 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://b2r2dtyuwqix3"]
+
+[ext_resource type="Texture2D" uid="uid://bor57igv6rv4u" path="res://assets/ui/panel_alt_9slices.png" id="1_4dsgg"]
+
+[resource]
+texture = ExtResource("1_4dsgg")
+texture_margin_left = 7.0
+texture_margin_top = 7.0
+texture_margin_right = 7.0
+texture_margin_bottom = 7.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
