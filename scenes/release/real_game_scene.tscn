@@ -2,15 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://d0c2vao5peyme" path="res://scenes/microwave_sprite.tscn" id="1_1rwpq"]
 [ext_resource type="StyleBox" uid="uid://vivmq0totlqg" path="res://assets/ui/panel_box_style.tres" id="1_3mg5d"]
+[ext_resource type="StyleBox" uid="uid://b3jedpegd354r" path="res://assets/ui/game_bg.tres" id="1_e1xsh"]
 [ext_resource type="Texture2D" uid="uid://c0px4lyaux3d5" path="res://assets/sprites/release/icons/popsicle.png" id="2_bc7k7"]
 [ext_resource type="Theme" uid="uid://cwt57yrv5fqbq" path="res://assets/ui/main_theme.tres" id="2_xxmul"]
 [ext_resource type="Texture2D" uid="uid://dod13b7pm1udo" path="res://assets/sprites/release/icons/foodbox.png" id="5_e1xsh"]
 [ext_resource type="Texture2D" uid="uid://cbq7lnunfoaie" path="res://assets/sprites/release/icons/steak.png" id="6_e38y6"]
 [ext_resource type="Texture2D" uid="uid://crbyc55xh3m8" path="res://assets/sprites/release/icons/noodlecup.png" id="7_hshn4"]
 [ext_resource type="Texture2D" uid="uid://pi8xwiex7si8" path="res://assets/sprites/release/icons/mug.png" id="8_s1gd3"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3mg5d"]
-bg_color = Color(0, 0, 0, 1)
 
 [node name="RealGameScene" type="Control"]
 texture_filter = 3
@@ -25,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3mg5d")
+theme_override_styles/panel = ExtResource("1_e1xsh")
 
 [node name="CustomerRow" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(0, 42)
