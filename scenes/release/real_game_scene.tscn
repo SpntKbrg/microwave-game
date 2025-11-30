@@ -1,20 +1,56 @@
-[gd_scene load_steps=10 format=3 uid="uid://28r1rhmscnle"]
+[gd_scene load_steps=17 format=3 uid="uid://28r1rhmscnle"]
 
-[ext_resource type="PackedScene" uid="uid://d0c2vao5peyme" path="res://scenes/microwave_sprite.tscn" id="1_1rwpq"]
 [ext_resource type="StyleBox" uid="uid://vivmq0totlqg" path="res://assets/ui/panel_box_style.tres" id="1_3mg5d"]
 [ext_resource type="StyleBox" uid="uid://b3jedpegd354r" path="res://assets/ui/game_bg.tres" id="1_e1xsh"]
+[ext_resource type="Script" uid="uid://b4bi4c5bn7yv8" path="res://scripts/game/scene/real_game_scene.gd" id="1_hshn4"]
 [ext_resource type="Texture2D" uid="uid://c0px4lyaux3d5" path="res://assets/sprites/release/icons/popsicle.png" id="2_bc7k7"]
+[ext_resource type="Script" uid="uid://cuhlrwjla6kf" path="res://scripts/resources/microwave_spec.gd" id="2_jvgw3"]
 [ext_resource type="Theme" uid="uid://cwt57yrv5fqbq" path="res://assets/ui/main_theme.tres" id="2_xxmul"]
-[ext_resource type="Texture2D" uid="uid://dod13b7pm1udo" path="res://assets/sprites/release/icons/foodbox.png" id="5_e1xsh"]
-[ext_resource type="Texture2D" uid="uid://cbq7lnunfoaie" path="res://assets/sprites/release/icons/steak.png" id="6_e38y6"]
-[ext_resource type="Texture2D" uid="uid://crbyc55xh3m8" path="res://assets/sprites/release/icons/noodlecup.png" id="7_hshn4"]
-[ext_resource type="Texture2D" uid="uid://pi8xwiex7si8" path="res://assets/sprites/release/icons/mug.png" id="8_s1gd3"]
+[ext_resource type="PackedScene" uid="uid://btel16yic8364" path="res://scenes/release/item_button.tscn" id="6_e1xsh"]
+[ext_resource type="PackedScene" uid="uid://c0exhmaqenhwk" path="res://scenes/release/microwave_inspect.tscn" id="11_hshn4"]
+[ext_resource type="PackedScene" uid="uid://djkscwfg3u4pk" path="res://scenes/model_resource.tscn" id="12_s1gd3"]
+[ext_resource type="PackedScene" uid="uid://cucl236n4hfwi" path="res://scenes/items/ItemFactory.tscn" id="14_h88xt"]
+[ext_resource type="PackedScene" uid="uid://d3vsbjdcoodxd" path="res://scenes/customer_system.tscn" id="15_fij0q"]
 
-[node name="RealGameScene" type="Control"]
+[sub_resource type="Resource" id="Resource_n7wt1"]
+script = ExtResource("2_jvgw3")
+useTemperature = true
+metadata/_custom_type_script = "uid://cuhlrwjla6kf"
+
+[sub_resource type="Resource" id="Resource_h88xt"]
+script = ExtResource("2_jvgw3")
+useTemperature = true
+metadata/_custom_type_script = "uid://cuhlrwjla6kf"
+
+[sub_resource type="Resource" id="Resource_fij0q"]
+script = ExtResource("2_jvgw3")
+useTemperature = true
+metadata/_custom_type_script = "uid://cuhlrwjla6kf"
+
+[sub_resource type="Resource" id="Resource_ogcfs"]
+script = ExtResource("2_jvgw3")
+useTemperature = true
+metadata/_custom_type_script = "uid://cuhlrwjla6kf"
+
+[sub_resource type="Resource" id="Resource_052rd"]
+script = ExtResource("2_jvgw3")
+useTemperature = true
+metadata/_custom_type_script = "uid://cuhlrwjla6kf"
+
+[node name="RealGameScene" type="Control" node_paths=PackedStringArray("microwave_spawn_point", "item_spawn_point", "model_resource", "item_factory", "customer_system", "inspect_ui")]
 texture_filter = 3
 custom_minimum_size = Vector2(192, 128)
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_hshn4")
+microwave_set = Array[ExtResource("2_jvgw3")]([SubResource("Resource_n7wt1"), SubResource("Resource_h88xt"), SubResource("Resource_fij0q"), SubResource("Resource_ogcfs"), SubResource("Resource_052rd")])
+microwave_spawn_point = NodePath("MicrowaveRow/HBoxContainer")
+item_spawn_point = NodePath("PanelContainer/HBoxContainer")
+model_resource = NodePath("ModelResource")
+item_scene = ExtResource("6_e1xsh")
+item_factory = NodePath("ItemFactory")
+customer_system = NodePath("CustomerSystem")
+inspect_ui = NodePath("MicrowaveInspect")
 
 [node name="BG" type="Panel" parent="."]
 layout_mode = 1
@@ -104,41 +140,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="TextureButton" type="TextureButton" parent="MicrowaveRow/HBoxContainer"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="MicrowaveSprite" parent="MicrowaveRow/HBoxContainer/TextureButton" instance=ExtResource("1_1rwpq")]
-position = Vector2(16, 24)
-
-[node name="TextureButton2" type="TextureButton" parent="MicrowaveRow/HBoxContainer"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="MicrowaveSprite" parent="MicrowaveRow/HBoxContainer/TextureButton2" instance=ExtResource("1_1rwpq")]
-position = Vector2(16, 24)
-
-[node name="TextureButton3" type="TextureButton" parent="MicrowaveRow/HBoxContainer"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="MicrowaveSprite" parent="MicrowaveRow/HBoxContainer/TextureButton3" instance=ExtResource("1_1rwpq")]
-position = Vector2(16, 24)
-
-[node name="TextureButton4" type="TextureButton" parent="MicrowaveRow/HBoxContainer"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="MicrowaveSprite" parent="MicrowaveRow/HBoxContainer/TextureButton4" instance=ExtResource("1_1rwpq")]
-position = Vector2(16, 24)
-
-[node name="TextureButton5" type="TextureButton" parent="MicrowaveRow/HBoxContainer"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="MicrowaveSprite" parent="MicrowaveRow/HBoxContainer/TextureButton5" instance=ExtResource("1_1rwpq")]
-position = Vector2(16, 24)
-
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 12
@@ -153,32 +154,11 @@ theme_override_styles/panel = ExtResource("1_3mg5d")
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
 layout_mode = 2
 
-[node name="ItemButton" type="Button" parent="PanelContainer/HBoxContainer"]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-theme = ExtResource("2_xxmul")
-icon = ExtResource("5_e1xsh")
+[node name="ModelResource" parent="." instance=ExtResource("12_s1gd3")]
 
-[node name="ItemButton2" type="Button" parent="PanelContainer/HBoxContainer"]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-theme = ExtResource("2_xxmul")
-icon = ExtResource("6_e38y6")
+[node name="ItemFactory" parent="." instance=ExtResource("14_h88xt")]
 
-[node name="ItemButton3" type="Button" parent="PanelContainer/HBoxContainer"]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-theme = ExtResource("2_xxmul")
-icon = ExtResource("7_hshn4")
+[node name="CustomerSystem" parent="." instance=ExtResource("15_fij0q")]
 
-[node name="ItemButton4" type="Button" parent="PanelContainer/HBoxContainer"]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-theme = ExtResource("2_xxmul")
-icon = ExtResource("8_s1gd3")
-
-[node name="ItemButton5" type="Button" parent="PanelContainer/HBoxContainer"]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-theme = ExtResource("2_xxmul")
-icon = ExtResource("2_bc7k7")
+[node name="MicrowaveInspect" parent="." instance=ExtResource("11_hshn4")]
+layout_mode = 1

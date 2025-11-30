@@ -38,7 +38,6 @@ direction = Vector3(-1, 0, 0)
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_utbpp")
 animation = &"microwave_anim"
-frame_progress = 0.033383742
 script = ExtResource("4_pfil4")
 
 [node name="HeatParticles" type="GPUParticles2D" parent="."]

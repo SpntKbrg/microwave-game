@@ -9,8 +9,9 @@ holder_parent = NodePath("holder")
 [node name="holder" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.27112126, 0.9625452, 0, -0.9625452, 0.27112126, 0, 1.501755, 0.39841914)
-fov = 50.0
+transform = Transform3D(1, 0, 0, 0, 0.27112126, 0.9625452, 0, -0.9625452, 0.27112126, 0, 2.006, 0.497)
+keep_aspect = 0
+fov = 50.3
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 1.25, 2)

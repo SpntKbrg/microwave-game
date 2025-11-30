@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cucl236n4hfwi"]
+
+[ext_resource type="Script" uid="uid://crvp80h4dsy7j" path="res://scripts/game/items/item_factory.gd" id="1_w3yrx"]
+[ext_resource type="PackedScene" uid="uid://djkscwfg3u4pk" path="res://scenes/model_resource.tscn" id="2_j42mg"]
+
+[node name="ItemFactory" type="Node"]
+script = ExtResource("1_w3yrx")
+
+[node name="ModelResource" parent="." instance=ExtResource("2_j42mg")]

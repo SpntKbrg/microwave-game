@@ -1,6 +1,6 @@
 class_name MicrowaveFactory extends Node
 
-const basic_microwave = preload("res://scenes/mockup/basic_microwave.tscn")
+const basic_microwave = preload("res://scenes/release/microwave_toggle.tscn")
 
 func _init() -> void:
 	pass

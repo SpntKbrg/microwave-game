@@ -16,11 +16,11 @@ var __is_label_placed := false
 func _process(delta: float) -> void:
 	__do_rotate_obj(delta)
 
-
 func _physics_process(_delta: float) -> void:
 	if not __is_label_placed:
 		var sticker_placement := __get_item_surface_point()
 		__sticker.position = sticker_placement[0] - (sticker_placement[1] * 0.001)
+		print(__sticker.position)
 		__sticker.look_at(sticker_placement[0] + sticker_placement[1])
 		__sticker.rotation_degrees.z = randf_range(-180, 180)
 		__is_label_placed = true
@@ -50,20 +50,27 @@ func get_target_rotation() -> Vector3:
 func set_sticker_text(text: String) -> void:
 	__sticker_texture.set_label(text)
 
+func set_item_model(model: PackedScene) -> void:
+	var item_model = model.instantiate();
+	__item_holder.add_child(item_model);
+
 # call in physics_process only
 func __get_item_surface_point() -> Array[Vector3]:
-	var sphere_point := RandUtil.rand_point_on_sphere(10)
-	var inside_point := RandUtil.rand_point_in_circle(1)
-	var ray_param := PhysicsRayQueryParameters3D.create(
-		sphere_point,
-		Vector3(inside_point.x, inside_point.y, 0)
-	)
-	ray_param.collide_with_bodies = true
-	var space_state := get_world_3d().direct_space_state
-	var result := space_state.intersect_ray(ray_param)
 	var item_pos := Vector3.ZERO
 	var item_normal := Vector3.UP
-	if result:
-		item_pos = result.get("position")
-		item_normal = -result.get("normal")
+	while 1:
+		var sphere_point := RandUtil.rand_point_on_sphere(10)
+		var inside_point := RandUtil.rand_point_in_circle(1)
+		var ray_param := PhysicsRayQueryParameters3D.create(
+			sphere_point,
+			Vector3(inside_point.x, inside_point.y, 0)
+		)
+		ray_param.collide_with_bodies = true
+		var space_state := get_world_3d().direct_space_state
+		var result := space_state.intersect_ray(ray_param)
+
+		if result:
+			item_pos = result.get("position")
+			item_normal = -result.get("normal")
+			break
 	return [item_pos, item_normal]

@@ -1,12 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://1fkkghi6lstr"]
+[gd_scene load_steps=4 format=3 uid="uid://1fkkghi6lstr"]
 
 [ext_resource type="Script" uid="uid://kq36ivf5ywud" path="res://scripts/game/basic_microwave_ui.gd" id="1_hbci5"]
+[ext_resource type="Theme" uid="uid://cwt57yrv5fqbq" path="res://assets/ui/main_theme.tres" id="2_6aqxj"]
+[ext_resource type="FontFile" uid="uid://cpcgqtb1jtfou" path="res://assets/fonts/Logic_Loop.ttf" id="2_e5foy"]
 
 [node name="microwave_ui" type="Control" node_paths=PackedStringArray("number_buttons", "temperature_buttons", "reset_button", "timer_text", "start_button")]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1280.0
-offset_bottom = 720.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -192.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_hbci5")
 number_buttons = [NodePath("bg/HBoxContainer/VBoxContainer/GridContainer/0"), NodePath("bg/HBoxContainer/VBoxContainer/GridContainer/1"), NodePath("bg/HBoxContainer/VBoxContainer/GridContainer/2"), NodePath("bg/HBoxContainer/VBoxContainer/GridContainer/3"), NodePath("bg/HBoxContainer/VBoxContainer/GridContainer/4"), NodePath("bg/HBoxContainer/VBoxContainer/GridContainer/5"), NodePath("bg/HBoxContainer/VBoxContainer/GridContainer/6"), NodePath("bg/HBoxContainer/VBoxContainer/GridContainer/7"), NodePath("bg/HBoxContainer/VBoxContainer/GridContainer/8"), NodePath("bg/HBoxContainer/VBoxContainer/GridContainer/9")]
 temperature_buttons = [NodePath("bg/HBoxContainer/VBoxContainer/GridContainer/LOW"), NodePath("bg/HBoxContainer/VBoxContainer/GridContainer/MID"), NodePath("bg/HBoxContainer/VBoxContainer/GridContainer/HIGH")]
@@ -16,15 +22,11 @@ start_button = NodePath("bg/HBoxContainer/VBoxContainer/GridContainer/start")
 
 [node name="bg" type="Panel" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -360.0
-offset_top = -240.0
-offset_right = 360.0
-offset_bottom = 240.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 192.0
+offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -44,120 +46,188 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="bg/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(240, 120)
+custom_minimum_size = Vector2(24, 16)
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="bg/HBoxContainer/VBoxContainer/CenterContainer"]
+texture_filter = 3
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme = ExtResource("2_6aqxj")
+theme_type_variation = &"HeaderLarge"
+theme_override_fonts/font = ExtResource("2_e5foy")
+theme_override_font_sizes/font_size = 12
 text = "0:00"
 
 [node name="GridContainer" type="GridContainer" parent="bg/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
 columns = 3
 
 [node name="LOW" type="Button" parent="bg/HBoxContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 64)
+visible = false
+texture_filter = 3
+custom_minimum_size = Vector2(24, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("2_6aqxj")
+theme_override_fonts/font = ExtResource("2_e5foy")
 text = "LOW"
 
 [node name="MID" type="Button" parent="bg/HBoxContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 64)
+visible = false
+texture_filter = 3
+custom_minimum_size = Vector2(24, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("2_6aqxj")
+theme_override_fonts/font = ExtResource("2_e5foy")
+theme_override_font_sizes/font_size = 2
 text = "MID"
 
 [node name="HIGH" type="Button" parent="bg/HBoxContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 64)
+visible = false
+texture_filter = 3
+custom_minimum_size = Vector2(24, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("2_6aqxj")
+theme_override_fonts/font = ExtResource("2_e5foy")
+theme_override_font_sizes/font_size = 2
 text = "HIGH"
 
 [node name="1" type="Button" parent="bg/HBoxContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 64)
+texture_filter = 3
+custom_minimum_size = Vector2(24, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("2_6aqxj")
+theme_override_fonts/font = ExtResource("2_e5foy")
+theme_override_font_sizes/font_size = 5
 text = "1"
 
 [node name="2" type="Button" parent="bg/HBoxContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 64)
+texture_filter = 3
+custom_minimum_size = Vector2(24, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("2_6aqxj")
+theme_override_fonts/font = ExtResource("2_e5foy")
+theme_override_font_sizes/font_size = 5
 text = "2"
 
 [node name="3" type="Button" parent="bg/HBoxContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 64)
+texture_filter = 3
+custom_minimum_size = Vector2(24, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("2_6aqxj")
+theme_override_fonts/font = ExtResource("2_e5foy")
+theme_override_font_sizes/font_size = 5
 text = "3"
 
 [node name="4" type="Button" parent="bg/HBoxContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 64)
+texture_filter = 3
+custom_minimum_size = Vector2(24, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("2_6aqxj")
+theme_override_fonts/font = ExtResource("2_e5foy")
+theme_override_font_sizes/font_size = 5
 text = "4"
 
 [node name="5" type="Button" parent="bg/HBoxContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 64)
+texture_filter = 3
+custom_minimum_size = Vector2(24, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("2_6aqxj")
+theme_override_fonts/font = ExtResource("2_e5foy")
+theme_override_font_sizes/font_size = 5
 text = "5"
 
 [node name="6" type="Button" parent="bg/HBoxContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 64)
+texture_filter = 3
+custom_minimum_size = Vector2(24, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("2_6aqxj")
+theme_override_fonts/font = ExtResource("2_e5foy")
+theme_override_font_sizes/font_size = 5
 text = "6"
 
 [node name="7" type="Button" parent="bg/HBoxContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 64)
+texture_filter = 3
+custom_minimum_size = Vector2(24, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("2_6aqxj")
+theme_override_fonts/font = ExtResource("2_e5foy")
+theme_override_font_sizes/font_size = 5
 text = "7"
 
 [node name="8" type="Button" parent="bg/HBoxContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 64)
+texture_filter = 3
+custom_minimum_size = Vector2(24, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("2_6aqxj")
+theme_override_fonts/font = ExtResource("2_e5foy")
+theme_override_font_sizes/font_size = 5
 text = "8"
 
 [node name="9" type="Button" parent="bg/HBoxContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 64)
+texture_filter = 3
+custom_minimum_size = Vector2(24, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("2_6aqxj")
+theme_override_fonts/font = ExtResource("2_e5foy")
+theme_override_font_sizes/font_size = 5
 text = "9"
 
 [node name="reset" type="Button" parent="bg/HBoxContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 64)
+texture_filter = 3
+custom_minimum_size = Vector2(24, 20)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 2
+size_flags_vertical = 2
+theme = ExtResource("2_6aqxj")
+theme_override_fonts/font = ExtResource("2_e5foy")
+theme_override_font_sizes/font_size = 5
 text = "Reset"
 
 [node name="0" type="Button" parent="bg/HBoxContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 64)
+texture_filter = 3
+custom_minimum_size = Vector2(24, 20)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 2
+size_flags_vertical = 2
+theme = ExtResource("2_6aqxj")
+theme_override_fonts/font = ExtResource("2_e5foy")
+theme_override_font_sizes/font_size = 5
 text = "0"
 
 [node name="start" type="Button" parent="bg/HBoxContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 64)
+texture_filter = 3
+custom_minimum_size = Vector2(24, 20)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 2
+size_flags_vertical = 2
+theme = ExtResource("2_6aqxj")
+theme_override_fonts/font = ExtResource("2_e5foy")
+theme_override_font_sizes/font_size = 6
 text = "Start"

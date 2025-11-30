@@ -7,19 +7,22 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84xar"]
 bg_color = Color(0, 0, 0, 0.5568628)
 
-[node name="InspectModal" type="Control" node_paths=PackedStringArray("__item_scene", "__rotation_input", "__rotation_slider", "__angle_slider")]
+[node name="InspectModal" type="Control" node_paths=PackedStringArray("__item_scene", "__rotation_input", "__rotation_slider", "__angle_slider", "__close_button")]
 clip_contents = true
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -64.0
+offset_right = 96.0
+offset_bottom = 64.0
 grow_vertical = 2
 script = ExtResource("1_rbwl8")
 __item_scene = NodePath("ModalMargin/ModalBg/SubViewportContainer/SubViewport/ItemScene")
 __rotation_input = NodePath("StickInput")
 __rotation_slider = NodePath("ModalMargin/ModalBg/UIOverlay/RotateSlider")
 __angle_slider = NodePath("ModalMargin/ModalBg/UIOverlay/AngleSlider")
+__close_button = NodePath("ModalMargin/ModalBg/UIOverlay/Close")
 
 [node name="ModalMargin" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -28,16 +31,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
 
 [node name="ModalBg" type="PanelContainer" parent="ModalMargin"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_84xar")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="ModalMargin/ModalBg"]
+texture_filter = 3
 layout_mode = 2
 stretch = true
 mouse_target = true
@@ -45,7 +45,7 @@ mouse_target = true
 [node name="SubViewport" type="SubViewport" parent="ModalMargin/ModalBg/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(96, 128)
 render_target_update_mode = 4
 
 [node name="ItemScene" parent="ModalMargin/ModalBg/SubViewportContainer/SubViewport" instance=ExtResource("1_imrat")]
@@ -56,42 +56,43 @@ rotate_speed = 0.5
 layout_mode = 2
 
 [node name="Close" type="Button" parent="ModalMargin/ModalBg/UIOverlay"]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -64.0
-offset_bottom = 64.0
+offset_left = -18.0
+offset_bottom = 31.0
 grow_horizontal = 0
 text = "X"
 
 [node name="RotateSlider" type="HSlider" parent="ModalMargin/ModalBg/UIOverlay"]
-custom_minimum_size = Vector2(480, 16)
+texture_filter = 3
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -240.0
-offset_top = -48.0
-offset_right = 240.0
-offset_bottom = -32.0
+offset_left = -44.0
+offset_top = -19.0
+offset_right = 46.0
+offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 0
 min_value = -180.0
 max_value = 180.0
 
 [node name="AngleSlider" type="VSlider" parent="ModalMargin/ModalBg/UIOverlay"]
-custom_minimum_size = Vector2(16, 480)
+texture_filter = 3
+custom_minimum_size = Vector2(8, 0)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 48.0
-offset_top = -240.0
-offset_right = 64.0
-offset_bottom = 240.0
+offset_top = -50.0
+offset_right = 16.0
+offset_bottom = 40.0
 grow_vertical = 2
 min_value = -180.0
 max_value = 180.0
