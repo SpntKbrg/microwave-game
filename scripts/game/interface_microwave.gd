@@ -2,6 +2,7 @@
 
 var microwave_ui: IMicrowaveUI
 const basic_microwave_ui = preload("res://scenes/mockup/basic_microwave_ui.tscn")
+var is_running: bool = false
 
 func _ready() -> void:
 	body_entered.connect(on_body_entered)
@@ -19,9 +20,10 @@ func _show_ui() -> void:
 		microwave_ui.visible = true
 
 func on_body_entered(target: Node) -> void:
-	print("something entering me..")
-	if target is ItemModel:
-		on_item_dropped(target)
+	if not is_running:
+		print("something entering me..")
+		if target is ItemModel:
+			on_item_dropped(target)
 
 @abstract
 func setup()->void
