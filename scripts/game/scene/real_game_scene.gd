@@ -5,6 +5,8 @@ extends Control
 @export var item_spawn_point: Node
 @export var model_resource: ModelResource
 @export var item_scene: PackedScene
+@export var item_factory: ItemFactory
+@export var customer_system: CustomerSystem
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

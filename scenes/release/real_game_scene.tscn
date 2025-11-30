@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://28r1rhmscnle"]
+[gd_scene load_steps=22 format=3 uid="uid://28r1rhmscnle"]
 
 [ext_resource type="PackedScene" uid="uid://d0c2vao5peyme" path="res://scenes/microwave_sprite.tscn" id="1_1rwpq"]
 [ext_resource type="StyleBox" uid="uid://vivmq0totlqg" path="res://assets/ui/panel_box_style.tres" id="1_3mg5d"]
@@ -13,6 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://crbyc55xh3m8" path="res://assets/sprites/release/icons/noodlecup.png" id="7_hshn4"]
 [ext_resource type="Texture2D" uid="uid://pi8xwiex7si8" path="res://assets/sprites/release/icons/mug.png" id="8_s1gd3"]
 [ext_resource type="PackedScene" uid="uid://djkscwfg3u4pk" path="res://scenes/model_resource.tscn" id="12_s1gd3"]
+[ext_resource type="PackedScene" uid="uid://cucl236n4hfwi" path="res://scenes/items/ItemFactory.tscn" id="14_h88xt"]
+[ext_resource type="PackedScene" uid="uid://1fkkghi6lstr" path="res://scenes/mockup/basic_microwave_ui.tscn" id="16_fij0q"]
+[ext_resource type="PackedScene" uid="uid://daai2yr3w1kpk" path="res://scenes/inspect_modal/inspect_modal.tscn" id="16_ogcfs"]
 
 [sub_resource type="Resource" id="Resource_n7wt1"]
 script = ExtResource("2_jvgw3")
@@ -39,7 +42,7 @@ script = ExtResource("2_jvgw3")
 useTemperature = true
 metadata/_custom_type_script = "uid://cuhlrwjla6kf"
 
-[node name="RealGameScene" type="Control" node_paths=PackedStringArray("microwave_spawn_point", "item_spawn_point", "model_resource")]
+[node name="RealGameScene" type="Control" node_paths=PackedStringArray("microwave_spawn_point", "item_spawn_point", "model_resource", "item_factory")]
 texture_filter = 3
 custom_minimum_size = Vector2(192, 128)
 layout_mode = 3
@@ -50,6 +53,7 @@ microwave_spawn_point = NodePath("MicrowaveRow/HBoxContainer")
 item_spawn_point = NodePath("PanelContainer/HBoxContainer")
 model_resource = NodePath("ModelResource")
 item_scene = ExtResource("6_e1xsh")
+item_factory = NodePath("ItemFactory")
 
 [node name="BG" type="Panel" parent="."]
 layout_mode = 1
@@ -190,3 +194,11 @@ theme = ExtResource("2_xxmul")
 icon = ExtResource("2_bc7k7")
 
 [node name="ModelResource" parent="." instance=ExtResource("12_s1gd3")]
+
+[node name="ItemFactory" parent="." instance=ExtResource("14_h88xt")]
+
+[node name="microwave_ui" parent="." instance=ExtResource("16_fij0q")]
+layout_mode = 1
+
+[node name="InspectModal" parent="." instance=ExtResource("16_ogcfs")]
+layout_mode = 1
