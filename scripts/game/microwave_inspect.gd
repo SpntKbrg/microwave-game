@@ -9,6 +9,8 @@ class_name MicrowaveInspect
 func _ready() -> void:
 	close_button.pressed.connect(func(): self.visible = false)
 
+func get_microwave_ui() -> BasicMicrowaveUI:
+	return microwave_ui
+
 func setup(item: ItemData) -> void:
 	inspect_modal.set_display_item(item)
-	

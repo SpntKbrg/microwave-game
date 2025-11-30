@@ -7,7 +7,7 @@ extends Control
 @export var item_scene: PackedScene
 @export var item_factory: ItemFactory
 @export var customer_system: CustomerSystem
-@export var microwave_ui: MicrowaveInspect
+@export var inspect_ui: MicrowaveInspect
 
 var orders: Dictionary[int, CustomerOrder] = {}
 
@@ -17,7 +17,8 @@ func _ready() -> void:
 	for microwave in microwave_set:
 		var mw = microwave_factory.create(microwave);
 		microwave_spawn_point.add_child.call_deferred(mw)
-	microwave_ui.visible = false;
+	inspect_ui.visible = false;
+	inspect_ui.get_microwave_ui().on_commit_command.connect(start_microwave)
 	customer_system.on_add_customer.connect(_on_add_customer)
 	customer_system.on_remove_customer.connect(_on_remove_customer)
 	customer_system.set_running(true)
@@ -31,14 +32,18 @@ func _on_add_customer(customer: Customer) -> void:
 		var item = item_scene.instantiate() as ItemButton
 		item.set_data(order)
 		item.pressed.connect(func():
-			microwave_ui.visible = true	
-			microwave_ui.setup(order)
+			inspect_ui.visible = true	
+			inspect_ui.setup(order)
 		)
 		item_spawn_point.add_child.call_deferred(item)
 
 func _on_remove_customer(is_completed: bool, customer_id: int) -> void:
 	# todo: remove customer ui
 	pass
+
+func start_microwave(command: MicrowaveMethod, time: int):
+	print("start microwave %d" % time)
+	# todo: send command to select item
 
 class CustomerOrder:
 	var order_list: Array[ItemData]

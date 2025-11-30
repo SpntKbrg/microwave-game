@@ -37,7 +37,7 @@ script = ExtResource("2_jvgw3")
 useTemperature = true
 metadata/_custom_type_script = "uid://cuhlrwjla6kf"
 
-[node name="RealGameScene" type="Control" node_paths=PackedStringArray("microwave_spawn_point", "item_spawn_point", "model_resource", "item_factory", "customer_system", "microwave_ui")]
+[node name="RealGameScene" type="Control" node_paths=PackedStringArray("microwave_spawn_point", "item_spawn_point", "model_resource", "item_factory", "customer_system", "inspect_ui")]
 texture_filter = 3
 custom_minimum_size = Vector2(192, 128)
 layout_mode = 3
@@ -50,7 +50,7 @@ model_resource = NodePath("ModelResource")
 item_scene = ExtResource("6_e1xsh")
 item_factory = NodePath("ItemFactory")
 customer_system = NodePath("CustomerSystem")
-microwave_ui = NodePath("MicrowaveInspect")
+inspect_ui = NodePath("MicrowaveInspect")
 
 [node name="BG" type="Panel" parent="."]
 layout_mode = 1

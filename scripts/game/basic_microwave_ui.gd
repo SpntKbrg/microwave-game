@@ -7,6 +7,8 @@ class_name BasicMicrowaveUI extends IMicrowaveUI
 var starting_input = "00:00"
 var user_input = ""
 
+signal on_start_microwave(method: MicrowaveMethod)
+
 func setup() -> void:
 	print("basic microwave ui seting up..")
 	start_button.pressed.connect(on_start_pressed)
@@ -29,6 +31,7 @@ func on_start_pressed_preprocess() -> void:
 	time = user_input.to_int() #change time calculation here <--------------
 	print("microwave ui -> ", time)
 	command.duration = time
+	on_start_microwave.emit(command)
 	on_reset_pressed()
 
 func on_temperature_pressed(index: int) -> void:
