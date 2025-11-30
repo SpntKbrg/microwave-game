@@ -56,6 +56,7 @@ rotate_speed = 0.5
 layout_mode = 2
 
 [node name="Close" type="Button" parent="ModalMargin/ModalBg/UIOverlay"]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0

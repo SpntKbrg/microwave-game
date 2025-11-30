@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0exhmaqenhwk"]
+
+[ext_resource type="Script" uid="uid://byvyekfwyl0n0" path="res://scripts/game/microwave_inspect.gd" id="1_d06ge"]
+[ext_resource type="PackedScene" uid="uid://1fkkghi6lstr" path="res://scenes/mockup/basic_microwave_ui.tscn" id="2_hnftq"]
+[ext_resource type="PackedScene" uid="uid://daai2yr3w1kpk" path="res://scenes/inspect_modal/inspect_modal.tscn" id="3_fkyct"]
+[ext_resource type="Theme" uid="uid://cwt57yrv5fqbq" path="res://assets/ui/main_theme.tres" id="4_fkyct"]
+[ext_resource type="FontFile" uid="uid://cpcgqtb1jtfou" path="res://assets/fonts/Logic_Loop.ttf" id="5_cte4f"]
+
+[node name="MicrowaveInspect" type="Control" node_paths=PackedStringArray("inspect_modal", "microwave_ui", "close_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d06ge")
+inspect_modal = NodePath("InspectModal")
+microwave_ui = NodePath("microwave_ui")
+close_button = NodePath("Close")
+
+[node name="microwave_ui" parent="." instance=ExtResource("2_hnftq")]
+layout_mode = 1
+
+[node name="InspectModal" parent="." instance=ExtResource("3_fkyct")]
+layout_mode = 1
+
+[node name="Close" type="Button" parent="."]
+texture_filter = 3
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -20.0
+offset_bottom = 29.0
+grow_horizontal = 0
+theme = ExtResource("4_fkyct")
+theme_override_fonts/font = ExtResource("5_cte4f")
+theme_override_font_sizes/font_size = 8
+text = "X"

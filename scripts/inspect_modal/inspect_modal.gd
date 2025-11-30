@@ -31,3 +31,10 @@ func __update_slider() -> void:
 
 func set_display_item(item: ItemData) -> void:
 	__item_scene.set_item_model(item.raw_model);
+	var text = _convert_heat_timer(item.heat_timer)
+	__item_scene.set_sticker_text(text);
+
+func _convert_heat_timer(timer: int) -> String:
+	var min = timer / 60
+	var sec = timer % 60
+	return "%d:%d" % [min, sec]

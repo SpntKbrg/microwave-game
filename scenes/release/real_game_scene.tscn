@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://28r1rhmscnle"]
+[gd_scene load_steps=17 format=3 uid="uid://28r1rhmscnle"]
 
 [ext_resource type="StyleBox" uid="uid://vivmq0totlqg" path="res://assets/ui/panel_box_style.tres" id="1_3mg5d"]
 [ext_resource type="StyleBox" uid="uid://b3jedpegd354r" path="res://assets/ui/game_bg.tres" id="1_e1xsh"]
@@ -7,11 +7,10 @@
 [ext_resource type="Script" uid="uid://cuhlrwjla6kf" path="res://scripts/resources/microwave_spec.gd" id="2_jvgw3"]
 [ext_resource type="Theme" uid="uid://cwt57yrv5fqbq" path="res://assets/ui/main_theme.tres" id="2_xxmul"]
 [ext_resource type="PackedScene" uid="uid://btel16yic8364" path="res://scenes/release/item_button.tscn" id="6_e1xsh"]
+[ext_resource type="PackedScene" uid="uid://c0exhmaqenhwk" path="res://scenes/release/microwave_inspect.tscn" id="11_hshn4"]
 [ext_resource type="PackedScene" uid="uid://djkscwfg3u4pk" path="res://scenes/model_resource.tscn" id="12_s1gd3"]
 [ext_resource type="PackedScene" uid="uid://cucl236n4hfwi" path="res://scenes/items/ItemFactory.tscn" id="14_h88xt"]
 [ext_resource type="PackedScene" uid="uid://d3vsbjdcoodxd" path="res://scenes/customer_system.tscn" id="15_fij0q"]
-[ext_resource type="PackedScene" uid="uid://1fkkghi6lstr" path="res://scenes/mockup/basic_microwave_ui.tscn" id="16_fij0q"]
-[ext_resource type="PackedScene" uid="uid://daai2yr3w1kpk" path="res://scenes/inspect_modal/inspect_modal.tscn" id="16_ogcfs"]
 
 [sub_resource type="Resource" id="Resource_n7wt1"]
 script = ExtResource("2_jvgw3")
@@ -38,7 +37,7 @@ script = ExtResource("2_jvgw3")
 useTemperature = true
 metadata/_custom_type_script = "uid://cuhlrwjla6kf"
 
-[node name="RealGameScene" type="Control" node_paths=PackedStringArray("microwave_spawn_point", "item_spawn_point", "model_resource", "item_factory", "customer_system", "microwave_ui", "inspect_modal")]
+[node name="RealGameScene" type="Control" node_paths=PackedStringArray("microwave_spawn_point", "item_spawn_point", "model_resource", "item_factory", "customer_system", "microwave_ui")]
 texture_filter = 3
 custom_minimum_size = Vector2(192, 128)
 layout_mode = 3
@@ -51,8 +50,7 @@ model_resource = NodePath("ModelResource")
 item_scene = ExtResource("6_e1xsh")
 item_factory = NodePath("ItemFactory")
 customer_system = NodePath("CustomerSystem")
-microwave_ui = NodePath("microwave_ui")
-inspect_modal = NodePath("InspectModal")
+microwave_ui = NodePath("MicrowaveInspect")
 
 [node name="BG" type="Panel" parent="."]
 layout_mode = 1
@@ -160,10 +158,7 @@ layout_mode = 2
 
 [node name="ItemFactory" parent="." instance=ExtResource("14_h88xt")]
 
-[node name="microwave_ui" parent="." instance=ExtResource("16_fij0q")]
-layout_mode = 1
-
-[node name="InspectModal" parent="." instance=ExtResource("16_ogcfs")]
-layout_mode = 1
-
 [node name="CustomerSystem" parent="." instance=ExtResource("15_fij0q")]
+
+[node name="MicrowaveInspect" parent="." instance=ExtResource("11_hshn4")]
+layout_mode = 1
