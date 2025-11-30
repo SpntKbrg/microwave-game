@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://2v6lnu1yie2j"]
+
+[ext_resource type="PackedScene" uid="uid://b5x2v2xyjioln" path="res://assets/models/release/mug.gltf" id="1_8bo7k"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_sluji"]
+height = 0.37280273
+radius = 0.12695313
+
+[node name="Mug" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18908691, 0)
+shape = SubResource("CylinderShape3D_sluji")
+
+[node name="blockbench_export" parent="StaticBody3D" instance=ExtResource("1_8bo7k")]

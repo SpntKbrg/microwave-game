@@ -1,11 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://daai2yr3w1kpk"]
 
+[ext_resource type="Theme" uid="uid://cwt57yrv5fqbq" path="res://assets/ui/main_theme.tres" id="1_0td8r"]
 [ext_resource type="PackedScene" uid="uid://bmbl6n4gjcx7y" path="res://scenes/inspect_modal/item_scene/item_scene.tscn" id="1_imrat"]
 [ext_resource type="Script" uid="uid://e8cot2u6rdfw" path="res://scripts/inspect_modal/inspect_modal.gd" id="1_rbwl8"]
 [ext_resource type="Script" uid="uid://umoaoeftjfhj" path="res://scripts/inputs/raw_input.gd" id="3_1fac2"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84xar"]
-bg_color = Color(0, 0, 0, 0.5568628)
 
 [node name="InspectModal" type="Control" node_paths=PackedStringArray("__item_scene", "__rotation_input", "__rotation_slider", "__angle_slider", "__close_button")]
 clip_contents = true
@@ -17,6 +15,7 @@ offset_top = -64.0
 offset_right = 96.0
 offset_bottom = 64.0
 grow_vertical = 2
+theme = ExtResource("1_0td8r")
 script = ExtResource("1_rbwl8")
 __item_scene = NodePath("ModalMargin/ModalBg/SubViewportContainer/SubViewport/ItemScene")
 __rotation_input = NodePath("StickInput")
@@ -31,18 +30,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_0td8r")
 
 [node name="ModalBg" type="PanelContainer" parent="ModalMargin"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_84xar")
+theme = ExtResource("1_0td8r")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="ModalMargin/ModalBg"]
 texture_filter = 3
 layout_mode = 2
+theme = ExtResource("1_0td8r")
 stretch = true
 mouse_target = true
 
 [node name="SubViewport" type="SubViewport" parent="ModalMargin/ModalBg/SubViewportContainer"]
+own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(96, 128)
@@ -54,6 +56,7 @@ rotate_speed = 0.5
 
 [node name="UIOverlay" type="Control" parent="ModalMargin/ModalBg"]
 layout_mode = 2
+theme = ExtResource("1_0td8r")
 
 [node name="Close" type="Button" parent="ModalMargin/ModalBg/UIOverlay"]
 visible = false
@@ -64,6 +67,7 @@ anchor_right = 1.0
 offset_left = -18.0
 offset_bottom = 31.0
 grow_horizontal = 0
+theme = ExtResource("1_0td8r")
 text = "X"
 
 [node name="RotateSlider" type="HSlider" parent="ModalMargin/ModalBg/UIOverlay"]
@@ -80,6 +84,7 @@ offset_right = 46.0
 offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("1_0td8r")
 min_value = -180.0
 max_value = 180.0
 
@@ -94,6 +99,7 @@ offset_top = -50.0
 offset_right = 16.0
 offset_bottom = 40.0
 grow_vertical = 2
+theme = ExtResource("1_0td8r")
 min_value = -180.0
 max_value = 180.0
 
