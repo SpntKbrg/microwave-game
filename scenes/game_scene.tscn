@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dywm3b6r0bvrk" path="res://scenes/item_model.tscn" id="4_rurhu"]
 [ext_resource type="PackedScene" uid="uid://djkscwfg3u4pk" path="res://scenes/model_resource.tscn" id="5_y3j0m"]
 
-[sub_resource type="Resource" id="Resource_bw6k5"]
+[sub_resource type="Resource" id="Resource_y3j0m"]
 script = ExtResource("3_ycayy")
 useTemperature = true
 metadata/_custom_type_script = "uid://cuhlrwjla6kf"
@@ -25,27 +25,18 @@ size = Vector2(200, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b5spy"]
 
-[node name="game_scene" type="Node2D"]
+[node name="game_scene" type="Node2D" node_paths=PackedStringArray("spawn_timer", "spawn_point", "model_resource")]
+script = ExtResource("2_onqr8")
+microwave_set = Array[ExtResource("3_ycayy")]([SubResource("Resource_y3j0m")])
+spawn_timer = NodePath("Timer")
+spawn_interval_ms = 5000
+spawn_point = NodePath("spawn_point")
+model_resource = NodePath("ModelResource")
+item_scene = ExtResource("4_rurhu")
 
 [node name="InspectModal" parent="." instance=ExtResource("1_w5aja")]
-visible = false
 offset_right = 300.0
 offset_bottom = 300.0
-
-[node name="GameController" type="Control" parent="." node_paths=PackedStringArray("spawn_timer", "spawn_point", "model_resource")]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 719.0
-offset_top = 72.0
-offset_right = 759.0
-offset_bottom = 112.0
-script = ExtResource("2_onqr8")
-microwave_set = Array[ExtResource("3_ycayy")]([SubResource("Resource_bw6k5")])
-spawn_timer = NodePath("../Timer")
-spawn_interval_ms = 5000
-spawn_point = NodePath("../spawn_point")
-model_resource = NodePath("../ModelResource")
-item_scene = ExtResource("4_rurhu")
 
 [node name="walls" type="Node2D" parent="."]
 
@@ -105,8 +96,30 @@ texture = SubResource("GradientTexture1D_y3j0m")
 shape = SubResource("RectangleShape2D_kk2rg")
 
 [node name="spawn_point" type="Node2D" parent="."]
-position = Vector2(1938, 540)
+position = Vector2(588, 568)
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="ModelResource" parent="." instance=ExtResource("5_y3j0m")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Inspect" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_bottom = 64.0
+grow_horizontal = 0
+text = "Inspect"

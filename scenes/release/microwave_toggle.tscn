@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqwtep1tixyat"]
+
+[ext_resource type="Script" uid="uid://dg7k8mk2swktu" path="res://scripts/game/microwave_toggle.gd" id="1_02y5o"]
+[ext_resource type="PackedScene" uid="uid://d0c2vao5peyme" path="res://scenes/microwave_sprite.tscn" id="1_qmfg7"]
+
+[node name="MicrowaveToggle" type="TextureButton" node_paths=PackedStringArray("microwave_timer", "microwave_progress", "anim_sprite")]
+custom_minimum_size = Vector2(32, 32)
+script = ExtResource("1_02y5o")
+microwave_timer = NodePath("microwave_timer")
+microwave_progress = NodePath("ui/progress")
+anim_sprite = NodePath("MicrowaveSprite")
+
+[node name="MicrowaveSprite" parent="." instance=ExtResource("1_qmfg7")]
+position = Vector2(16, 24)
+
+[node name="ui" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.25
+anchor_top = 1.0625
+anchor_right = 0.25
+anchor_bottom = 1.0625
+scale = Vector2(0.25, 0.25)
+metadata/_edit_use_anchors_ = true
+
+[node name="progress" type="ProgressBar" parent="ui"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -5.0
+offset_right = 55.0
+offset_bottom = 27.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 16
+metadata/_edit_use_anchors_ = true
+
+[node name="microwave_timer" type="Timer" parent="."]
+one_shot = true

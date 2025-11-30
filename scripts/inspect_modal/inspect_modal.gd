@@ -5,12 +5,13 @@ extends Control
 @export var __rotation_input: InputHandler
 @export var __rotation_slider: Slider
 @export var __angle_slider: Slider
-
+@export var __close_button: Button
 
 func _ready() -> void:
 	__item_scene.reset_rotation()
 	__rotation_slider.value_changed.connect(func(_x): __update_slider())
 	__angle_slider.value_changed.connect(func(_y): __update_slider())
+	__close_button.pressed.connect(func(): visible = false)
 
 func _process(_delta: float) -> void:
 	__do_rotation_input()
@@ -27,6 +28,4 @@ func __update_slider() -> void:
 	__item_scene.set_target_rotation(Vector3(x_degree, y_degree, 0))
 
 func set_display_item(item: ItemData) -> void:
-	# create new __item_scene
-	# set item
-	pass
+	__item_scene.set_item_model(item.raw_model);

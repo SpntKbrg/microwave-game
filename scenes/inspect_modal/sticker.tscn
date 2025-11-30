@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3aqmf6dgeygw"]
+[gd_scene load_steps=6 format=3 uid="uid://c3aqmf6dgeygw"]
 
 [ext_resource type="Script" uid="uid://baq76nl3a54t0" path="res://scripts/inspect_modal/sticker.gd" id="1_bb5sh"]
 [ext_resource type="FontFile" uid="uid://rfkuv0qj3inv" path="res://assets/fonts/Space_Contract.ttf" id="2_3y8l3"]
+[ext_resource type="Texture2D" uid="uid://kfoihhqqa54h" path="res://assets/sprites/low.png" id="3_gck53"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qvher"]
 bg_color = Color(1, 1, 1, 1)
@@ -21,7 +22,7 @@ font_size = 36
 font_color = Color(0, 0, 0, 1)
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Sticker" type="Control"]
+[node name="Sticker" type="Control" node_paths=PackedStringArray("label")]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 3
 anchors_preset = 15
@@ -30,6 +31,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bb5sh")
+label = NodePath("Panel/Label")
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(128, 128)
@@ -50,3 +52,7 @@ label_settings = SubResource("LabelSettings_ftn2d")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+
+[node name="TemperatureIcon" type="Sprite2D" parent="Panel"]
+position = Vector2(180, 63)
+texture = ExtResource("3_gck53")

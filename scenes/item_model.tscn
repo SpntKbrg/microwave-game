@@ -22,6 +22,7 @@ model_holder = NodePath("SubViewport/ItemModel3d")
 shape = SubResource("RectangleShape2D_cj2vo")
 
 [node name="SubViewport" type="SubViewport" parent="."]
+own_world_3d = true
 transparent_bg = true
 
 [node name="ItemModel3d" parent="SubViewport" instance=ExtResource("2_lhcuk")]

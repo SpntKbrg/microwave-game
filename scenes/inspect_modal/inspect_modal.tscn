@@ -7,7 +7,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84xar"]
 bg_color = Color(0, 0, 0, 0.5568628)
 
-[node name="InspectModal" type="Control" node_paths=PackedStringArray("__item_scene", "__rotation_input", "__rotation_slider", "__angle_slider")]
+[node name="InspectModal" type="Control" node_paths=PackedStringArray("__item_scene", "__rotation_input", "__rotation_slider", "__angle_slider", "__close_button")]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 15
@@ -20,6 +20,7 @@ __item_scene = NodePath("ModalMargin/ModalBg/SubViewportContainer/SubViewport/It
 __rotation_input = NodePath("StickInput")
 __rotation_slider = NodePath("ModalMargin/ModalBg/UIOverlay/RotateSlider")
 __angle_slider = NodePath("ModalMargin/ModalBg/UIOverlay/AngleSlider")
+__close_button = NodePath("ModalMargin/ModalBg/UIOverlay/Close")
 
 [node name="ModalMargin" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -45,7 +46,7 @@ mouse_target = true
 [node name="SubViewport" type="SubViewport" parent="ModalMargin/ModalBg/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(1232, 672)
 render_target_update_mode = 4
 
 [node name="ItemScene" parent="ModalMargin/ModalBg/SubViewportContainer/SubViewport" instance=ExtResource("1_imrat")]

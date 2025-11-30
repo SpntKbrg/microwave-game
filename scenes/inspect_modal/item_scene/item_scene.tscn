@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://fe6g68x5fo0n" path="res://scripts/inspect_modal/item_scene.gd" id="1_yi1ot"]
 [ext_resource type="PackedScene" uid="uid://c3aqmf6dgeygw" path="res://scenes/inspect_modal/sticker.tscn" id="3_2meiq"]
-[ext_resource type="PackedScene" uid="uid://b5eh3kaua1vm3" path="res://assets/models/steak.gltf" id="3_yi1ot"]
+[ext_resource type="PackedScene" uid="uid://b5eh3kaua1vm3" path="res://assets/models/steak.gltf" id="4_imtgy"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qvher"]
 viewport_path = NodePath("ItemHolder/Sticker/SubViewport")
@@ -33,11 +33,11 @@ texture = SubResource("ViewportTexture_qvher")
 [node name="SubViewport" type="SubViewport" parent="ItemHolder/Sticker"]
 transparent_bg = true
 gui_disable_input = true
-size = Vector2i(128, 128)
+size = Vector2i(228, 128)
 
 [node name="Sticker" parent="ItemHolder/Sticker/SubViewport" instance=ExtResource("3_2meiq")]
 
-[node name="blockbench_export" parent="ItemHolder" instance=ExtResource("3_yi1ot")]
+[node name="blockbench_export" parent="ItemHolder" instance=ExtResource("4_imtgy")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9135454, 0.40673664, 0, -0.40673664, 0.9135454, 0, 1, 1.25)
