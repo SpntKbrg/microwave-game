@@ -1,5 +1,7 @@
 extends Control
 
+class_name InspectModal
+
 @export_group("Internal")
 @export var __item_scene: ItemScene
 @export var __rotation_input: InputHandler

@@ -7,6 +7,7 @@
 script = ExtResource("1_ktfjk")
 
 [node name="CustomerMockView" type="Control" parent="." node_paths=PackedStringArray("customer", "id_label", "remain_time_progress_bar", "item_count_label")]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("2_xss0h")

@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://djkscwfg3u4pk"]
+[gd_scene load_steps=9 format=3 uid="uid://djkscwfg3u4pk"]
 
 [ext_resource type="Script" uid="uid://bcbynwkiwvcrt" path="res://scripts/resources/model_resource.gd" id="1_1q6jn"]
 [ext_resource type="Script" uid="uid://b4qp6p5ousenv" path="res://scripts/resources/model_data.gd" id="2_jnc77"]
 [ext_resource type="PackedScene" uid="uid://b5eh3kaua1vm3" path="res://assets/models/steak.gltf" id="3_ysatk"]
 [ext_resource type="PackedScene" uid="uid://c458k7tpvnhpa" path="res://assets/models/frozen-food.gltf" id="4_ysatk"]
+[ext_resource type="PackedScene" uid="uid://dy75lpwc6533f" path="res://assets/models/popsicle.gltf" id="5_dx880"]
 
 [sub_resource type="Resource" id="Resource_dx880"]
 script = ExtResource("2_jnc77")
-raw_model = ExtResource("4_ysatk")
+raw_model = ExtResource("3_ysatk")
 cooked_model = ExtResource("3_ysatk")
 metadata/_custom_type_script = "uid://b4qp6p5ousenv"
 
@@ -17,9 +18,16 @@ raw_model = ExtResource("4_ysatk")
 cooked_model = ExtResource("3_ysatk")
 metadata/_custom_type_script = "uid://b4qp6p5ousenv"
 
+[sub_resource type="Resource" id="Resource_afgcj"]
+script = ExtResource("2_jnc77")
+raw_model = ExtResource("5_dx880")
+cooked_model = ExtResource("5_dx880")
+metadata/_custom_type_script = "uid://b4qp6p5ousenv"
+
 [node name="ModelResource" type="Node2D"]
 script = ExtResource("1_1q6jn")
 data = Dictionary[int, ExtResource("2_jnc77")]({
 0: SubResource("Resource_dx880"),
-1: SubResource("Resource_84xp8")
+1: SubResource("Resource_84xp8"),
+2: SubResource("Resource_afgcj")
 })

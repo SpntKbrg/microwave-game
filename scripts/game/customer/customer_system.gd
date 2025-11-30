@@ -3,6 +3,7 @@ class_name CustomerSystem
 extends Node
 
 @export var customer_factory: CustomerFactory
+@export var is_running: bool
 
 @export_group("Customer Queue")
 @export_custom(PROPERTY_HINT_RANGE, "1,10") var maximum_customer_queue: int = 1
@@ -12,22 +13,31 @@ extends Node
 var time_until_next_customer: float = 0
 var customer_list: Array[Customer] = []
 
+signal on_add_customer(customer: Customer)
+signal on_remove_customer(is_completed: bool, customer_id: int)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 	
 
+func set_running(value: bool) -> void:
+	self.is_running = value
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if not is_running: return
 	_process_time_until_next_customer(delta)
 	
 func on_customer_patient_time_out(id: int) -> void:
 	print("Customer patient time out id: ", id)
 	_remove_customer_by_id(id)
+	on_remove_customer.emit(false, id)
 
 func on_customer_complete(id: int) -> void:
 	print("Customer complete id: ", id)
 	_remove_customer_by_id(id)
+	on_remove_customer.emit(true, id)
 
 func _process_time_until_next_customer(delta: float) -> void:
 	if(time_until_next_customer <= 0 && customer_list.size() < maximum_customer_queue):
@@ -44,6 +54,7 @@ func _generate_new_customer() -> void:
 	new_customer.customer_patient_time_out_signal.connect(on_customer_patient_time_out)
 	new_customer.customer_complete_signal.connect(on_customer_complete)
 	time_until_next_customer = _get_new_time_until_next_customer()
+	on_add_customer.emit(new_customer)
 	
 	print("Adding a new customer")
 	_print_current_customer()
