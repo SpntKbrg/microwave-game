@@ -1,12 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://brax0jiiy4qvi"]
+[gd_scene load_steps=3 format=3 uid="uid://brax0jiiy4qvi"]
 
 [ext_resource type="Script" uid="uid://15rw3qemoatt" path="res://scripts/game/item_model_holder.gd" id="1_d0bny"]
+[ext_resource type="PackedScene" uid="uid://c458k7tpvnhpa" path="res://assets/models/frozen-food.gltf" id="2_d0bny"]
 
 [node name="ItemModel3d" type="Node3D" node_paths=PackedStringArray("holder_parent")]
 script = ExtResource("1_d0bny")
 holder_parent = NodePath("holder")
 
 [node name="holder" type="Node3D" parent="."]
+
+[node name="blockbench_export" parent="holder" instance=ExtResource("2_d0bny")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.27112126, 0.9625452, 0, -0.9625452, 0.27112126, 0, 2.006, 0.497)
