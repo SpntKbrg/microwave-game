@@ -13,7 +13,6 @@ func _ready() -> void:
 func on_start_pressed() -> void:
 	on_start_pressed_preprocess()
 	on_commit_command.emit(command, time)
-	visible = false
 
 @abstract func on_start_pressed_preprocess() -> void
 

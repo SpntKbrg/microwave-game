@@ -11,18 +11,23 @@ extends Node3D
 @export_range(1, 25) var rotation_const: float
 @export var rotate_speed: float = 1.0
 
+var __current_model: Node3D
+var __next_model: Node3D
 var __is_label_placed := false
 
 func _process(delta: float) -> void:
 	__do_rotate_obj(delta)
 
 func _physics_process(_delta: float) -> void:
-	if not __is_label_placed:
+	if visible and __current_model != null and not __is_label_placed:
 		var sticker_placement := __get_item_surface_point()
 		__sticker.position = sticker_placement[0] - (sticker_placement[1] * 0.001)
 		__sticker.look_at(sticker_placement[0] + sticker_placement[1])
 		__sticker.rotation_degrees.z = randf_range(-180, 180)
 		__is_label_placed = true
+	if __current_model == null and __next_model != null:
+		__current_model = __next_model
+		__next_model = null
 
 func __do_rotate_obj(delta: float) -> void:
 	var current = __item_holder.rotation_degrees
@@ -52,6 +57,11 @@ func set_sticker_text(text: String) -> void:
 func set_item_model(model: PackedScene) -> void:
 	var item_model = model.instantiate();
 	__item_holder.add_child(item_model);
+	__is_label_placed = false
+	if __current_model != null:
+		__current_model.visible = false
+		__current_model.queue_free()
+	__next_model = item_model
 
 # call in physics_process only
 func __get_item_surface_point() -> Array[Vector3]:
@@ -59,7 +69,7 @@ func __get_item_surface_point() -> Array[Vector3]:
 	var item_normal := Vector3.UP
 	while 1:
 		var sphere_point := RandUtil.rand_point_on_sphere(10)
-		var inside_point := RandUtil.rand_point_in_circle(1)
+		var inside_point := RandUtil.rand_point_in_circle(0.1)
 		var ray_param := PhysicsRayQueryParameters3D.create(
 			sphere_point,
 			Vector3(inside_point.x, inside_point.y, 0)
