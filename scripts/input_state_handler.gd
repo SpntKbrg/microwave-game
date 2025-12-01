@@ -12,7 +12,7 @@ var __state: SelectionState
 
 
 signal signal_try_give_item_to_customer(microwave_id: int, customer_id: int)
-signal signal_show_microwave_ui(is_showing: bool)
+signal signal_show_microwave_ui(is_showing: bool, item_type_id: int)
 # signal signal_try_command_microwave(item_id: int, command)
 
 func _ready() -> void:
@@ -31,7 +31,7 @@ func on_select_customer(id: int) -> void:
 func on_select_item(id: int) -> void:
 	__state = SelectionState.ITEM_SELECTED
 	__selected_id = id
-	signal_show_microwave_ui.emit(true)
+	signal_show_microwave_ui.emit(true, __selected_id)
 
 
 func on_submit_microwave_cmd() -> void:

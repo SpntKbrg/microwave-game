@@ -16,22 +16,20 @@ extends Node
 @export var __customer_node_template: PackedScene # CustomerUiData
 @export var __customer_button_template: PackedScene # CustomerButton
 
-var __inspect_modal: InspectModal
+@export_category("Data")
+@export var __item_data: Dictionary[UtilType.ItemType, ItemData]
 
 func _ready() -> void:
-	__setup()
 	__subscribe_events()
 	start_game()
 
 
-func __setup() -> void:
-	__inspect_modal = microwave_inspect.get_microwave_ui()
-
-
 func __subscribe_events() -> void:
 	customer_system.on_add_customer.connect(on_event_customer_add)
-	input_state_handler.signal_show_microwave_ui.connect(
-		func (is_showing: bool): __inspect_modal.visible = is_showing
+	input_state_handler.signal_show_microwave_ui.connect(func (is_showing: bool, item_type_id: int):
+		microwave_inspect.visible = is_showing
+		var item = __item_data.get(item_type_id as UtilType.ItemType)
+		microwave_inspect.setup(item)
 	)
 
 func start_game() -> void:
