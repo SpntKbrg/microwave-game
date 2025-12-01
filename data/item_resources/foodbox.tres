@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://bpyc3q1ouoyrj"]
+
+[ext_resource type="Texture2D" uid="uid://dod13b7pm1udo" path="res://assets/sprites/release/icons/foodbox.png" id="1_75eub"]
+[ext_resource type="PackedScene" uid="uid://bdljjh70tud5t" path="res://scenes/items/item_models/foodbox.tscn" id="1_ghrqw"]
+[ext_resource type="Script" uid="uid://bxh2n1v4fly8q" path="res://scripts/game/items/item_resource.gd" id="2_75eub"]
+
+[resource]
+script = ExtResource("2_75eub")
+item_type = 1
+model = ExtResource("1_ghrqw")
+icon = ExtResource("1_75eub")
+timer_min_second = 180
+timer_max_second = 240
+metadata/_custom_type_script = "uid://bxh2n1v4fly8q"

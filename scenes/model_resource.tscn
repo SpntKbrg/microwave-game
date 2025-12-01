@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://djkscwfg3u4pk"]
 
-[ext_resource type="Script" uid="uid://bcbynwkiwvcrt" path="res://scripts/resources/model_resource.gd" id="1_1q6jn"]
-[ext_resource type="Script" uid="uid://b4qp6p5ousenv" path="res://scripts/resources/model_data.gd" id="2_jnc77"]
+[ext_resource type="Script" path="res://scripts/resources/model_resource.gd" id="1_1q6jn"]
+[ext_resource type="Script" path="res://scripts/resources/model_data.gd" id="2_jnc77"]
 [ext_resource type="PackedScene" uid="uid://b5eh3kaua1vm3" path="res://assets/models/steak.gltf" id="3_ysatk"]
 [ext_resource type="PackedScene" uid="uid://c458k7tpvnhpa" path="res://assets/models/frozen-food.gltf" id="4_ysatk"]
 [ext_resource type="PackedScene" uid="uid://dy75lpwc6533f" path="res://assets/models/popsicle.gltf" id="5_dx880"]

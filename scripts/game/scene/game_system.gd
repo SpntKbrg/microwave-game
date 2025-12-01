@@ -7,6 +7,7 @@ extends Node
 @export var item_factory: ItemFactory
 @export var microwave_inspect: MicrowaveInspect
 @export var input_state_handler: InputStateHandler
+@export var item_shelf_spawner: ItemShelfSpawner
 
 @export_category("Internal")
 @export var __customer_data_holder: Node
@@ -17,9 +18,12 @@ extends Node
 @export var __customer_button_template: PackedScene # CustomerButton
 
 @export_category("Data")
-@export var __item_data: Dictionary[UtilType.ItemType, ItemData]
+@export var __item_resources: Array[ItemResource]
+
+var __item_data: Dictionary[UtilType.ItemType, ItemResource]
 
 func _ready() -> void:
+	setup()
 	__subscribe_events()
 	start_game()
 
@@ -28,9 +32,23 @@ func __subscribe_events() -> void:
 	customer_system.on_add_customer.connect(on_event_customer_add)
 	input_state_handler.signal_show_microwave_ui.connect(func (is_showing: bool, item_type_id: int):
 		microwave_inspect.visible = is_showing
-		var item = __item_data.get(item_type_id as UtilType.ItemType)
+		var item_resource := __item_data.get(item_type_id as UtilType.ItemType) as ItemResource
+		var item = ItemData.new(
+			item_type_id,
+			randi_range(item_resource.timer_min_second, item_resource.timer_max_second),
+			UtilType.WaveTemperature.LOW,
+			item_resource.model,
+			item_resource.model
+		)
 		microwave_inspect.setup(item)
 	)
+	item_shelf_spawner.on_item_selected.connect(input_state_handler.on_select_item)
+
+func setup() -> void:
+	__item_data = {}
+	for item in __item_resources:
+		__item_data.set(item.item_type, item)
+	item_shelf_spawner.setup(__item_data)
 
 func start_game() -> void:
 	customer_system.set_running(true)

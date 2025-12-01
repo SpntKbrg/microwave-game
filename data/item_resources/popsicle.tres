@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://d2e5li7hy2i6b"]
+
+[ext_resource type="Texture2D" uid="uid://c0px4lyaux3d5" path="res://assets/sprites/release/icons/popsicle.png" id="1_38kkf"]
+[ext_resource type="PackedScene" uid="uid://2ukow7lxxamj" path="res://scenes/items/item_models/popsicle.tscn" id="1_vydcc"]
+[ext_resource type="Script" uid="uid://bxh2n1v4fly8q" path="res://scripts/game/items/item_resource.gd" id="2_38kkf"]
+
+[resource]
+script = ExtResource("2_38kkf")
+item_type = 2
+model = ExtResource("1_vydcc")
+icon = ExtResource("1_38kkf")
+timer_min_second = 30
+timer_max_second = 90
+metadata/_custom_type_script = "uid://bxh2n1v4fly8q"

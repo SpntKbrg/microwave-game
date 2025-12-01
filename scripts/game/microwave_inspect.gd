@@ -7,6 +7,7 @@ class_name MicrowaveInspect
 @export var close_button: Button
 
 func _ready() -> void:
+	microwave_ui.start_button.pressed.connect(func(): self.visible = false)
 	close_button.pressed.connect(func(): self.visible = false)
 
 func get_microwave_ui() -> BasicMicrowaveUI:
