@@ -9,7 +9,9 @@
 
 [node name="ItemIcon" type="TextureRect"]
 custom_minimum_size = Vector2(16, 16)
+size_flags_vertical = 4
 texture = ExtResource("1_e6lw3")
+expand_mode = 5
 script = ExtResource("2_y4m3t")
 item_icon_dict = Dictionary[int, Texture2D]({
 0: ExtResource("3_s7ikh"),
