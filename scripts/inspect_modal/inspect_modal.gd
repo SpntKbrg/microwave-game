@@ -35,6 +35,6 @@ func set_display_item(item: ItemData) -> void:
 	__item_scene.set_sticker_text(text);
 
 func _convert_heat_timer(timer: int) -> String:
-	var min = timer / 60
-	var sec = timer % 60
-	return "%d:%d" % [min, sec]
+	var minute = floori(timer / 60.0)
+	var second = timer % 60
+	return "%d:%d" % [minute, second]

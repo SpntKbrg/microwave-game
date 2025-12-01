@@ -20,7 +20,6 @@ func _physics_process(_delta: float) -> void:
 	if not __is_label_placed:
 		var sticker_placement := __get_item_surface_point()
 		__sticker.position = sticker_placement[0] - (sticker_placement[1] * 0.001)
-		print(__sticker.position)
 		__sticker.look_at(sticker_placement[0] + sticker_placement[1])
 		__sticker.rotation_degrees.z = randf_range(-180, 180)
 		__is_label_placed = true
