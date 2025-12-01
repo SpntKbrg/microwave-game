@@ -166,8 +166,8 @@ __item_resources = Array[ExtResource("8_xwxs8")]([ExtResource("10_5rj2t"), ExtRe
 
 [node name="CustomerSystem" parent="GameSystem" instance=ExtResource("15_fij0q")]
 maximum_customer_queue = 3
-time_until_next_customer_lists = Array[float]([5.0, 15.0, 20.0, 30.0, 45.0])
-time_variance = 40.0
+time_until_next_customer_lists = Array[float]([1.0, 7.0, 14.0])
+time_variance = 20.0
 
 [node name="CustomerList" type="Node" parent="GameSystem"]
 
