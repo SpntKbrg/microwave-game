@@ -30,6 +30,7 @@ func get_microwave_ui() -> BasicMicrowaveUI:
 
 func setup(item: ItemData) -> void:
 	inspect_modal.set_display_item(item)
+	microwave_ui.current_item_type = item.type
 
 func set_condition_func(callback: Callable) -> void:
 	__condition_func = callback

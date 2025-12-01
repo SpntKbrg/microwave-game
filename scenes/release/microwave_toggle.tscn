@@ -38,3 +38,4 @@ metadata/_edit_use_anchors_ = true
 one_shot = true
 
 [connection signal="pressed" from="." to="." method="on_selected"]
+[connection signal="timeout" from="microwave_timer" to="." method="on_countdown"]

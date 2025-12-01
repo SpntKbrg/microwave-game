@@ -53,5 +53,11 @@ func remove_item_icon_at_index(index: int) -> void:
 	__cart_container.remove_child(target_child)
 	target_child.queue_free()
 	
+	print("Remaining item: ",  __cart_container.get_child_count())
+
+func is_order_completed() -> bool:
+	return __cart_container.get_child_count() == 0
+	
+	
 func on_selected() -> void:
 	on_customer_selected.emit(get_customer_id())
