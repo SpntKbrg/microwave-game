@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://2ukow7lxxamj"]
+
+[ext_resource type="PackedScene" uid="uid://bl0ek5i35biqv" path="res://assets/models/release/popsicle.gltf" id="1_itjlk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ifnxk"]
+size = Vector3(0.2750244, 0.07556152, 0.64086914)
+
+[node name="Popsicle" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.037, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0006713867, 0.035949707, 0.06604004)
+shape = SubResource("BoxShape3D_ifnxk")
+
+[node name="blockbench_export" parent="StaticBody3D" instance=ExtResource("1_itjlk")]

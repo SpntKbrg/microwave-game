@@ -1,56 +1,29 @@
-[gd_scene load_steps=17 format=3 uid="uid://28r1rhmscnle"]
+[gd_scene load_steps=16 format=3 uid="uid://28r1rhmscnle"]
 
-[ext_resource type="StyleBox" uid="uid://vivmq0totlqg" path="res://assets/ui/panel_box_style.tres" id="1_3mg5d"]
 [ext_resource type="StyleBox" uid="uid://b3jedpegd354r" path="res://assets/ui/game_bg.tres" id="1_e1xsh"]
-[ext_resource type="Script" uid="uid://b4bi4c5bn7yv8" path="res://scripts/game/scene/real_game_scene.gd" id="1_hshn4"]
-[ext_resource type="Texture2D" uid="uid://c0px4lyaux3d5" path="res://assets/sprites/release/icons/popsicle.png" id="2_bc7k7"]
 [ext_resource type="Script" uid="uid://cuhlrwjla6kf" path="res://scripts/resources/microwave_spec.gd" id="2_jvgw3"]
 [ext_resource type="Theme" uid="uid://cwt57yrv5fqbq" path="res://assets/ui/main_theme.tres" id="2_xxmul"]
-[ext_resource type="PackedScene" uid="uid://btel16yic8364" path="res://scenes/release/item_button.tscn" id="6_e1xsh"]
+[ext_resource type="PackedScene" uid="uid://ba0bcphk06mt6" path="res://scenes/item_shelf_button.tscn" id="3_n7wt1"]
+[ext_resource type="PackedScene" uid="uid://derbaklq8t1ja" path="res://scenes/customer_button.tscn" id="6_hshn4"]
+[ext_resource type="Script" uid="uid://ljise6jjaffs" path="res://scripts/game/scene/game_system.gd" id="7_e1xsh"]
+[ext_resource type="PackedScene" uid="uid://nlci6v88mta7" path="res://scenes/customer_ui_data.tscn" id="8_e38y6"]
 [ext_resource type="PackedScene" uid="uid://c0exhmaqenhwk" path="res://scenes/release/microwave_inspect.tscn" id="11_hshn4"]
+[ext_resource type="Script" uid="uid://bd5q8fk3w4qkd" path="res://scripts/input_state_handler.gd" id="11_s1gd3"]
+[ext_resource type="Script" uid="uid://m1inrb5fw6sd" path="res://scripts/game/microwave_spawner.gd" id="12_jvgw3"]
 [ext_resource type="PackedScene" uid="uid://djkscwfg3u4pk" path="res://scenes/model_resource.tscn" id="12_s1gd3"]
+[ext_resource type="Script" uid="uid://cso81fb444n4e" path="res://scripts/game/item_shelf_spawner.gd" id="14_fij0q"]
 [ext_resource type="PackedScene" uid="uid://cucl236n4hfwi" path="res://scenes/items/ItemFactory.tscn" id="14_h88xt"]
-[ext_resource type="PackedScene" uid="uid://d3vsbjdcoodxd" path="res://scenes/customer_system.tscn" id="15_fij0q"]
+[ext_resource type="PackedScene" path="res://scenes/customer_system.tscn" id="15_fij0q"]
 
-[sub_resource type="Resource" id="Resource_n7wt1"]
+[sub_resource type="Resource" id="Resource_jvgw3"]
 script = ExtResource("2_jvgw3")
-useTemperature = true
 metadata/_custom_type_script = "uid://cuhlrwjla6kf"
 
-[sub_resource type="Resource" id="Resource_h88xt"]
-script = ExtResource("2_jvgw3")
-useTemperature = true
-metadata/_custom_type_script = "uid://cuhlrwjla6kf"
-
-[sub_resource type="Resource" id="Resource_fij0q"]
-script = ExtResource("2_jvgw3")
-useTemperature = true
-metadata/_custom_type_script = "uid://cuhlrwjla6kf"
-
-[sub_resource type="Resource" id="Resource_ogcfs"]
-script = ExtResource("2_jvgw3")
-useTemperature = true
-metadata/_custom_type_script = "uid://cuhlrwjla6kf"
-
-[sub_resource type="Resource" id="Resource_052rd"]
-script = ExtResource("2_jvgw3")
-useTemperature = true
-metadata/_custom_type_script = "uid://cuhlrwjla6kf"
-
-[node name="RealGameScene" type="Control" node_paths=PackedStringArray("microwave_spawn_point", "item_spawn_point", "model_resource", "item_factory", "customer_system", "inspect_ui")]
+[node name="RealGameScene" type="Control"]
 texture_filter = 3
 custom_minimum_size = Vector2(192, 128)
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_hshn4")
-microwave_set = Array[ExtResource("2_jvgw3")]([SubResource("Resource_n7wt1"), SubResource("Resource_h88xt"), SubResource("Resource_fij0q"), SubResource("Resource_ogcfs"), SubResource("Resource_052rd")])
-microwave_spawn_point = NodePath("MicrowaveRow/HBoxContainer")
-item_spawn_point = NodePath("PanelContainer/HBoxContainer")
-model_resource = NodePath("ModelResource")
-item_scene = ExtResource("6_e1xsh")
-item_factory = NodePath("ItemFactory")
-customer_system = NodePath("CustomerSystem")
-inspect_ui = NodePath("MicrowaveInspect")
 
 [node name="BG" type="Panel" parent="."]
 layout_mode = 1
@@ -62,7 +35,7 @@ grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_e1xsh")
 
 [node name="CustomerRow" type="ScrollContainer" parent="."]
-custom_minimum_size = Vector2(0, 42)
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -70,61 +43,9 @@ offset_bottom = 42.0
 grow_horizontal = 2
 theme = ExtResource("2_xxmul")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CustomerRow"]
+[node name="CustomerButtonContainer" type="HBoxContainer" parent="CustomerRow"]
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
-
-[node name="CustomerButton" type="Button" parent="CustomerRow/HBoxContainer"]
-custom_minimum_size = Vector2(80, 24)
-layout_mode = 2
-theme = ExtResource("2_xxmul")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CustomerRow/HBoxContainer/CustomerButton"]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 7.0
-offset_top = -18.0
-offset_right = -6.0
-offset_bottom = -2.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 1
-
-[node name="TextureRect" type="TextureRect" parent="CustomerRow/HBoxContainer/CustomerButton/HBoxContainer"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-texture = ExtResource("2_bc7k7")
-
-[node name="TextureRect2" type="TextureRect" parent="CustomerRow/HBoxContainer/CustomerButton/HBoxContainer"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-texture = ExtResource("2_bc7k7")
-
-[node name="TextureRect3" type="TextureRect" parent="CustomerRow/HBoxContainer/CustomerButton/HBoxContainer"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-texture = ExtResource("2_bc7k7")
-
-[node name="TextureRect4" type="TextureRect" parent="CustomerRow/HBoxContainer/CustomerButton/HBoxContainer"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-texture = ExtResource("2_bc7k7")
-
-[node name="ProgressBar" type="ProgressBar" parent="CustomerRow/HBoxContainer/CustomerButton"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 9.0
-offset_top = 3.0
-offset_right = -8.0
-offset_bottom = 7.0
-grow_horizontal = 2
-theme = ExtResource("2_xxmul")
-value = 48.18
-show_percentage = false
 
 [node name="MicrowaveRow" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(0, 40)
@@ -135,30 +56,55 @@ offset_top = 32.0
 offset_bottom = 72.0
 grow_horizontal = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MicrowaveRow"]
+[node name="MicrowaveContainer" type="HBoxContainer" parent="MicrowaveRow"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="ItemRow" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -44.0
+offset_top = -38.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = ExtResource("1_3mg5d")
+theme = ExtResource("2_xxmul")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+[node name="ItemShelf" type="HBoxContainer" parent="ItemRow"]
 layout_mode = 2
 
 [node name="ModelResource" parent="." instance=ExtResource("12_s1gd3")]
 
-[node name="ItemFactory" parent="." instance=ExtResource("14_h88xt")]
-
-[node name="CustomerSystem" parent="." instance=ExtResource("15_fij0q")]
-
 [node name="MicrowaveInspect" parent="." instance=ExtResource("11_hshn4")]
+visible = false
 layout_mode = 1
+
+[node name="GameSystem" type="Node" parent="." node_paths=PackedStringArray("customer_system", "item_factory", "__customer_data_holder", "__customer_button_container")]
+script = ExtResource("7_e1xsh")
+customer_system = NodePath("CustomerSystem")
+item_factory = NodePath("ItemFactory")
+__customer_data_holder = NodePath("CustomerList")
+__customer_button_container = NodePath("../CustomerRow/CustomerButtonContainer")
+__customer_node_template = ExtResource("8_e38y6")
+__customer_button_template = ExtResource("6_hshn4")
+
+[node name="ItemFactory" parent="GameSystem" instance=ExtResource("14_h88xt")]
+
+[node name="CustomerSystem" parent="GameSystem" instance=ExtResource("15_fij0q")]
+
+[node name="CustomerList" type="Node" parent="GameSystem"]
+
+[node name="InputStateHandler" type="Node" parent="GameSystem"]
+script = ExtResource("11_s1gd3")
+
+[node name="MicrowaveSpawner" type="Node" parent="GameSystem" node_paths=PackedStringArray("microwave_spawn_point")]
+script = ExtResource("12_jvgw3")
+microwave_set = Array[ExtResource("2_jvgw3")]([SubResource("Resource_jvgw3")])
+microwave_spawn_point = NodePath("../../MicrowaveRow/MicrowaveContainer")
+
+[node name="ItemShelfSpawner" type="Node" parent="GameSystem" node_paths=PackedStringArray("__item_shelf")]
+script = ExtResource("14_fij0q")
+__item_shelf = NodePath("../../ItemRow/ItemShelf")
+__item_shelf_btn_template = ExtResource("3_n7wt1")

@@ -1,44 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3aqmf6dgeygw"]
+[gd_scene load_steps=5 format=3 uid="uid://c3aqmf6dgeygw"]
 
 [ext_resource type="Script" uid="uid://baq76nl3a54t0" path="res://scripts/inspect_modal/sticker.gd" id="1_bb5sh"]
-[ext_resource type="FontFile" uid="uid://rfkuv0qj3inv" path="res://assets/fonts/Space_Contract.ttf" id="2_3y8l3"]
+[ext_resource type="Theme" uid="uid://cwt57yrv5fqbq" path="res://assets/ui/main_theme.tres" id="2_rle7x"]
 [ext_resource type="Texture2D" uid="uid://kfoihhqqa54h" path="res://assets/sprites/low.png" id="3_gck53"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qvher"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.7254359, 0.57254857, 7.70092e-07, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="LabelSettings" id="LabelSettings_ftn2d"]
-font = ExtResource("2_3y8l3")
-font_size = 36
+[sub_resource type="LabelSettings" id="LabelSettings_gck53"]
 font_color = Color(0, 0, 0, 1)
-outline_color = Color(0, 0, 0, 1)
 
 [node name="Sticker" type="Control" node_paths=PackedStringArray("label")]
-custom_minimum_size = Vector2(128, 128)
+texture_filter = 3
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 32.0
+offset_bottom = 32.0
 script = ExtResource("1_bb5sh")
 label = NodePath("Panel/Label")
 
 [node name="Panel" type="Panel" parent="."]
-custom_minimum_size = Vector2(128, 128)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
-offset_right = 128.0
-offset_bottom = 128.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_qvher")
+offset_right = 32.0
+offset_bottom = 32.0
+theme = ExtResource("2_rle7x")
+theme_type_variation = &"StickerPanel"
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 1
@@ -47,12 +32,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_rle7x")
+theme_type_variation = &"StickerFont"
 text = "1:00"
-label_settings = SubResource("LabelSettings_ftn2d")
+label_settings = SubResource("LabelSettings_gck53")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="TemperatureIcon" type="Sprite2D" parent="Panel"]
-position = Vector2(180, 63)
+[node name="Control" type="Control" parent="Panel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_right = -40.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TemperatureIcon" type="Sprite2D" parent="Panel/Control"]
+position = Vector2(52, 20)
+scale = Vector2(0.23, 0.23)
 texture = ExtResource("3_gck53")

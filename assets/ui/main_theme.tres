@@ -1,9 +1,13 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cwt57yrv5fqbq"]
+[gd_resource type="Theme" load_steps=20 format=3 uid="uid://cwt57yrv5fqbq"]
 
 [ext_resource type="StyleBox" uid="uid://vivmq0totlqg" path="res://assets/ui/panel_box_style.tres" id="1_cstew"]
 [ext_resource type="StyleBox" uid="uid://b2r2dtyuwqix3" path="res://assets/ui/panel_box_alt_style.tres" id="1_mdnfb"]
 [ext_resource type="FontFile" uid="uid://b5yy44pxjmhej" path="res://assets/fonts/Logic_Loop_Extra_Letter_Space.ttf" id="1_r315b"]
 [ext_resource type="StyleBox" uid="uid://bmeaor8s0mkrj" path="res://assets/ui/panel_box_pressed_style.tres" id="3_gx6pb"]
+[ext_resource type="FontFile" uid="uid://uabnmj6d5aay" path="res://assets/fonts/Micro_Chat.ttf" id="5_ufljk"]
+[ext_resource type="StyleBox" uid="uid://dovsxvs6q3bl1" path="res://assets/ui/panel_box_small_style.tres" id="6_8ahlm"]
+[ext_resource type="Texture2D" uid="uid://ck0u7ps7of8ye" path="res://assets/ui/panel_small_9slices.png" id="7_7fqi6"]
+[ext_resource type="FontFile" uid="uid://bmlani0g2gxnm" path="res://assets/fonts/Slim_Fit.ttf" id="7_y8yuo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ahlm"]
 content_margin_left = 4.0
@@ -38,11 +42,46 @@ expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tq20e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oobvn"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_8wxma"]
+color = Color(1, 1, 1, 1)
+thickness = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fqi6"]
+bg_color = Color(0, 0, 0, 0.74509805)
+corner_detail = 4
+
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_gx6pb"]
 color = Color(1, 1, 1, 1)
 thickness = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8wxma"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7fqi6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8wxma"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_tq20e"]
+color = Color(1, 1, 1, 1)
+thickness = 4
+vertical = true
+
 [resource]
+BoxContainer/constants/separation = 1
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
@@ -67,6 +106,24 @@ Button/styles/focus = SubResource("StyleBoxFlat_y8yuo")
 Button/styles/hover = ExtResource("1_mdnfb")
 Button/styles/normal = ExtResource("1_cstew")
 Button/styles/pressed = ExtResource("3_gx6pb")
+ButtonSmall/base_type = &"Button"
+ButtonSmall/font_sizes/font_size = 5
+ButtonSmall/fonts/font = ExtResource("5_ufljk")
+ButtonSmall/styles/normal = ExtResource("6_8ahlm")
+HSlider/icons/grabber = ExtResource("7_7fqi6")
+HSlider/styles/grabber_area = SubResource("StyleBoxEmpty_tq20e")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxEmpty_oobvn")
+HSlider/styles/slider = SubResource("StyleBoxLine_8wxma")
 HeaderLarge/font_sizes/font_size = 12
 Label/fonts/font = ExtResource("1_r315b")
+Panel/styles/panel = SubResource("StyleBoxFlat_7fqi6")
 ProgressBar/styles/fill = SubResource("StyleBoxLine_gx6pb")
+StickerFont/base_type = &"Label"
+StickerFont/font_sizes/font_size = 8
+StickerFont/fonts/font = ExtResource("7_y8yuo")
+StickerPanel/base_type = &"Panel"
+StickerPanel/styles/panel = SubResource("StyleBoxFlat_8wxma")
+VSlider/icons/grabber = ExtResource("7_7fqi6")
+VSlider/styles/grabber_area = SubResource("StyleBoxEmpty_7fqi6")
+VSlider/styles/grabber_area_highlight = SubResource("StyleBoxEmpty_8wxma")
+VSlider/styles/slider = SubResource("StyleBoxLine_tq20e")

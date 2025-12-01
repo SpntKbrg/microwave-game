@@ -12,8 +12,8 @@ var next_id: int = 0
 func generate_customer() -> Customer:
 	var new_customer_instance = customer_scene.instantiate()
 	add_child(new_customer_instance)
-	
-	new_customer_instance.setup_customer(next_id, customer_patient_time, customer_item_count)
+	var rand_item_count = randi_range(1, customer_item_count)
+	new_customer_instance.setup_customer(next_id, customer_patient_time, rand_item_count)
 	next_id += 1
 	
 	return new_customer_instance

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdljjh70tud5t"]
+
+[ext_resource type="PackedScene" uid="uid://4fjijrod57p4" path="res://assets/models/release/foodbox.gltf" id="1_hfuw5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mkhat"]
+size = Vector3(1, 0.25, 1)
+
+[node name="Foodbox" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_hfuw5")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_mkhat")
