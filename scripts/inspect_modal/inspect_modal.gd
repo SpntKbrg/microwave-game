@@ -37,4 +37,4 @@ func set_display_item(item: ItemData) -> void:
 func _convert_heat_timer(timer: int) -> String:
 	var minute = floori(timer / 60.0)
 	var second = timer % 60
-	return "%d:%d" % [minute, second]
+	return "%d:%02d" % [minute, second]
