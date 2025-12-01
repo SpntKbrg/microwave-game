@@ -36,3 +36,5 @@ metadata/_edit_use_anchors_ = true
 
 [node name="microwave_timer" type="Timer" parent="."]
 one_shot = true
+
+[connection signal="pressed" from="." to="." method="on_selected"]
