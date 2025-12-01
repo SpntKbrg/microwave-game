@@ -20,9 +20,11 @@ func __try_commit_command(cmd: MicrowaveMethod) -> void:
 	if not (precheck as bool):
 		print("no microwave ready")
 		# TODO microwave not ready notif
+		SoundController.get_instance().play_sound(UtilType.SFX.CLICK_NEG)
 		return
 	print("send command")
 	on_commit_command.emit(cmd)
+	SoundController.get_instance().play_sound(UtilType.SFX.CLICK_POS)
 	visible = false
 
 func get_microwave_ui() -> BasicMicrowaveUI:

@@ -14,5 +14,6 @@ func setup(item_list: Dictionary[UtilType.ItemType, ItemResource]) -> void:
 		__item_shelf.add_child(item_button)
 		item_button.setup(item)
 		item_button.pressed.connect(func () -> void:
+			SoundController.get_instance().play_sound(UtilType.SFX.CLICK_POS)
 			on_item_selected.emit(item.item_type)
 		)
