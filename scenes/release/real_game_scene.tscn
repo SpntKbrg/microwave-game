@@ -1,10 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://28r1rhmscnle"]
+[gd_scene load_steps=33 format=3 uid="uid://28r1rhmscnle"]
 
 [ext_resource type="StyleBox" uid="uid://b3jedpegd354r" path="res://assets/ui/game_bg.tres" id="1_e1xsh"]
 [ext_resource type="Script" uid="uid://cuhlrwjla6kf" path="res://scripts/resources/microwave_spec.gd" id="2_jvgw3"]
 [ext_resource type="Theme" uid="uid://cwt57yrv5fqbq" path="res://assets/ui/main_theme.tres" id="2_xxmul"]
 [ext_resource type="PackedScene" uid="uid://ba0bcphk06mt6" path="res://scenes/item_shelf_button.tscn" id="3_n7wt1"]
-[ext_resource type="Texture2D" uid="uid://dod13b7pm1udo" path="res://assets/sprites/release/icons/foodbox.png" id="5_ro6rp"]
+[ext_resource type="Texture2D" uid="uid://ckg3btwcy1dqt" path="res://assets/sprites/release/icons/heart.png" id="3_r5580"]
+[ext_resource type="Texture2D" uid="uid://b73i3yww7iwgv" path="res://assets/sprites/release/icons/bin.png" id="3_ro6rp"]
 [ext_resource type="PackedScene" uid="uid://derbaklq8t1ja" path="res://scenes/customer_button.tscn" id="6_hshn4"]
 [ext_resource type="Script" uid="uid://ljise6jjaffs" path="res://scripts/game/scene/game_system.gd" id="7_e1xsh"]
 [ext_resource type="PackedScene" uid="uid://nlci6v88mta7" path="res://scenes/customer_ui_data.tscn" id="8_e38y6"]
@@ -22,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://cucl236n4hfwi" path="res://scenes/items/ItemFactory.tscn" id="14_h88xt"]
 [ext_resource type="PackedScene" uid="uid://d3vsbjdcoodxd" path="res://scenes/customer_system.tscn" id="15_fij0q"]
 [ext_resource type="Script" uid="uid://bnxai7cf282in" path="res://scripts/sound_manager/sound_manager.gd" id="21_37101"]
+[ext_resource type="Resource" uid="uid://dook6apkpp3vx" path="res://data/basic_microwave.tres" id="21_esvc2"]
 [ext_resource type="Script" uid="uid://cgh8sihxkjeab" path="res://scripts/sound_manager/sound_controller.gd" id="22_8ijly"]
 [ext_resource type="AudioStream" uid="uid://bmsm6ix6ljc6b" path="res://assets/sfx/kenney/click_positive.ogg" id="23_7vm1s"]
 [ext_resource type="AudioStream" uid="uid://dv2ldunacjwxq" path="res://assets/sfx/kenney/click_negative.ogg" id="24_ro6rp"]
@@ -29,10 +31,7 @@
 [ext_resource type="AudioStream" uid="uid://cfhsxwctpyaye" path="res://assets/sfx/kenney/deliver_success.ogg" id="26_esvc2"]
 [ext_resource type="AudioStream" uid="uid://dl3oobafhoy" path="res://assets/sfx/kenney/delivery_failed.ogg" id="27_h1ngv"]
 [ext_resource type="AudioStream" uid="uid://cdsfwjeotg8f1" path="res://assets/sfx/kenney/customer_arrive.ogg" id="28_7vm1s"]
-
-[sub_resource type="Resource" id="Resource_jvgw3"]
-script = ExtResource("2_jvgw3")
-metadata/_custom_type_script = "uid://cuhlrwjla6kf"
+[ext_resource type="AudioStream" uid="uid://vdxg1fo4yyu8" path="res://assets/sfx/kenney/bin.ogg" id="32_h1ngv"]
 
 [node name="RealGameScene" type="Control"]
 texture_filter = 3
@@ -48,6 +47,43 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_e1xsh")
+
+[node name="HeartContainer" type="HBoxContainer" parent="BG"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -49.14
+offset_bottom = -37.140114
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_xxmul")
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="BG/HeartContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+texture = ExtResource("3_r5580")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="BG/HeartContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+texture = ExtResource("3_r5580")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="BG/HeartContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+texture = ExtResource("3_r5580")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="CustomerRow" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(0, 24)
@@ -90,7 +126,7 @@ theme = ExtResource("2_xxmul")
 [node name="ItemShelf" type="HBoxContainer" parent="ItemRow"]
 layout_mode = 2
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="TrashCan" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -103,7 +139,7 @@ offset_right = -1.0
 offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
-texture_normal = ExtResource("5_ro6rp")
+texture_normal = ExtResource("3_ro6rp")
 
 [node name="ModelResource" parent="." instance=ExtResource("12_s1gd3")]
 
@@ -129,6 +165,9 @@ __item_resources = Array[ExtResource("8_xwxs8")]([ExtResource("10_5rj2t"), ExtRe
 [node name="ItemFactory" parent="GameSystem" instance=ExtResource("14_h88xt")]
 
 [node name="CustomerSystem" parent="GameSystem" instance=ExtResource("15_fij0q")]
+maximum_customer_queue = 3
+time_until_next_customer_lists = Array[float]([5.0, 15.0, 20.0, 30.0, 45.0])
+time_variance = 40.0
 
 [node name="CustomerList" type="Node" parent="GameSystem"]
 
@@ -137,7 +176,7 @@ script = ExtResource("11_s1gd3")
 
 [node name="MicrowaveSpawner" type="Node" parent="GameSystem" node_paths=PackedStringArray("microwave_spawn_point")]
 script = ExtResource("12_jvgw3")
-microwave_set = Array[ExtResource("2_jvgw3")]([SubResource("Resource_jvgw3")])
+microwave_set = Array[ExtResource("2_jvgw3")]([ExtResource("21_esvc2"), ExtResource("21_esvc2"), ExtResource("21_esvc2")])
 microwave_spawn_point = NodePath("../../MicrowaveRow/MicrowaveContainer")
 
 [node name="ItemShelfSpawner" type="Node" parent="GameSystem" node_paths=PackedStringArray("__item_shelf")]
@@ -158,8 +197,9 @@ audio_dict = Dictionary[int, AudioStream]({
 2: ExtResource("26_esvc2"),
 3: ExtResource("27_h1ngv"),
 4: ExtResource("25_r5580"),
-5: ExtResource("28_7vm1s")
+5: ExtResource("28_7vm1s"),
+6: ExtResource("32_h1ngv")
 })
 metadata/_custom_type_script = "uid://cgh8sihxkjeab"
 
-[connection signal="pressed" from="TextureButton" to="GameSystem/InputStateHandler" method="on_select_trash_bin"]
+[connection signal="pressed" from="TrashCan" to="GameSystem/InputStateHandler" method="on_select_trash_bin"]

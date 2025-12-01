@@ -45,6 +45,7 @@ metadata/_edit_use_anchors_ = true
 one_shot = true
 
 [node name="ItemIcon" parent="." instance=ExtResource("4_jihpy")]
+visible = false
 layout_mode = 0
 offset_left = 7.0
 offset_top = -1.0

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MicrowaveSpec" load_steps=2 format=3 uid="uid://dook6apkpp3vx"]
+
+[ext_resource type="Script" uid="uid://cuhlrwjla6kf" path="res://scripts/resources/microwave_spec.gd" id="1_ngg10"]
+
+[resource]
+script = ExtResource("1_ngg10")
+metadata/_custom_type_script = "uid://cuhlrwjla6kf"

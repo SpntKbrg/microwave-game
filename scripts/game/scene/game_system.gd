@@ -9,7 +9,6 @@ extends Node
 @export var input_state_handler: InputStateHandler
 @export var item_shelf_spawner: ItemShelfSpawner
 @export var microwave_spawner: MicrowaveSpawner
-@export var sound_controller: SoundController
 
 @export_category("Internal")
 @export var __customer_data_holder: Node
@@ -100,6 +99,7 @@ func on_try_clearing_selected_microwave(microwave_id: int) -> void:
 		return
 	
 	selected_microwave.on_clear_item()
+	SoundController.get_instance().play_sound(UtilType.SFX.BIN)
 	
 func on_try_give_item_to_customer(microwave_id: int, customer_id: int) -> void:
 	var selected_microwave := __get_microwave_by_id(microwave_id)

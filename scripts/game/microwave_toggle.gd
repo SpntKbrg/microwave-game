@@ -36,12 +36,12 @@ func on_countdown()->void:
 	is_running = false
 	on_wave_timeout.emit(current_command)
 	completed_item_type = current_command.item_type
-	current_command = null
 	anim_sprite.set_animating(false)
 	
 func on_complete_order() -> void:
 	completed_item_type = UtilType.ItemType.NULL
 	item_icon.visible = false
+	current_command = null
 
 func commit_command(_command: MicrowaveMethod) -> void:
 	if is_running:
@@ -59,6 +59,8 @@ func commit_command(_command: MicrowaveMethod) -> void:
 	item_icon.visible = true
 
 func on_selected() -> void:
+	if current_command == null:
+		return
 	on_microwave_selected.emit(microwave_id)
 	
 func on_clear_item() -> void:
