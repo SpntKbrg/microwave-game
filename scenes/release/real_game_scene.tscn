@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://28r1rhmscnle"]
+[gd_scene load_steps=31 format=3 uid="uid://28r1rhmscnle"]
 
 [ext_resource type="StyleBox" uid="uid://b3jedpegd354r" path="res://assets/ui/game_bg.tres" id="1_e1xsh"]
 [ext_resource type="Script" uid="uid://cuhlrwjla6kf" path="res://scripts/resources/microwave_spec.gd" id="2_jvgw3"]
 [ext_resource type="Theme" uid="uid://cwt57yrv5fqbq" path="res://assets/ui/main_theme.tres" id="2_xxmul"]
 [ext_resource type="PackedScene" uid="uid://ba0bcphk06mt6" path="res://scenes/item_shelf_button.tscn" id="3_n7wt1"]
+[ext_resource type="Texture2D" uid="uid://dod13b7pm1udo" path="res://assets/sprites/release/icons/foodbox.png" id="5_ro6rp"]
 [ext_resource type="PackedScene" uid="uid://derbaklq8t1ja" path="res://scenes/customer_button.tscn" id="6_hshn4"]
 [ext_resource type="Script" uid="uid://ljise6jjaffs" path="res://scripts/game/scene/game_system.gd" id="7_e1xsh"]
 [ext_resource type="PackedScene" uid="uid://nlci6v88mta7" path="res://scenes/customer_ui_data.tscn" id="8_e38y6"]
@@ -89,6 +90,21 @@ theme = ExtResource("2_xxmul")
 [node name="ItemShelf" type="HBoxContainer" parent="ItemRow"]
 layout_mode = 2
 
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = -26.0
+offset_right = -1.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("5_ro6rp")
+
 [node name="ModelResource" parent="." instance=ExtResource("12_s1gd3")]
 
 [node name="MicrowaveInspect" parent="." instance=ExtResource("11_hshn4")]
@@ -145,3 +161,5 @@ audio_dict = Dictionary[int, AudioStream]({
 5: ExtResource("28_7vm1s")
 })
 metadata/_custom_type_script = "uid://cgh8sihxkjeab"
+
+[connection signal="pressed" from="TextureButton" to="GameSystem/InputStateHandler" method="on_select_trash_bin"]

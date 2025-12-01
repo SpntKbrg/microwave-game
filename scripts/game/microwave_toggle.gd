@@ -60,3 +60,11 @@ func commit_command(_command: MicrowaveMethod) -> void:
 
 func on_selected() -> void:
 	on_microwave_selected.emit(microwave_id)
+	
+func on_clear_item() -> void:
+	microwave_timer.stop()
+	completed_item_type = UtilType.ItemType.NULL
+	item_icon.visible = false
+	is_running = false
+	current_command = null
+	anim_sprite.set_animating(false)
