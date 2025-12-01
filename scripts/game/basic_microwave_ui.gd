@@ -29,8 +29,11 @@ func on_reset_pressed() -> void:
 
 func on_start_pressed_preprocess() -> void:
 	time = user_input.to_int() #change time calculation here <--------------
-	print("microwave ui -> ", time)
-	command.duration = time
+	var min_unit := floori(time / 100.0)
+	var sec_unit := time % 100
+	var fixed_t := min_unit * 60 + sec_unit
+	print("microwave ui -> ", fixed_t)
+	command.duration = fixed_t
 	on_start_microwave.emit(command)
 	on_reset_pressed()
 
