@@ -195,7 +195,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("2_6aqxj")
 theme_type_variation = &"ButtonSmall"
-text = "Reset"
+text = "CLR"
 
 [node name="0" type="Button" parent="bg/HBoxContainer/VBoxContainer/GridContainer"]
 texture_filter = 3
@@ -215,4 +215,4 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("2_6aqxj")
 theme_type_variation = &"ButtonSmall"
-text = "Start"
+text = "GO"

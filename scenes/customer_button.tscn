@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://derbaklq8t1ja"]
+
+[ext_resource type="Theme" uid="uid://cwt57yrv5fqbq" path="res://assets/ui/main_theme.tres" id="1_ynswb"]
+[ext_resource type="Script" uid="uid://bfy7occnx8mfb" path="res://scripts/game/customer_button.gd" id="2_kideh"]
+[ext_resource type="PackedScene" uid="uid://7np8gifga1h2" path="res://scenes/item_icon.tscn" id="3_n18q7"]
+
+[node name="CustomerButton" type="Button" node_paths=PackedStringArray("__timer_progress", "__cart_container")]
+texture_filter = 3
+custom_minimum_size = Vector2(80, 24)
+size_flags_horizontal = 0
+theme = ExtResource("1_ynswb")
+script = ExtResource("2_kideh")
+__timer_progress = NodePath("ProgressBar")
+__cart_container = NodePath("CartContainer")
+__item_icon_template = ExtResource("3_n18q7")
+
+[node name="CartContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -18.0
+offset_right = -6.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 9.0
+offset_top = 3.0
+offset_right = -8.0
+offset_bottom = 7.0
+grow_horizontal = 2
+theme = ExtResource("1_ynswb")
+max_value = 1.0
+value = 0.5
+show_percentage = false

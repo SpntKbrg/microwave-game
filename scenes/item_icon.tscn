@@ -1,0 +1,20 @@
+[gd_scene load_steps=7 format=3 uid="uid://7np8gifga1h2"]
+
+[ext_resource type="Texture2D" uid="uid://c0px4lyaux3d5" path="res://assets/sprites/release/icons/popsicle.png" id="1_e6lw3"]
+[ext_resource type="Script" uid="uid://b2801y4waukr0" path="res://scripts/game/item_icon.gd" id="2_y4m3t"]
+[ext_resource type="Texture2D" uid="uid://cbq7lnunfoaie" path="res://assets/sprites/release/icons/steak.png" id="3_s7ikh"]
+[ext_resource type="Texture2D" uid="uid://dod13b7pm1udo" path="res://assets/sprites/release/icons/foodbox.png" id="4_im0gm"]
+[ext_resource type="Texture2D" uid="uid://crbyc55xh3m8" path="res://assets/sprites/release/icons/noodlecup.png" id="5_jigsx"]
+[ext_resource type="Texture2D" uid="uid://pi8xwiex7si8" path="res://assets/sprites/release/icons/mug.png" id="6_kh71b"]
+
+[node name="ItemIcon" type="TextureRect"]
+custom_minimum_size = Vector2(16, 16)
+texture = ExtResource("1_e6lw3")
+script = ExtResource("2_y4m3t")
+item_icon_dict = Dictionary[int, Texture2D]({
+0: ExtResource("3_s7ikh"),
+1: ExtResource("4_im0gm"),
+2: ExtResource("1_e6lw3"),
+3: ExtResource("5_jigsx"),
+4: ExtResource("6_kh71b")
+})
