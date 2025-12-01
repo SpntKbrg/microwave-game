@@ -19,16 +19,20 @@ func _ready() -> void:
 	reset_state()
 
 func on_select_microwave(id: int) -> void:
+	print("try selecting microwave id:", id)
 	__state = SelectionState.MICROWAVE_SELECTED
 	__selected_id = id
 
 func on_select_customer(id: int) -> void:
+	print("try selecting customer id: ", id)
 	if __state != SelectionState.MICROWAVE_SELECTED:
 		return
+	print("try give item from microwave id: ", __selected_id, " to customer id: ", id)
 	signal_try_give_item_to_customer.emit(__selected_id, id)
 	reset_state()
 
 func on_select_item(id: int) -> void:
+	print("try selecting item id: ", id)
 	__state = SelectionState.ITEM_SELECTED
 	__selected_id = id
 	signal_show_microwave_ui.emit(true, __selected_id)
