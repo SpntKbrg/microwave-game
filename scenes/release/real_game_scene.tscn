@@ -120,5 +120,3 @@ microwave_spawn_point = NodePath("../../MicrowaveRow/MicrowaveContainer")
 script = ExtResource("14_fij0q")
 __item_shelf = NodePath("../../ItemRow/ItemShelf")
 __item_shelf_btn_template = ExtResource("3_n7wt1")
-
-[node name="ItemLibrary" type="Node" parent="."]

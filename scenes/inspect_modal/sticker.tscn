@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3aqmf6dgeygw"]
+[gd_scene load_steps=6 format=3 uid="uid://c3aqmf6dgeygw"]
 
 [ext_resource type="Script" uid="uid://baq76nl3a54t0" path="res://scripts/inspect_modal/sticker.gd" id="1_bb5sh"]
 [ext_resource type="Theme" uid="uid://cwt57yrv5fqbq" path="res://assets/ui/main_theme.tres" id="2_rle7x"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_gck53"]
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_gck53"]
+thickness = 2
 
 [node name="Sticker" type="Control" node_paths=PackedStringArray("label")]
 texture_filter = 3
@@ -59,3 +62,12 @@ visible = false
 position = Vector2(52, 20)
 scale = Vector2(0.23, 0.23)
 texture = ExtResource("3_gck53")
+
+[node name="HSeparator" type="HSeparator" parent="Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 26.0
+offset_right = 26.0
+offset_bottom = 30.0
+theme = ExtResource("2_rle7x")
+theme_override_styles/separator = SubResource("StyleBoxLine_gck53")

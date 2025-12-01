@@ -10,6 +10,9 @@ extends AnimatedSprite2D
 var __is_animating: bool = false
 var __is_particle_emitting: bool = false
 
+func _ready() -> void:
+	__update_display()
+
 func set_animating(is_animating: bool) -> void:
 	__is_animating = is_animating
 	__is_particle_emitting = is_animating

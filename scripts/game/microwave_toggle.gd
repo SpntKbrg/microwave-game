@@ -1,3 +1,4 @@
+class_name MicrowaveToggle
 extends TextureButton
 class_name  MicrowaveToggle
 

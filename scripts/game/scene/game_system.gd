@@ -45,8 +45,9 @@ func __subscribe_events() -> void:
 		microwave_inspect.setup(item)
 	)
 	item_shelf_spawner.on_item_selected.connect(input_state_handler.on_select_item)
-	input_state_handler.signal_try_give_item_to_customer.connect(on_try_give_item_to_customer)
 	microwave_spawner.on_microwave_selected.connect(input_state_handler.on_select_microwave)
+	microwave_inspect.on_commit_command.connect(input_state_handler.on_submit_microwave_cmd)
+	input_state_handler.signal_try_command_microwave.connect(microwave_spawner.send_cmd)
 
 func setup() -> void:
 	__item_data = {}
@@ -54,6 +55,9 @@ func setup() -> void:
 		__item_data.set(item.item_type, item)
 	item_shelf_spawner.setup(__item_data)
 	microwave_spawner.setup()
+	microwave_inspect.set_condition_func(func ():
+		return microwave_spawner.is_any_microwave_free()
+	)
 
 func start_game() -> void:
 	customer_system.set_running(true)
