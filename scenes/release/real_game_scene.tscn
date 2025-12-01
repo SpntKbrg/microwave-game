@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://28r1rhmscnle"]
+[gd_scene load_steps=22 format=3 uid="uid://28r1rhmscnle"]
 
 [ext_resource type="StyleBox" uid="uid://b3jedpegd354r" path="res://assets/ui/game_bg.tres" id="1_e1xsh"]
 [ext_resource type="Script" uid="uid://cuhlrwjla6kf" path="res://scripts/resources/microwave_spec.gd" id="2_jvgw3"]
@@ -19,8 +19,7 @@
 [ext_resource type="Resource" uid="uid://cmc4gda6a680w" path="res://data/item_resources/mug.tres" id="13_ofqx1"]
 [ext_resource type="Script" uid="uid://cso81fb444n4e" path="res://scripts/game/item_shelf_spawner.gd" id="14_fij0q"]
 [ext_resource type="PackedScene" uid="uid://cucl236n4hfwi" path="res://scenes/items/ItemFactory.tscn" id="14_h88xt"]
-[ext_resource type="Script" uid="uid://yaflfsrycvvw" path="res://scripts/resources/item_library.gd" id="15_37101"]
-[ext_resource type="PackedScene" path="res://scenes/customer_system.tscn" id="15_fij0q"]
+[ext_resource type="PackedScene" uid="uid://d3vsbjdcoodxd" path="res://scenes/customer_system.tscn" id="15_fij0q"]
 
 [sub_resource type="Resource" id="Resource_jvgw3"]
 script = ExtResource("2_jvgw3")
@@ -88,13 +87,14 @@ layout_mode = 2
 visible = false
 layout_mode = 1
 
-[node name="GameSystem" type="Node" parent="." node_paths=PackedStringArray("customer_system", "item_factory", "microwave_inspect", "input_state_handler", "item_shelf_spawner", "__customer_data_holder", "__customer_button_container")]
+[node name="GameSystem" type="Node" parent="." node_paths=PackedStringArray("customer_system", "item_factory", "microwave_inspect", "input_state_handler", "item_shelf_spawner", "microwave_spawner", "__customer_data_holder", "__customer_button_container")]
 script = ExtResource("7_e1xsh")
 customer_system = NodePath("CustomerSystem")
 item_factory = NodePath("ItemFactory")
 microwave_inspect = NodePath("../MicrowaveInspect")
 input_state_handler = NodePath("InputStateHandler")
 item_shelf_spawner = NodePath("ItemShelfSpawner")
+microwave_spawner = NodePath("MicrowaveSpawner")
 __customer_data_holder = NodePath("CustomerList")
 __customer_button_container = NodePath("../CustomerRow/CustomerButtonContainer")
 __customer_node_template = ExtResource("8_e38y6")
@@ -119,7 +119,3 @@ microwave_spawn_point = NodePath("../../MicrowaveRow/MicrowaveContainer")
 script = ExtResource("14_fij0q")
 __item_shelf = NodePath("../../ItemRow/ItemShelf")
 __item_shelf_btn_template = ExtResource("3_n7wt1")
-
-[node name="ItemLibrary" type="Node" parent="."]
-script = ExtResource("15_37101")
-__item_resources = Array[ExtResource("8_xwxs8")]([ExtResource("10_5rj2t"), ExtResource("13_ofqx1"), ExtResource("12_g4s6n"), ExtResource("11_ietqi"), ExtResource("9_37101")])

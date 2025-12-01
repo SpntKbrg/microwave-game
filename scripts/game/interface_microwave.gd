@@ -32,4 +32,4 @@ func setup()->void
 func on_item_drop_addition(item: ItemModel) -> void
 
 @abstract
-func on_commit_command(command: MicrowaveMethod,time: int) -> void
+func on_commit_command(command: MicrowaveMethod) -> void

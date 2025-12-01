@@ -34,11 +34,12 @@ emission_shape = 3
 emission_box_extents = Vector3(10, 1, 1)
 direction = Vector3(-1, 0, 0)
 
-[node name="MicrowaveSprite" type="AnimatedSprite2D"]
+[node name="MicrowaveSprite" type="AnimatedSprite2D" node_paths=PackedStringArray("__particles")]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_utbpp")
 animation = &"microwave_anim"
 script = ExtResource("4_pfil4")
+__particles = NodePath("HeatParticles")
 
 [node name="HeatParticles" type="GPUParticles2D" parent="."]
 position = Vector2(0, -10)
