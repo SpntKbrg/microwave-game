@@ -31,13 +31,13 @@ func _process(delta: float) -> void:
 	
 func on_customer_patient_time_out(id: int) -> void:
 	print("Customer patient time out id: ", id)
-	_remove_customer_by_id(id)
-	on_remove_customer.emit(false, id)
+	if _remove_customer_by_id(id):
+		on_remove_customer.emit(false, id)
 
 func on_customer_complete(id: int) -> void:
 	print("Customer complete id: ", id)
-	_remove_customer_by_id(id)
-	on_remove_customer.emit(true, id)
+	if _remove_customer_by_id(id):
+		on_remove_customer.emit(true, id)
 
 func _process_time_until_next_customer(delta: float) -> void:
 	if(time_until_next_customer <= 0 && customer_list.size() < maximum_customer_queue):
@@ -66,18 +66,18 @@ func _get_new_time_until_next_customer() -> float:
 	
 	return time_until_next_customer_lists[index] * time_modifier
 	
-func _remove_customer_by_id(id: int) -> void:
+func _remove_customer_by_id(id: int) -> bool:
 	print("Attempt removing the customer with id: ", id)
 	for index in range(customer_list.size()):
 		if customer_list[index].customer_id == id:
-			_remove_customer_at_index(index)
-			return
+			return _remove_customer_at_index(index)
 	print("Customer id not found: ", id)
+	return false
 
-func _remove_customer_at_index(index: int) -> void:
+func _remove_customer_at_index(index: int) -> bool:
 	if index < 0 and index >= customer_list.size():
 		print("Customer index not found: ", index)
-		return
+		return false
 	
 	print("Remove the customer at index: ", index)
 	
@@ -87,11 +87,14 @@ func _remove_customer_at_index(index: int) -> void:
 	
 	target_customer.queue_free()
 	
-	if time_until_next_customer <= 0:
-		time_until_next_customer = _get_new_time_until_next_customer()
+	var new_waiting_time = _get_new_time_until_next_customer()
+	
+	if time_until_next_customer > new_waiting_time:
+		time_until_next_customer = new_waiting_time
 		print("New waiting time until the next customer: ", time_until_next_customer)
 	
 	_print_current_customer()
+	return true
 	
 func _print_current_customer() -> void:
 	print("Current customers: ", customer_list.map(func(element): return element.customer_id))
