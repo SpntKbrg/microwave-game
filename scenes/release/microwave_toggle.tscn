@@ -1,15 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqwtep1tixyat"]
+[gd_scene load_steps=5 format=3 uid="uid://bqwtep1tixyat"]
 
 [ext_resource type="Script" uid="uid://dg7k8mk2swktu" path="res://scripts/game/microwave_toggle.gd" id="1_02y5o"]
 [ext_resource type="PackedScene" uid="uid://d0c2vao5peyme" path="res://scenes/microwave_sprite.tscn" id="1_qmfg7"]
 [ext_resource type="Theme" uid="uid://cwt57yrv5fqbq" path="res://assets/ui/main_theme.tres" id="3_o04vi"]
+[ext_resource type="PackedScene" uid="uid://7np8gifga1h2" path="res://scenes/item_icon.tscn" id="4_jihpy"]
 
-[node name="MicrowaveToggle" type="TextureButton" node_paths=PackedStringArray("microwave_timer", "microwave_progress", "anim_sprite")]
+[node name="MicrowaveToggle" type="TextureButton" node_paths=PackedStringArray("microwave_timer", "microwave_progress", "anim_sprite", "item_icon")]
 custom_minimum_size = Vector2(32, 32)
 script = ExtResource("1_02y5o")
 microwave_timer = NodePath("microwave_timer")
 microwave_progress = NodePath("ui/progress")
 anim_sprite = NodePath("MicrowaveSprite")
+item_icon = NodePath("ItemIcon")
 
 [node name="MicrowaveSprite" parent="." instance=ExtResource("1_qmfg7")]
 position = Vector2(16, 24)
@@ -41,6 +43,13 @@ metadata/_edit_use_anchors_ = true
 
 [node name="microwave_timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="ItemIcon" parent="." instance=ExtResource("4_jihpy")]
+layout_mode = 0
+offset_left = 7.0
+offset_top = -1.0
+offset_right = 23.0
+offset_bottom = 15.0
 
 [connection signal="pressed" from="." to="." method="on_selected"]
 [connection signal="timeout" from="microwave_timer" to="." method="on_countdown"]

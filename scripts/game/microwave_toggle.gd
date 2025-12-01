@@ -5,6 +5,7 @@ extends TextureButton
 @export var microwave_timer: Timer
 @export var microwave_progress: ProgressBar
 @export var anim_sprite: AnimSprite
+@export var item_icon: ItemIcon
 var is_running: bool = false
 
 var microwave_id: int
@@ -19,7 +20,9 @@ signal on_microwave_selected(microwave_id: int)
 func setup()->void:
 	print("basic microwave seting up..")
 	anim_sprite.set_animating(false)
+	microwave_timer.timeout.connect(on_countdown)
 	microwave_progress.visible = false
+	item_icon.visible = false
 
 func _process(_delta: float) -> void:
 	microwave_progress.visible = is_running
@@ -30,15 +33,15 @@ func _process(_delta: float) -> void:
 	microwave_progress.value = percent * 100.0
 
 func on_countdown()->void:
-	print("Microwave is done with item : ", current_command.item_type)
 	is_running = false
-	completed_item_type = current_command.item_type
 	on_wave_timeout.emit(current_command)
+	completed_item_type = current_command.item_type
 	current_command = null
 	anim_sprite.set_animating(false)
 	
 func on_complete_order() -> void:
 	completed_item_type = UtilType.ItemType.NULL
+	item_icon.visible = false
 
 func commit_command(_command: MicrowaveMethod) -> void:
 	if is_running:
@@ -52,6 +55,8 @@ func commit_command(_command: MicrowaveMethod) -> void:
 	countdown_ms = floori((input_min_in_sec + input_sec) * 1000.0 / sec_modifier) # realtime til finished
 	microwave_timer.start(countdown_ms / 1000.0)
 	anim_sprite.set_animating(true)
+	item_icon.setup(_command.item_type)
+	item_icon.visible = true
 
 func on_selected() -> void:
 	on_microwave_selected.emit(microwave_id)
