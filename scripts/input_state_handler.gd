@@ -21,6 +21,7 @@ func _ready() -> void:
 
 func on_select_microwave(id: int) -> void:
 	print("try selecting microwave id:", id)
+	SoundController.get_instance().play_sound(UtilType.SFX.CLICK_POS)
 	__state = SelectionState.MICROWAVE_SELECTED
 	__selected_id = id
 
