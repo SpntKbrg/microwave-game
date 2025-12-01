@@ -1,3 +1,4 @@
+class_name MicrowaveToggle
 extends TextureButton
 
 @export var microwave_timer: Timer

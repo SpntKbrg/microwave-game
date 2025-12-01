@@ -8,6 +8,7 @@ extends Node
 @export var microwave_inspect: MicrowaveInspect
 @export var input_state_handler: InputStateHandler
 @export var item_shelf_spawner: ItemShelfSpawner
+@export var microwave_spawner: MicrowaveSpawner
 
 @export_category("Internal")
 @export var __customer_data_holder: Node
@@ -43,12 +44,18 @@ func __subscribe_events() -> void:
 		microwave_inspect.setup(item)
 	)
 	item_shelf_spawner.on_item_selected.connect(input_state_handler.on_select_item)
+	microwave_inspect.on_commit_command.connect(input_state_handler.on_submit_microwave_cmd)
+	input_state_handler.signal_try_command_microwave.connect(microwave_spawner.send_cmd)
+
 
 func setup() -> void:
 	__item_data = {}
 	for item in __item_resources:
 		__item_data.set(item.item_type, item)
 	item_shelf_spawner.setup(__item_data)
+	microwave_inspect.set_condition_func(func ():
+		return microwave_spawner.is_any_microwave_free()
+	)
 
 func start_game() -> void:
 	customer_system.set_running(true)

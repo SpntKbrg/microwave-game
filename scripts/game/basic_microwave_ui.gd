@@ -32,7 +32,7 @@ func on_start_pressed_preprocess() -> void:
 	var fixed_t := min_unit * 60 + sec_unit
 	print("microwave ui -> ", fixed_t)
 	command.duration = fixed_t
-	on_commit_command.emit(command)
+	# on_commit_command.emit(command) # IMicrowaveUI also send signal
 	on_reset_pressed()
 
 func on_temperature_pressed(index: int) -> void:

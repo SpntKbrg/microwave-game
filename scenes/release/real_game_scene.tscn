@@ -87,13 +87,14 @@ layout_mode = 2
 visible = false
 layout_mode = 1
 
-[node name="GameSystem" type="Node" parent="." node_paths=PackedStringArray("customer_system", "item_factory", "microwave_inspect", "input_state_handler", "item_shelf_spawner", "__customer_data_holder", "__customer_button_container")]
+[node name="GameSystem" type="Node" parent="." node_paths=PackedStringArray("customer_system", "item_factory", "microwave_inspect", "input_state_handler", "item_shelf_spawner", "microwave_spawner", "__customer_data_holder", "__customer_button_container")]
 script = ExtResource("7_e1xsh")
 customer_system = NodePath("CustomerSystem")
 item_factory = NodePath("ItemFactory")
 microwave_inspect = NodePath("../MicrowaveInspect")
 input_state_handler = NodePath("InputStateHandler")
 item_shelf_spawner = NodePath("ItemShelfSpawner")
+microwave_spawner = NodePath("MicrowaveSpawner")
 __customer_data_holder = NodePath("CustomerList")
 __customer_button_container = NodePath("../CustomerRow/CustomerButtonContainer")
 __customer_node_template = ExtResource("8_e38y6")
