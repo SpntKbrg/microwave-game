@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cv4burmu0wyyy"]
+[gd_scene load_steps=5 format=3 uid="uid://cv4burmu0wyyy"]
 
 [ext_resource type="StyleBox" uid="uid://b3jedpegd354r" path="res://assets/ui/game_bg.tres" id="1_13uba"]
 [ext_resource type="Theme" uid="uid://cwt57yrv5fqbq" path="res://assets/ui/main_theme.tres" id="2_goxi2"]
 [ext_resource type="PackedScene" uid="uid://d0c2vao5peyme" path="res://scenes/microwave_sprite.tscn" id="3_6ykb1"]
+[ext_resource type="Script" uid="uid://ddj6ahf5j4bi" path="res://scripts/ui/main_menu/start_button.gd" id="4_g4g51"]
 
 [node name="MainMenu" type="Control"]
 texture_filter = 1
@@ -61,9 +62,12 @@ custom_minimum_size = Vector2(64, 18)
 layout_mode = 2
 theme = ExtResource("2_goxi2")
 text = "Start"
+script = ExtResource("4_g4g51")
 
 [node name="Button2" type="Button" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(64, 18)
 layout_mode = 2
 theme = ExtResource("2_goxi2")
 text = "Credits"
+
+[connection signal="pressed" from="Panel/VBoxContainer/Button" to="Panel/VBoxContainer/Button" method="_on_button_pressed"]
