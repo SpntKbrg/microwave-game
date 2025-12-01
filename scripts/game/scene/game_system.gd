@@ -9,6 +9,7 @@ extends Node
 @export var input_state_handler: InputStateHandler
 @export var item_shelf_spawner: ItemShelfSpawner
 @export var microwave_spawner: MicrowaveSpawner
+@export var sound_controller: SoundController
 
 @export_category("Internal")
 @export var __customer_data_holder: Node
@@ -32,6 +33,7 @@ func _ready() -> void:
 
 func __subscribe_events() -> void:
 	customer_system.on_add_customer.connect(on_event_customer_add)
+	customer_system.on_remove_customer.connect(on_event_customer_remove)
 	input_state_handler.signal_show_microwave_ui.connect(func (is_showing: bool, item_type_id: int):
 		microwave_inspect.visible = is_showing
 		var item_resource := __item_data.get(item_type_id as UtilType.ItemType) as ItemResource
@@ -65,6 +67,12 @@ func start_game() -> void:
 func on_event_microwave_add(microwave: MicrowaveToggle) -> void:
 	microwave.on_microwave_selected.connect(input_state_handler.on_select_microwave)
 
+func on_event_customer_remove(is_success: bool, _id: int) -> void:
+	if is_success:
+		SoundController.get_instance().play_sound(UtilType.SFX.CUST_POS)
+	else:
+		SoundController.get_instance().play_sound(UtilType.SFX.CUST_NEG)
+
 func on_event_customer_add(customer: Customer) -> void:
 	var customer_id := customer.customer_id
 	var cart := item_factory.generate_order(customer.remain_item_count)
@@ -80,6 +88,7 @@ func on_event_customer_add(customer: Customer) -> void:
 	customer_button.name = str(customer_id)
 	customer_button.on_customer_selected.connect(input_state_handler.on_select_customer)
 	__customer_button_container.add_child(customer_button)
+	SoundController.get_instance().play_sound(UtilType.SFX.CUST_ARR)
 	
 func on_try_give_item_to_customer(microwave_id: int, customer_id: int) -> void:
 	var selected_microwave_list := __get_microwave_list_by_id(microwave_id)
@@ -98,10 +107,12 @@ func on_try_give_item_to_customer(microwave_id: int, customer_id: int) -> void:
 	
 	if selected_microwave.is_running:
 		print("GameSystem::on_try_give_item_to_customer : The microwave is still running.")
+		SoundController.get_instance().play_sound(UtilType.SFX.CLICK_NEG)
 		return
 		
 	if not selected_microwave.completed_item_type or selected_microwave.completed_item_type == UtilType.ItemType.NULL:
 		print("GameSystem::on_try_give_item_to_customer : The microwave doesn't have any item.")
+		SoundController.get_instance().play_sound(UtilType.SFX.CLICK_NEG)
 		return
 		
 	var customer_item_icon_list := selected_customer.get_item_icon_list()
@@ -110,9 +121,11 @@ func on_try_give_item_to_customer(microwave_id: int, customer_id: int) -> void:
 		if customer_item_icon_list[index].item_type == selected_microwave.completed_item_type:
 			print("GameSystem::on_try_give_item_to_customer : Found the requested item at index : ", index)
 			selected_customer.remove_item_icon_at_index(index)
+			SoundController.get_instance().play_sound(UtilType.SFX.ITEM_ACC)
 			return
 			
 	print("GameSystem::on_try_give_item_to_customer : Item not found")
+	SoundController.get_instance().play_sound(UtilType.SFX.CLICK_NEG)
 
 
 func __get_microwave_list_by_id(microwave_id: int) -> Array:
