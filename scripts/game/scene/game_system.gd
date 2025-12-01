@@ -50,6 +50,7 @@ func __subscribe_events() -> void:
 	microwave_spawner.on_microwave_selected.connect(input_state_handler.on_select_microwave)
 	microwave_inspect.on_commit_command.connect(input_state_handler.on_submit_microwave_cmd)
 	input_state_handler.signal_try_command_microwave.connect(microwave_spawner.send_cmd)
+	input_state_handler.signal_try_give_item_to_customer.connect(on_try_give_item_to_customer)
 
 func setup() -> void:
 	__item_data = {}
@@ -110,7 +111,7 @@ func on_try_give_item_to_customer(microwave_id: int, customer_id: int) -> void:
 		SoundController.get_instance().play_sound(UtilType.SFX.CLICK_NEG)
 		return
 		
-	if not selected_microwave.completed_item_type or selected_microwave.completed_item_type == UtilType.ItemType.NULL:
+	if selected_microwave.completed_item_type == UtilType.ItemType.NULL:
 		print("GameSystem::on_try_give_item_to_customer : The microwave doesn't have any item.")
 		SoundController.get_instance().play_sound(UtilType.SFX.CLICK_NEG)
 		return
@@ -121,12 +122,19 @@ func on_try_give_item_to_customer(microwave_id: int, customer_id: int) -> void:
 		if customer_item_icon_list[index].item_type == selected_microwave.completed_item_type:
 			print("GameSystem::on_try_give_item_to_customer : Found the requested item at index : ", index)
 			selected_customer.remove_item_icon_at_index(index)
+			selected_microwave.on_complete_order()
+			
+			if selected_customer.is_order_completed():
+				print("GameSystem::on_try_give_item_to_customer : Order completed for customer id : ", customer_id)
+				__handle_completed_customer(selected_customer)
 			SoundController.get_instance().play_sound(UtilType.SFX.ITEM_ACC)
 			return
 			
 	print("GameSystem::on_try_give_item_to_customer : Item not found")
 	SoundController.get_instance().play_sound(UtilType.SFX.CLICK_NEG)
 
+func __handle_completed_customer(customer: CustomerButton) -> void:
+	customer.queue_free()
 
 func __get_microwave_list_by_id(microwave_id: int) -> Array:
 	return (

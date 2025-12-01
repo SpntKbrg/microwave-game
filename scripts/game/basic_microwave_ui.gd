@@ -6,6 +6,7 @@ class_name BasicMicrowaveUI extends IMicrowaveUI
 @export var timer_text: Label
 var starting_input = "00:00"
 var user_input = ""
+var current_item_type: UtilType.ItemType = UtilType.ItemType.NULL
 
 func setup() -> void:
 	print("basic microwave ui seting up..")
@@ -30,8 +31,9 @@ func on_start_pressed_preprocess() -> void:
 	var min_unit := floori(time / 100.0)
 	var sec_unit := time % 100
 	var fixed_t := min_unit * 60 + sec_unit
-	print("microwave ui -> ", fixed_t)
+	print("microwave ui -> ", fixed_t, " ", current_item_type)
 	command.duration = fixed_t
+	command.item_type = current_item_type
 	# on_commit_command.emit(command) # IMicrowaveUI also send signal
 	on_reset_pressed()
 

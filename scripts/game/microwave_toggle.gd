@@ -19,7 +19,6 @@ signal on_microwave_selected(microwave_id: int)
 func setup()->void:
 	print("basic microwave seting up..")
 	anim_sprite.set_animating(false)
-	microwave_timer.timeout.connect(on_countdown)
 	microwave_progress.visible = false
 
 func _process(_delta: float) -> void:
@@ -31,9 +30,10 @@ func _process(_delta: float) -> void:
 	microwave_progress.value = percent * 100.0
 
 func on_countdown()->void:
+	print("Microwave is done with item : ", current_command.item_type)
 	is_running = false
-	on_wave_timeout.emit(current_command)
 	completed_item_type = current_command.item_type
+	on_wave_timeout.emit(current_command)
 	current_command = null
 	anim_sprite.set_animating(false)
 	
