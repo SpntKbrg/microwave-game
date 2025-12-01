@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://28r1rhmscnle"]
+[gd_scene load_steps=30 format=3 uid="uid://28r1rhmscnle"]
 
 [ext_resource type="StyleBox" uid="uid://b3jedpegd354r" path="res://assets/ui/game_bg.tres" id="1_e1xsh"]
 [ext_resource type="Script" uid="uid://cuhlrwjla6kf" path="res://scripts/resources/microwave_spec.gd" id="2_jvgw3"]
@@ -20,6 +20,14 @@
 [ext_resource type="Script" uid="uid://cso81fb444n4e" path="res://scripts/game/item_shelf_spawner.gd" id="14_fij0q"]
 [ext_resource type="PackedScene" uid="uid://cucl236n4hfwi" path="res://scenes/items/ItemFactory.tscn" id="14_h88xt"]
 [ext_resource type="PackedScene" uid="uid://d3vsbjdcoodxd" path="res://scenes/customer_system.tscn" id="15_fij0q"]
+[ext_resource type="Script" uid="uid://bnxai7cf282in" path="res://scripts/sound_manager/sound_manager.gd" id="21_37101"]
+[ext_resource type="Script" uid="uid://cgh8sihxkjeab" path="res://scripts/sound_manager/sound_controller.gd" id="22_8ijly"]
+[ext_resource type="AudioStream" uid="uid://bmsm6ix6ljc6b" path="res://assets/sfx/kenney/click_positive.ogg" id="23_7vm1s"]
+[ext_resource type="AudioStream" uid="uid://dv2ldunacjwxq" path="res://assets/sfx/kenney/click_negative.ogg" id="24_ro6rp"]
+[ext_resource type="AudioStream" uid="uid://d1o524b6npqn6" path="res://assets/sfx/kenney/item_accept.ogg" id="25_r5580"]
+[ext_resource type="AudioStream" uid="uid://cfhsxwctpyaye" path="res://assets/sfx/kenney/deliver_success.ogg" id="26_esvc2"]
+[ext_resource type="AudioStream" uid="uid://dl3oobafhoy" path="res://assets/sfx/kenney/delivery_failed.ogg" id="27_h1ngv"]
+[ext_resource type="AudioStream" uid="uid://cdsfwjeotg8f1" path="res://assets/sfx/kenney/customer_arrive.ogg" id="28_7vm1s"]
 
 [sub_resource type="Resource" id="Resource_jvgw3"]
 script = ExtResource("2_jvgw3")
@@ -120,3 +128,20 @@ microwave_spawn_point = NodePath("../../MicrowaveRow/MicrowaveContainer")
 script = ExtResource("14_fij0q")
 __item_shelf = NodePath("../../ItemRow/ItemShelf")
 __item_shelf_btn_template = ExtResource("3_n7wt1")
+
+[node name="SoundManager" type="Node" parent="GameSystem"]
+script = ExtResource("21_37101")
+metadata/_custom_type_script = "uid://bnxai7cf282in"
+
+[node name="SoundController" type="Node" parent="GameSystem"]
+script = ExtResource("22_8ijly")
+volume = 0.5
+audio_dict = Dictionary[int, AudioStream]({
+0: ExtResource("23_7vm1s"),
+1: ExtResource("24_ro6rp"),
+2: ExtResource("26_esvc2"),
+3: ExtResource("27_h1ngv"),
+4: ExtResource("25_r5580"),
+5: ExtResource("28_7vm1s")
+})
+metadata/_custom_type_script = "uid://cgh8sihxkjeab"

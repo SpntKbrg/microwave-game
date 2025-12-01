@@ -47,3 +47,4 @@ func on_number_pressed(index: int) -> void:
 	var show_input = "0000"
 	show_input = show_input.substr(0,4-user_input.length()) + user_input
 	timer_text.text = show_input.substr(0,2) + ":" + show_input.substr(2,4)
+	SoundController.get_instance().play_sound(UtilType.SFX.CLICK_POS)
