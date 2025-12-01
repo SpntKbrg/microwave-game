@@ -6,9 +6,9 @@
 [node name="CustomerSystem" type="Node" node_paths=PackedStringArray("customer_factory")]
 script = ExtResource("1_44klf")
 customer_factory = NodePath("CustomerFactory")
-maximum_customer_queue = 3
-time_until_next_customer_lists = Array[float]([0.0, 15.0, 25.0])
+maximum_customer_queue = 5
+time_until_next_customer_lists = Array[float]([0.0, 5.0, 10.0, 15.0, 20.0])
 
 [node name="CustomerFactory" type="Node" parent="."]
 script = ExtResource("2_500fp")
-customer_patient_time = 45.0
+customer_patient_time = 20.0
