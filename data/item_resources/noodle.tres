@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://csb0enp3mhm8a"]
+
+[ext_resource type="Texture2D" uid="uid://crbyc55xh3m8" path="res://assets/sprites/release/icons/noodlecup.png" id="1_87h77"]
+[ext_resource type="PackedScene" uid="uid://2v6lnu1yie2j" path="res://scenes/items/item_models/mug.tscn" id="1_fnarm"]
+[ext_resource type="Script" uid="uid://bxh2n1v4fly8q" path="res://scripts/game/items/item_resource.gd" id="2_87h77"]
+
+[resource]
+script = ExtResource("2_87h77")
+item_type = 3
+model = ExtResource("1_fnarm")
+icon = ExtResource("1_87h77")
+timer_min_second = 90
+timer_max_second = 150
+metadata/_custom_type_script = "uid://bxh2n1v4fly8q"

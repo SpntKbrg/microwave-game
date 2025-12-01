@@ -26,6 +26,7 @@ __sticker_texture = NodePath("ItemHolder/Sticker/SubViewport/Sticker")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -2)
 cast_shadow = 0
 shaded = true
+double_sided = false
 alpha_cut = 1
 texture_filter = 2
 texture = SubResource("ViewportTexture_qvher")
@@ -33,7 +34,7 @@ texture = SubResource("ViewportTexture_qvher")
 [node name="SubViewport" type="SubViewport" parent="ItemHolder/Sticker"]
 transparent_bg = true
 gui_disable_input = true
-size = Vector2i(64, 32)
+size = Vector2i(32, 32)
 
 [node name="Sticker" parent="ItemHolder/Sticker/SubViewport" instance=ExtResource("3_2meiq")]
 

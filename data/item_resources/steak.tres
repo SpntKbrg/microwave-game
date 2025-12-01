@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://b307s50oc4t8n"]
+
+[ext_resource type="Script" uid="uid://bxh2n1v4fly8q" path="res://scripts/game/items/item_resource.gd" id="1_1rsci"]
+[ext_resource type="PackedScene" uid="uid://bt1ashl42m3xu" path="res://scenes/items/item_models/steak.tscn" id="1_4wga8"]
+[ext_resource type="Texture2D" uid="uid://cbq7lnunfoaie" path="res://assets/sprites/release/icons/steak.png" id="1_q58rl"]
+
+[resource]
+script = ExtResource("1_1rsci")
+model = ExtResource("1_4wga8")
+icon = ExtResource("1_q58rl")
+timer_min_second = 60
+timer_max_second = 180
+metadata/_custom_type_script = "uid://bxh2n1v4fly8q"

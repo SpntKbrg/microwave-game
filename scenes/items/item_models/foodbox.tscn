@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://4fjijrod57p4" path="res://assets/models/release/foodbox.gltf" id="1_hfuw5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mkhat"]
-size = Vector3(1, 0.25, 1)
+size = Vector3(1, 0.2510376, 1)
 
 [node name="Foodbox" type="Node3D"]
 
@@ -12,4 +12,5 @@ size = Vector3(1, 0.25, 1)
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000579834, 0)
 shape = SubResource("BoxShape3D_mkhat")
