@@ -51,6 +51,7 @@ func __subscribe_events() -> void:
 	microwave_inspect.on_commit_command.connect(input_state_handler.on_submit_microwave_cmd)
 	input_state_handler.signal_try_command_microwave.connect(microwave_spawner.send_cmd)
 	input_state_handler.signal_try_give_item_to_customer.connect(on_try_give_item_to_customer)
+	input_state_handler.signal_try_clearing_microwave.connect(on_try_clearing_selected_microwave)
 
 func setup() -> void:
 	__item_data = {}
@@ -90,22 +91,28 @@ func on_event_customer_add(customer: Customer) -> void:
 	customer_button.on_customer_selected.connect(input_state_handler.on_select_customer)
 	__customer_button_container.add_child(customer_button)
 	SoundController.get_instance().play_sound(UtilType.SFX.CUST_ARR)
+
+func on_try_clearing_selected_microwave(microwave_id: int) -> void:
+	var selected_microwave := __get_microwave_by_id(microwave_id)
 	
-func on_try_give_item_to_customer(microwave_id: int, customer_id: int) -> void:
-	var selected_microwave_list := __get_microwave_list_by_id(microwave_id)
-	var selected_customer_list := __get_customer_list_by_id(customer_id)
-	
-	if selected_microwave_list.size() == 0:
+	if not selected_microwave:
 		print("GameSystem::on_try_give_item_to_customer : Can't find microwave with id: ", microwave_id)
 		return
 	
-	if selected_customer_list.size() == 0:
-		print("GameSystem::on_try_give_item_to_customer : Can't find customer with id: ", customer_id)
+	selected_microwave.on_clear_item()
+	
+func on_try_give_item_to_customer(microwave_id: int, customer_id: int) -> void:
+	var selected_microwave := __get_microwave_by_id(microwave_id)
+	var selected_customer := __get_customer_by_id(customer_id)
+	
+	if not selected_microwave:
+		print("GameSystem::on_try_give_item_to_customer : Can't find microwave with id: ", microwave_id)
 		return
 	
-	var selected_microwave : MicrowaveToggle = selected_microwave_list[0]
-	var selected_customer :CustomerButton = selected_customer_list[0]
-	
+	if not selected_customer:
+		print("GameSystem::on_try_give_item_to_customer : Can't find customer with id: ", customer_id)
+		return
+
 	if selected_microwave.is_running:
 		print("GameSystem::on_try_give_item_to_customer : The microwave is still running.")
 		SoundController.get_instance().play_sound(UtilType.SFX.CLICK_NEG)
@@ -136,18 +143,28 @@ func on_try_give_item_to_customer(microwave_id: int, customer_id: int) -> void:
 func __handle_completed_customer(customer: CustomerButton) -> void:
 	customer.queue_free()
 
-func __get_microwave_list_by_id(microwave_id: int) -> Array:
-	return (
+func __get_microwave_by_id(microwave_id: int) -> MicrowaveToggle:
+	var selected_microwave_list := (
 		__microwave_container.get_children()
 			.filter(func (child): return is_instance_of(child, MicrowaveToggle))
 			.map(func (child): return child as MicrowaveToggle)
 			.filter(func (child: MicrowaveToggle): return child.microwave_id == microwave_id)
 	)
 	
-func __get_customer_list_by_id(customer_id: int) -> Array:
-	return (
+	if selected_microwave_list.size() == 0:
+		return null
+	
+	return selected_microwave_list[0] as MicrowaveToggle
+	
+func __get_customer_by_id(customer_id: int) -> CustomerButton:
+	var selected_customer_list := (
 		__customer_button_container.get_children()
 			.filter(func (child): return is_instance_of(child, CustomerButton))
 			.map(func (child): return child as CustomerButton)
 			.filter(func (child: CustomerButton): return child.get_customer_id() == customer_id)
 	)
+	
+	if selected_customer_list.size() == 0:
+		return null
+	
+	return selected_customer_list[0] as CustomerButton
